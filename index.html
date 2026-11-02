@@ -253,7 +253,20 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
   .bbox .lid,.best .cap{transition:none}
   .btn,.link span,.sig .win img{transition:none}
 }
+
+/* footer: a greeting in Arabic, then one row of links (approved) */
+.sfoot{padding:64px 20px 28px;background:#15110d;color:#efe6d6;font:400 15px/1.6 Jost,system-ui,sans-serif}
+.sfoot .bye{display:flex;align-items:baseline;gap:6px 16px;flex-wrap:wrap}
+.sfoot .ar{font:700 44px/1.4 "Aref Ruqaa",serif;color:#e2b43c;direction:rtl}
+.sfoot .en{font:400 18px Marcellus,serif;letter-spacing:.24em;text-transform:uppercase}
+.sfoot .row{display:grid;gap:18px;margin-top:22px}
+.sfoot nav{display:flex;flex-wrap:wrap;gap:0 24px}
+.sfoot nav a{color:inherit;text-decoration:none;display:inline-flex;min-height:44px;align-items:center;transition:color .2s}
+.sfoot nav a:hover{color:#e2b43c}
+.sfoot .legal{font-size:13px;color:#c3b7a2}
+@media (min-width:900px){.sfoot{padding:80px clamp(32px,5vw,80px) 34px}.sfoot .ar{font-size:64px}.sfoot .row{grid-template-columns:1fr auto;align-items:end}}
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
 <script>document.documentElement.classList.add('js')</script>
@@ -340,14 +353,12 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
 
 </main>
 
-<footer class="foot">
-  <img class="logo" src="logo/aminar-logo-gold.svg" alt="Aminar" width="1100" height="283" loading="lazy">
-  <div class="cols">
-    <div><h3>The house</h3><ul><li><a href="#bestsellers">Bestsellers</a></li><li><a href="#collections">Collections</a></li></ul></div>
-    <div><h3>Order</h3><ul><li><a data-wa="Hello Aminar" href="#top">WhatsApp</a></li><li><a data-social="instagram" href="#top">Instagram</a></li><li><a data-social="snapchat" href="#top">Snapchat</a></li></ul></div>
-    <div><h3>Visit</h3><ul><li><a href="visit.html">Visit &amp; contact</a></li><li><a href="wholesale.html">Wholesale &amp; export</a></li><li><a data-social="maps" href="#top">Directions</a></li></ul></div>
+<footer class="sfoot">
+  <div class="bye"><span class="ar" lang="ar">السلام عليكم</span><span class="en">Peace be upon you</span></div>
+  <div class="row">
+    <nav aria-label="Footer"><a href="#collections">Collections</a><a href="our-story.html">Our story</a><a href="wholesale.html">Wholesale</a><a href="visit.html">Visit</a><a href="https://wa.me/66895042876?text=Hello%20Aminar" target="_blank" rel="noopener">WhatsApp</a><a href="https://instagram.com/aminarthailand" target="_blank" rel="noopener">Instagram</a></nav>
+    <p class="legal">© 2026 Aminar · Sukhumvit Soi 3, Bangkok</p>
   </div>
-  <p class="imprint">© 2026 Aminar</p>
 </footer>
 
 <script>
