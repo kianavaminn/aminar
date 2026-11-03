@@ -75,12 +75,16 @@ window.AMINAR = {
     {id: 'dream-bakhoor', name: 'Dream Bakhoor', shelf: 'bakhoor', category: 'bakhoor', kind: 'Bakhoor', image: 'images/products/Bakhoor/Bakhoor/dream-bakhoor.jpg', confirmed: true},
     {id: 'mamoul', name: 'Mamoul', shelf: 'bakhoor', category: 'bakhoor', kind: 'Mamoul', image: 'images/products/Bakhoor/Mamoul/mamoul.jpg', confirmed: false},
 
-    {id: 'cambodia-kadeem', name: 'Cambodi Kadeem', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', image: 'images/products/body-mist/cambodia-kadeem-dark.jpg', imageLight: 'images/products/body-mist/cambodia-kadeem.jpg', confirmed: false},
-    {id: 'oud-patchouli', name: 'Oud Patchouli', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', bestseller: true, image: 'images/products/body-mist/oud-patchouli-dark.jpg', imageLight: 'images/products/body-mist/oud-patchouli.jpg', confirmed: false},
-    {id: 'hindi-siufi', name: 'Hindi Siufi', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', image: '', imageLight: 'images/products/body-mist/hindi-siufi.jpg', confirmed: false},
-    {id: 'bint-al-khaleej', name: 'Bint Al Khaleej', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', image: '', imageLight: 'images/products/body-mist/bint-al-khaleej.jpg', confirmed: false},
-    {id: 'trat-legend-oud', name: 'Trat Legend Oud', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', image: '', imageLight: 'images/products/body-mist/trat-legend-oud.jpg', confirmed: false},
-    {id: 'blue-diamond-oud', name: 'Blue Diamond Oud', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', image: '', imageLight: 'images/products/body-mist/blue-diamond-oud.jpg', confirmed: false},
+    {id: 'cambodia-kadeem', name: 'Cambodi Kadeem', shelf: 'body-mist', category: 'body-mist', line: 'Body Secrets by Aminar', kind: 'Body mist', image: 'images/products/body-mist/cambodia-kadeem-dark.jpg', imageLight: 'images/products/body-mist/cambodia-kadeem.jpg', confirmed: true},
+    {id: 'oud-patchouli', name: 'Oud Patchouli', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', bestseller: true, image: 'images/products/body-mist/oud-patchouli-dark.jpg', imageLight: 'images/products/body-mist/oud-patchouli.jpg', confirmed: true},
+    {id: 'hindi-siufi', name: 'Hindi Siufi', shelf: 'body-mist', category: 'body-mist', line: 'Body Secrets by Aminar', kind: 'Body mist', image: 'images/products/body-mist/hindi-siufi-dark.jpg', imageLight: 'images/products/body-mist/hindi-siufi.jpg', confirmed: true},
+    {id: 'bint-al-khaleej', name: 'Bint Al Khaleej', shelf: 'body-mist', category: 'body-mist', line: 'Body Secrets by Aminar', kind: 'Body mist', size: '120 ml', image: 'images/products/body-mist/bint-al-khaleej-dark.jpg', imageLight: 'images/products/body-mist/bint-al-khaleej.jpg', confirmed: true}, // 120 ml is printed on the label
+    {id: 'trat-legend-oud', name: 'Trat Legend Oud', shelf: 'body-mist', category: 'body-mist', line: 'Body Secrets by Aminar', kind: 'Body mist', image: 'images/products/body-mist/trat-legend-oud-dark.jpg', imageLight: 'images/products/body-mist/trat-legend-oud.jpg', confirmed: true}, // file was "Trat Oud"; the label reads Trat Legend Oud
+    {id: 'blue-diamond-oud', name: 'Blue Diamond Oud', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', image: 'images/products/body-mist/blue-diamond-oud-dark.jpg', imageLight: 'images/products/body-mist/blue-diamond-oud.jpg', confirmed: true},
+    {id: 'cinderella', name: 'Cinderella', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', image: 'images/products/body-mist/cinderella.jpg', confirmed: true},
+    {id: 'leather', name: 'Leather', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', image: 'images/products/body-mist/leather.jpg', confirmed: true},
+    {id: 'naughty-peach-oud', name: 'Naughty Peach Oud', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', image: 'images/products/body-mist/naughty-peach-oud.jpg', confirmed: true}, // file was "Naughty Peach"; the label adds Oud
+    {id: 'tobacco', name: 'Tobacco', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', image: 'images/products/body-mist/tobacco.jpg', confirmed: true},
 
     {id: 'malaki-hair', name: 'Malaki Hair', shelf: 'hair', kind: 'Hair mist · Dehn Al Oud Malaki', image: 'images/products/hair-sprays/malaki-hair.jpg', confirmed: true},
     {id: 'oud-hair', name: 'Oud Hair', shelf: 'hair', kind: 'Hair mist · Dahn Al Oud', image: 'images/products/hair-sprays/oud-hair.jpg', confirmed: true},
