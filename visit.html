@@ -46,56 +46,101 @@ a{color:inherit}
 .nav .mark img{height:26px;width:auto}
 @media (min-width:900px){.nav .mark img{height:30px}}
 
-/* ---------- 1. the address as a monument ---------- */
+/* ---------- 1. the address as a monument: ink-written welcome, slow zoom, gold dust ---------- */
 .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.hero picture{position:absolute;inset:0;will-change:transform}
 .hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0}
-.hero .shade{background:linear-gradient(0deg,var(--ground) 30%,rgba(13,11,9,0) 62%)!important}
-@media (min-width:900px){.hero .shade{background:linear-gradient(90deg,rgba(13,11,9,.92) 22%,rgba(13,11,9,0) 55%),linear-gradient(0deg,var(--ground) 2%,transparent 30%)!important}}
-.hero .shade{position:absolute;inset:0;background:linear-gradient(0deg,var(--ground) 18%,rgba(13,11,9,0) 58%)}
-.hero .inner{position:relative;padding:0 var(--m) 40px}
+.hero .shade{position:absolute;inset:0;background:linear-gradient(0deg,var(--ground) 30%,rgba(13,11,9,0) 62%)}
+.hero .dust{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hero .dust i{position:absolute;bottom:-10px;width:var(--s,3px);height:var(--s,3px);border-radius:50%;background:radial-gradient(#ffe7a3,rgba(226,180,60,0) 70%);opacity:0;animation:drift var(--t,12s) linear infinite;animation-delay:var(--dl,0s)}
+@keyframes drift{0%{transform:translate(0,0);opacity:0}12%{opacity:.9}80%{opacity:.5}100%{transform:translate(var(--x,30px),-90svh);opacity:0}}
+.hero .inner{position:relative;padding:0 var(--m) 56px}
 @media (max-width:899px){.hero{min-height:118svh}}
-.hero .ar{display:block;font:700 22vw/1.45 "Aref Ruqaa",serif;color:var(--foil);direction:rtl;text-align:left}
-.hero h1{font:400 24px/1.3 Marcellus,serif;letter-spacing:.3em;text-transform:uppercase;margin:4px 0 16px}
-.hero .info{display:grid;gap:4px;margin-bottom:24px;font:400 18px/1.45 Marcellus,serif;letter-spacing:.06em}
-.hero .info em{font-style:normal;color:var(--foil)}
-.hero .info small{font:500 13px var(--sans);letter-spacing:.06em;color:var(--soft);margin-left:6px}
+.hero .ar{display:block;font:700 22vw/1.45 "Aref Ruqaa",serif;color:var(--foil);direction:rtl;text-align:left;text-shadow:0 0 40px rgba(226,180,60,.25)}
+.hero h1{font:400 22px/1.3 Marcellus,serif;letter-spacing:.3em;text-transform:uppercase;margin:4px 0 22px}
 .hero h1 em{font-style:normal;color:var(--foil)}
-.hero .near{color:var(--soft)}
-.status{display:inline-flex;align-items:center;flex-wrap:wrap;gap:0 4px}
-.status .dot{margin-right:8px}
-.status .dot{width:10px;height:10px;border-radius:50%;background:#7fbf72;box-shadow:0 0 0 0 rgba(127,191,114,.6);animation:pulse 2.2s infinite}
-.status.closed .dot{background:var(--soft);animation:none}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(127,191,114,.55)}80%{box-shadow:0 0 0 12px rgba(127,191,114,0)}100%{box-shadow:0 0 0 0 rgba(127,191,114,0)}}
+.panel{max-width:470px;padding:18px 20px 16px;background:rgba(13,11,9,.5);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(226,180,60,.28);margin-bottom:22px}
+.status{display:inline-flex;flex-wrap:wrap;align-items:center;gap:4px 10px;padding:8px 14px;border:1px solid rgba(226,180,60,.35);border-radius:999px;font:500 11px/1.3 var(--sans);letter-spacing:.18em;text-transform:uppercase}
+.status b{font-weight:500}
+.status em{font-style:normal;color:var(--foil)}
+.status .dot{width:8px;height:8px;border-radius:50%;background:#7fc28d;animation:pulse 2.2s infinite}
+.status.closed .dot{background:#8a8296;animation:none}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(127,194,141,.6)}70%,100%{box-shadow:0 0 0 9px rgba(127,194,141,0)}}
+.facts{list-style:none;display:grid;gap:10px;margin-top:16px}
+.facts li{display:flex;align-items:center;gap:12px;font:400 17px/1.35 Marcellus,serif;letter-spacing:.05em}
+.facts svg{flex:none;width:20px;height:20px;color:var(--foil)}
+.facts em{font-style:normal;color:var(--foil)}
 .hero .row{display:flex;flex-wrap:wrap;gap:12px}
+.btn svg{width:20px;height:20px}
+.btn .arr{width:24px;height:13px;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.btn:hover .arr{transform:translateX(4px)}
+.btn.shine{position:relative;overflow:hidden}
+.btn.shine::after{content:"";position:absolute;inset:0;transform:translateX(-130%);background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.5) 50%,transparent 70%);animation:shine 5s 3.4s ease-in-out infinite}
+@keyframes shine{0%{transform:translateX(-130%)}22%,100%{transform:translateX(130%)}}
+.cue{position:absolute;right:var(--m);bottom:22px;display:flex;flex-direction:column;align-items:center;gap:8px;font:500 11px var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--soft);text-decoration:none;writing-mode:vertical-rl}
+.cue::after{content:"";width:1px;height:46px;background:linear-gradient(var(--foil),transparent);animation:drip 2.2s ease-in-out infinite}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+/* the opening performance */
+@media (prefers-reduced-motion:no-preference){
+  .hero .bg{animation:kb 10s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes kb{from{transform:scale(1.16)}to{transform:scale(1)}}
+  .hero .ar{animation:ink 1.9s .35s cubic-bezier(.65,.05,.3,1) both}
+  @keyframes ink{from{clip-path:inset(-20% 0 -20% 100%);opacity:.4}to{clip-path:inset(-20% 0 -20% 0);opacity:1}}
+  .hero h1{animation:spread 1.4s 1.5s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes spread{from{opacity:0;letter-spacing:.75em}to{opacity:1;letter-spacing:.3em}}
+  .hero .panel{animation:up .9s 2s cubic-bezier(.2,.7,.2,1) both}
+  .hero .row{animation:up .9s 2.2s cubic-bezier(.2,.7,.2,1) both}
+  .cue{animation:fadein 1s 2.8s both}
+  @keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+  @keyframes fadein{from{opacity:0}to{opacity:1}}
+}
 @media (min-width:900px){
-  .hero .inner{padding-bottom:80px}
+  .hero .inner{padding-bottom:84px;max-width:56vw}
   .hero .ar{font-size:min(10vw,20svh)}
-  .hero .info{font-size:21px}
-  .hero .inner{max-width:52vw}
-  .hero h1{font-size:32px}
+  .hero h1{font-size:30px}
+  .facts li{font-size:19px}
   .hero .bg{object-position:50% 50%}
-  .hero .shade{background:linear-gradient(90deg,rgba(13,11,9,.75) 10%,rgba(13,11,9,0) 50%),linear-gradient(0deg,var(--ground) 2%,transparent 30%)}
+  .hero .shade{background:linear-gradient(90deg,rgba(13,11,9,.85) 14%,rgba(13,11,9,0) 52%),linear-gradient(0deg,var(--ground) 2%,transparent 30%)}
+  .cue{bottom:34px}
 }
 
-/* ---------- 2. the way to us: a route line beside the real map ---------- */
-.route{padding-top:var(--gap)}
-.route .grid{display:grid;gap:40px;margin-top:40px}
-.modes{display:inline-flex;background:var(--ground-2);padding:4px;gap:4px}
-.modes button{background:none;border:0;color:var(--soft);font:500 15px var(--sans);letter-spacing:.06em;padding:0 22px;min-height:48px;cursor:pointer;transition:background-color .3s,color .3s}
-.modes button[aria-pressed="true"]{background:var(--gold);color:var(--ink)}
-.stops{list-style:none;margin-top:30px;position:relative}
-.stops::before{content:"";position:absolute;left:7px;top:14px;bottom:14px;width:2px;background:repeating-linear-gradient(var(--gold) 0 6px,transparent 6px 12px)}
-.stops li{position:relative;padding:0 0 26px 40px;font-size:18px}
-.stops li::before{content:"";position:absolute;left:0;top:7px;width:16px;height:16px;border-radius:50%;background:var(--ground);box-shadow:inset 0 0 0 2px var(--gold)}
-.stops li:last-child::before{background:var(--foil);box-shadow:0 0 0 6px rgba(226,180,60,.18)}
+/* ---------- 2. the way to us: a journey beside a framed map ---------- */
+.route{position:relative;padding-top:var(--gap);overflow-x:clip;padding-bottom:40px;margin-bottom:-40px}
+.route::before{content:"";position:absolute;right:0;top:20%;width:70vw;height:70%;background:radial-gradient(closest-side,rgba(226,180,60,.09),transparent);pointer-events:none}
+.route .grid{position:relative;display:grid;gap:56px;margin-top:40px}
+.modes{position:relative;display:inline-grid;grid-template-columns:1fr 1fr;padding:5px;border:1px solid rgba(226,180,60,.35);border-radius:999px;background:rgba(21,17,13,.8)}
+.modes .pill{position:absolute;left:5px;top:5px;bottom:5px;width:calc(50% - 5px);border-radius:999px;background:linear-gradient(160deg,#f0cc62,#c9992f);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.modes[data-on="taxi"] .pill{transform:translateX(100%)}
+.modes button{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:none;border:0;color:var(--soft);font:500 14px var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:0 22px;min-height:48px;cursor:pointer;transition:color .4s}
+.modes button svg{width:18px;height:18px}
+.modes button[aria-pressed="true"]{color:var(--ink)}
+.stops{list-style:none;margin-top:34px;position:relative}
+.stops::before{content:"";position:absolute;left:19px;top:22px;bottom:22px;width:1px;background:repeating-linear-gradient(var(--foil) 0 6px,transparent 6px 12px);transform-origin:top;transform:scaleY(0);transition:transform 1.3s cubic-bezier(.6,.1,.3,1)}
+.stops.play::before{transform:scaleY(1)}
+.stops li{position:relative;display:grid;grid-template-columns:40px 1fr;gap:18px;align-items:center;padding:0 0 22px;font-size:18px;line-height:1.5;opacity:0;transform:translateX(-12px);transition:opacity .6s,transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:calc(.15s + var(--i) * .2s)}
+.stops.play li{opacity:1;transform:none}
+.stops .n{position:relative;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--ground);border:1px solid rgba(226,180,60,.6);font:500 13px Cinzel,serif;color:var(--foil)}
 .stops li:last-child{padding-bottom:0;color:var(--foil)}
-.route .map{position:relative;width:100%;height:68svh;min-height:380px;background:var(--ground-2);overflow:hidden}
+.stops li:last-child .n{background:linear-gradient(160deg,#f0cc62,#c9992f);color:var(--ink);border-color:var(--foil);box-shadow:0 0 0 7px rgba(226,180,60,.15),0 0 30px rgba(226,180,60,.35)} /* taste-skill-ignore: you have arrived */
+.mapwrap{position:relative}
+.route .map{position:relative;width:100%;height:62svh;min-height:380px;background:var(--ground-2);overflow:hidden;outline:1px solid rgba(226,180,60,.55);outline-offset:9px;box-shadow:0 40px 80px rgba(0,0,0,.55)}
 .route .map iframe{width:100%;height:100%;border:0;filter:grayscale(1) invert(.92) sepia(.35) contrast(.9) brightness(.9)}
 .route .map .open{position:absolute;left:14px;bottom:14px}
+.seal{position:absolute;z-index:3;right:-14px;top:-30px;width:118px;height:118px;border-radius:50%;display:grid;place-items:center;background:var(--navy) url(images/hero/navy-board.jpg) center/cover;box-shadow:0 18px 40px rgba(0,0,0,.55);color:var(--foil)}
+.seal::before{content:"";position:absolute;inset:6px;border-radius:50%;border:1px solid rgba(226,180,60,.5)}
+.seal .ring{position:absolute;inset:0;width:100%;height:100%;animation:spin 22s linear infinite}
+.seal .ring text{font:500 9.6px Jost,sans-serif;fill:#e9c66a;text-transform:uppercase}
+.seal .mid{display:grid;place-items:center;gap:1px;text-align:center}
+.seal .mid svg{width:22px;height:22px}
+.seal .mid b{font:500 20px/1 Cinzel,serif}
+.seal .mid small{font:500 8px var(--sans);letter-spacing:.2em;color:var(--text)}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.seal .ring{animation:none}.stops li,.stops::before{transition:none}}
 @media (min-width:900px){
-  .route .grid{grid-template-columns:5fr 7fr;gap:0 5vw;align-items:center;margin-top:56px}
-  .stops li{font-size:20px}
-  .route .map{height:76svh}
+  .route .grid{grid-template-columns:5fr 7fr;gap:0 6vw;align-items:center;margin-top:64px}
+  .stops li{font-size:20px;padding-bottom:28px}
+  .route .map{height:72svh}
+  .seal{width:140px;height:140px;right:-34px;top:-40px}
 }
 
 /* ---------- 3. hours: a night sky over the shop's day ---------- */
@@ -191,9 +236,35 @@ a{color:inherit}
 }
 
 /* ---------- 5. wholesale line + close ---------- */
-.trade{margin-top:var(--gap);padding:var(--gap) var(--m);text-align:center;background:var(--navy) url(images/hero/navy-board.jpg) center/cover}
-.trade .title{max-width:18ch;margin:12px auto 18px}
-.trade p{max-width:44ch;margin:0 auto 30px;color:var(--text)}
+.trade{position:relative;overflow:hidden;margin-top:var(--gap);padding:calc(var(--gap) * .8) var(--m);background:radial-gradient(ellipse 60% 70% at 80% 50%,rgba(226,180,60,.14),transparent 70%),var(--navy) url(images/hero/navy-board.jpg) center/cover}
+.trade::before{content:"";position:absolute;inset:12px;border:1px solid rgba(226,180,60,.4);pointer-events:none}
+.trade .tin{position:relative;display:grid;gap:56px;max-width:1280px;margin:0 auto}
+.trade .title{margin:12px 0 18px}
+.trade .tx > p{max-width:46ch;margin:0 0 26px;color:var(--text)}
+.tfacts{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 30px}
+.tfacts li{padding:14px 12px;border:1px solid rgba(226,180,60,.3);background:rgba(13,11,9,.28)}
+.tfacts b{display:block;font:400 18px/1.15 Marcellus,serif;color:var(--foil);letter-spacing:.04em}
+.tfacts span{display:block;font-size:13px;line-height:1.4;color:#d8d2e6;margin-top:6px}
+.trade .row{display:flex;flex-wrap:wrap;gap:12px}
+.crate{position:relative;margin:0 auto;width:min(78vw,420px)}
+.crate .arch{overflow:hidden;border-radius:999px 999px 0 0;outline:1px solid rgba(226,180,60,.65);outline-offset:9px;box-shadow:0 40px 80px rgba(0,0,0,.5)}
+.crate img{width:100%;aspect-ratio:3/3.7;object-fit:cover;transition:transform 1.6s cubic-bezier(.2,.7,.2,1)}
+.crate:hover img{transform:scale(1.05)}
+.stamp{position:absolute;left:-16px;bottom:34px;display:grid;place-items:center;width:132px;height:132px;border-radius:50%;border:3px double rgba(241,210,120,.9);color:#f1d278;
+  font:500 19px/1 Cinzel,serif;letter-spacing:.1em;text-align:center;background:rgba(13,11,9,.55);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);transform:rotate(-14deg)}
+.stamp::before{content:"";position:absolute;inset:9px;border-radius:50%;border:1px dashed rgba(241,210,120,.6)}
+.stamp small{display:block;font:500 7.5px var(--sans);letter-spacing:.22em;margin-top:6px}
+@media (prefers-reduced-motion:no-preference){
+  .js .crate .stamp{opacity:0}
+  .js .crate.in .stamp{animation:thump .55s .7s cubic-bezier(.3,1.6,.5,1) both}
+  @keyframes thump{from{opacity:0;transform:scale(2.4) rotate(-30deg)}to{opacity:1;transform:scale(1) rotate(-14deg)}}
+}
+@media (max-width:520px){.tfacts{grid-template-columns:1fr}.tfacts li{display:flex;align-items:baseline;gap:12px}.tfacts span{margin:0}}
+@media (min-width:900px){
+  .trade .tin{grid-template-columns:7fr 5fr;align-items:center;gap:0 6vw}
+  .crate{width:100%;max-width:440px}
+  .stamp{width:150px;height:150px;left:-50px;font-size:22px}
+}
 .foot{padding:56px var(--m) 40px;display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;align-items:center;color:var(--soft);font-size:14px}
 .foot img{height:28px;width:auto}
 .foot a{text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
@@ -236,12 +307,21 @@ a{color:inherit}
 <section class="hero" aria-labelledby="h1">
   <picture><source media="(min-width:900px)" srcset="images/banners/visit-hero.jpg"><img class="bg" src="images/banners/visit-hero-mobile.jpg" alt="The navy Aminar box and a brass incense burner on the shop counter" width="1000" height="1778"></picture>
   <div class="shade"></div>
+  <div class="dust" id="dust" aria-hidden="true"></div>
   <div class="inner">
     <span class="ar" lang="ar" aria-hidden="true">أهلاً وسهلاً</span>
     <h1 id="h1">Welcome to <em>Aminar</em><span class="sr">: visit us on Sukhumvit Soi 3, Bangkok, or contact us</span></h1>
-    <p class="info"><span>Sukhumvit Soi 3, Nana, Bangkok</span><span class="status" id="status" aria-live="polite"><span class="dot"></span>Every day · <em>10 AM – 1 AM</em> <small id="statusText"></small></span><span>WhatsApp · <em data-phone>+66 89 504 2876</em></span></p>
-    <div class="row"><a class="btn" data-wa="Hello Aminar" href="#reach">Message us on WhatsApp</a><a class="btn line" data-maps href="#route">Get directions</a></div>
+    <div class="panel">
+      <p class="status" id="status" aria-live="polite"><span class="dot"></span><b id="statusB">Open daily</b><em id="statusText">10 AM – 1 AM</em></p>
+      <ul class="facts">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>Sukhumvit Soi 3, Nana, Bangkok</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><span>Every day · <em>10 AM – 1 AM</em></span></li>
+        <li><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg><span>WhatsApp · <em data-phone>+66 89 504 2876</em></span></li>
+      </ul>
+    </div>
+    <div class="row"><a class="btn shine" data-wa="Hello Aminar" href="#reach"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg> Message us on WhatsApp</a><a class="btn line" data-maps href="#route">Get directions <svg class="arr" viewBox="0 0 44 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 11h40"/><path d="M33 3c2 4 4.6 6.6 9 8-4.4 1.4-7 4-9 8"/></svg></a></div>
   </div>
+  <a class="cue" href="#route">Find us</a>
 </section>
 
 <!-- 2. The way to us -->
@@ -250,15 +330,23 @@ a{color:inherit}
   <h2 class="title" id="route-h" data-rise style="--d:1">The way to Aminar<span class="l2">Less than ten minutes from BTS Nana</span></h2>
   <div class="grid">
     <div data-rise style="--d:2">
-      <div class="modes" role="group" aria-label="How are you coming?">
-        <button type="button" data-mode="bts" aria-pressed="true">By BTS</button>
-        <button type="button" data-mode="taxi" aria-pressed="false">By taxi</button>
+      <div class="modes" id="modes" data-on="bts" role="group" aria-label="How are you coming?">
+        <span class="pill" aria-hidden="true"></span>
+        <button type="button" data-mode="bts" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M9 21l1.5-4M15 21l-1.5-4"/><circle cx="9" cy="14" r=".6" fill="currentColor"/><circle cx="15" cy="14" r=".6" fill="currentColor"/></svg> By BTS</button>
+        <button type="button" data-mode="taxi" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 16v-4l2-5h14l2 5v4H3Z"/><path d="M3 12h18"/><circle cx="7.5" cy="16.5" r="1.8"/><circle cx="16.5" cy="16.5" r="1.8"/></svg> By taxi</button>
       </div>
       <ol class="stops" id="stops" aria-live="polite"></ol>
     </div>
-    <div class="map" data-rise style="--d:3">
-      <iframe id="map" title="Map to the Aminar shop on Sukhumvit Soi 3" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      <a class="btn open" data-maps href="#route">Open in Google Maps →</a>
+    <div class="mapwrap" data-rise style="--d:3">
+      <div class="map">
+        <iframe id="map" title="Map to the Aminar shop on Sukhumvit Soi 3" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <a class="btn open" data-maps href="#route"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z"/><path d="M9 4v14M15 6v14"/></svg> Open in Google Maps</a>
+      </div>
+      <div class="seal" aria-label="Less than a 10-minute walk from BTS Nana">
+        <svg class="ring" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="sealPath" d="M60 60 m-46 0 a46 46 0 1 1 92 0 a46 46 0 1 1 -92 0"/></defs>
+          <text textLength="286" lengthAdjust="spacing"><textPath href="#sealPath" textLength="286" lengthAdjust="spacing">BTS Nana · under ten minutes on foot ·</textPath></text></svg>
+        <span class="mid" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="4.5" r="1.8"/><path d="M10 21l2-6-2.5-2.5L11 8l4 3 3 1M9.5 12.5 7 14M14 15l2 6"/></svg><b>&lt;10</b><small>MIN WALK</small></span>
+      </div>
     </div>
   </div>
 </section>
@@ -307,10 +395,23 @@ a{color:inherit}
 
 <!-- 5. Wholesale -->
 <section class="trade" aria-labelledby="trade-h">
-  <p class="kicker" data-rise>For shops and distributors</p>
-  <h2 class="title" id="trade-h" data-rise style="--d:1">Wholesale &amp; export</h2>
-  <p data-rise style="--d:2">Pure oud tablets by the kilogram, and regular orders shipped abroad every month. Send us the products, the quantities and your country, and we reply with a quotation.</p>
-  <a class="btn" data-wa="Hello Aminar, I would like wholesale prices for:" href="#reach" data-rise style="--d:3">Ask for wholesale prices</a>
+  <div class="tin">
+    <div class="tx">
+      <p class="kicker" data-rise>For shops and distributors</p>
+      <h2 class="title" id="trade-h" data-rise style="--d:1">Wholesale &amp; export</h2>
+      <p data-rise style="--d:2">Pure oud tablets by the kilogram, and regular orders shipped abroad every month. Send us the products, the quantities and your country, and we reply with a quotation.</p>
+      <ul class="tfacts" data-rise style="--d:3">
+        <li><b>By the kilo</b><span>Pure oud tablets</span></li>
+        <li><b>Every month</b><span>Orders shipped abroad</span></li>
+        <li><b>On WhatsApp</b><span>A quotation in reply</span></li>
+      </ul>
+      <div class="row" data-rise style="--d:4"><a class="btn shine" data-wa="Hello Aminar, I would like wholesale prices for:" href="#reach"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg> Ask for wholesale prices</a><a class="btn line" href="wholesale.html">Wholesale details <svg class="arr" viewBox="0 0 44 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 11h40"/><path d="M33 3c2 4 4.6 6.6 9 8-4.4 1.4-7 4-9 8"/></svg></a></div>
+    </div>
+    <figure class="crate" data-rise style="--d:2">
+      <div class="arch"><img src="images/hero/trat-tablets-closeup-web.jpg" alt="Aminar Trat oud tablets in their box" loading="lazy"></div>
+      <span class="stamp" aria-hidden="true">EXPORT<small>BANGKOK · THAILAND</small></span>
+    </figure>
+  </div>
 </section>
 </main>
 
@@ -343,12 +444,12 @@ a{color:inherit}
   const t = bkk(), H = S.hours;
   const open = t.h >= H.open || t.h < H.close;
   const status = document.getElementById('status'), text = document.getElementById('statusText');
-  if (open) {
-    const left = ((H.close + 24 - t.h) % 24) * 60 - t.m;
-    text.textContent = left <= 60 ? '· open now, closing soon' : '· open now';
-  } else {
-    status.classList.add('closed');
-    text.textContent = '· closed now';
+  {
+    const len = ((H.close + 24 - H.open) % 24) * 60, from = (t.h * 60 + t.m - H.open * 60 + 1440) % 1440;
+    const hm = (m) => ((m >= 60 ? Math.floor(m / 60) + ' h ' : '') + (m % 60 ? (m % 60) + ' min' : '')).trim();
+    document.getElementById('statusB').textContent = open ? 'Open now' : 'Closed now';
+    text.textContent = open ? '· closes in ' + hm(len - from) : '· opens in ' + hm(1440 - from);
+    status.classList.toggle('closed', !open);
   }
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   // after midnight it is still "yesterday's" opening
@@ -400,10 +501,15 @@ a{color:inherit}
 
   // Route: BTS or taxi
   const stops = document.getElementById('stops'), modes = [...document.querySelectorAll('.modes button')];
+  let routeSeen = false;
   const setMode = (m) => {
     modes.forEach((b) => b.setAttribute('aria-pressed', b.dataset.mode === m));
-    stops.innerHTML = S.directions[m].map((s) => `<li>${esc(s)}</li>`).join('');
+    document.getElementById('modes').dataset.on = m;
+    stops.classList.remove('play');
+    stops.innerHTML = S.directions[m].map((s, i) => `<li style="--i:${i}"><span class="n">${String(i + 1).padStart(2, '0')}</span><span>${esc(s)}</span></li>`).join('');
+    if (routeSeen) { void stops.offsetWidth; stops.classList.add('play'); }
   };
+  new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { o.disconnect(); routeSeen = true; stops.classList.add('play'); } }, {threshold: .3}).observe(stops);
   modes.forEach((b) => b.addEventListener('click', () => setMode(b.dataset.mode)));
   setMode('bts');
 
@@ -425,6 +531,14 @@ a{color:inherit}
     {i: 'sc', k: 'Snapchat', v: S.snapchat, href: `https://www.snapchat.com/add/${S.snapchat}`, ext: true},
   ];
   document.getElementById('ways').innerHTML = ways.map((w, i) => `<li data-rise style="--d:${i + 3}"><a href="${w.href}"${w.ext ? ' target="_blank" rel="noopener"' : ''}><span class="ic">${I[w.i]}</span><span class="k">${esc(w.k)}</span><span class="v">${esc(w.v)}</span>${go}</a></li>`).join('');
+
+  // Opening: drifting gold dust, and the photo sinks slower than the page
+  document.getElementById('dust').innerHTML = Array.from({length: 26}, (_, i) => {
+    const x = (i * 37.7) % 100, sz = 2 + (i % 4), dur = 10 + (i * 1.7) % 9, dl = -((i * 2.3) % dur), dx = ((i % 5) - 2) * 22;
+    return `<i style="left:${x.toFixed(1)}%;--s:${sz}px;--t:${dur.toFixed(1)}s;--dl:${dl.toFixed(1)}s;--x:${dx}px"></i>`;
+  }).join('');
+  const pic = document.querySelector('.hero picture');
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) addEventListener('scroll', () => { if (scrollY < innerHeight * 1.2) pic.style.transform = `translateY(${(scrollY * .3).toFixed(1)}px)`; }, {passive: true});
 
   // Nav turns solid once the first screen has gone
   const nav = document.getElementById('nav');
