@@ -311,6 +311,19 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
 @keyframes blink{50%{opacity:0}}
 @keyframes fade{to{opacity:0}}
 .vs .kick{font:500 11px/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--foil)}
+.vs .moonclock{display:block;width:min(250px,72vw);height:auto;margin:0 auto 10px;overflow:visible}
+.vs .moonclock .path{fill:none;stroke:rgba(226,180,60,.32);stroke-width:1.2;stroke-dasharray:2 5}
+.vs .moonclock .trav{fill:none;stroke:url(#vsGold);stroke-width:2.6;stroke-linecap:round}
+.vs .moonclock .floor{stroke:rgba(226,180,60,.6);stroke-width:1}
+.vs .moonclock .time{font:500 44px Cinzel,serif;fill:#e9c66a;text-anchor:middle}
+.vs .moonclock .lbl{font:500 13px Jost,sans-serif;letter-spacing:1.5px;fill:#cfc6dc;text-anchor:middle}
+.vs .moonclock .moon{transition:opacity .6s}
+.vs .moonclock.closed .moon{opacity:.45}
+.vs .live{display:inline-flex;align-items:center;gap:8px;color:var(--text)}
+.vs .live::before{content:"";width:7px;height:7px;border-radius:50%;background:#7fc28d;animation:beat 2.2s infinite}
+.vs .live.closed::before{background:#8a8296;animation:none}
+.vs .live em{font-style:normal;color:var(--foil)}
+@keyframes beat{0%{box-shadow:0 0 0 0 rgba(127,194,141,.6)}70%,100%{box-shadow:0 0 0 8px rgba(127,194,141,0)}}
 .vs .say{font:400 22px/1.15 Marcellus,serif;letter-spacing:.05em;text-transform:uppercase;color:var(--foil);margin:8px 0 4px;text-shadow:0 1px 0 rgba(0,0,0,.35)}
 .vs .say span{display:block}
 .vs .sub{font-size:14px;color:#d8d2e6}
@@ -324,11 +337,11 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
 .vs .go .plain{border-bottom:1px solid rgba(226,180,60,.5)}
 @media (min-width:900px){
   .vs{padding:20px var(--m)}
-  .vs .board{display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px;text-align:left;padding:38px 56px}
+  .vs .board{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:44px;text-align:left;padding:34px 56px}
+  .vs .moonclock{width:270px;margin:0}
   .vs .pen{left:8px;top:8px;width:calc(100% - 16px);height:calc(100% - 16px)}
   .vs .kick{font-size:12px}
   .vs .say{font-size:36px;margin:10px 0 6px}
-  .vs .say span{display:inline}
   .vs .sub{font-size:15px}
   .vs .go{margin-top:0;gap:10px 26px}
   .vs .go a{min-height:48px;font-size:14px}
@@ -425,8 +438,18 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
 
 <section class="vs" aria-label="Visit or contact">
   <div class="board">
+    <svg class="moonclock" id="vsMoon" viewBox="0 0 330 186" role="img" aria-label="Bangkok time on the shop's opening hours, 10:00 to 01:00">
+      <defs><linearGradient id="vsGold" x1="0" x2="1"><stop offset="0" stop-color="#b8862b"/><stop offset="1" stop-color="#f3d27a"/></linearGradient>
+        <filter id="vsGlow" x="-1" y="-1" width="3" height="3"><feGaussianBlur stdDeviation="5"/></filter></defs>
+      <path class="path" d="M35 150 A130 130 0 0 1 295 150"/>
+      <path class="trav" d=""/>
+      <line class="floor" x1="14" y1="150" x2="316" y2="150"/>
+      <g class="moon" transform="translate(35 150)"><circle r="15" fill="#f3d27a" opacity=".35" filter="url(#vsGlow)"/><path d="M5 -10 A11 11 0 1 0 5 10 A8.5 8.5 0 1 1 5 -10 Z" fill="#f3d27a"/></g>
+      <text class="time" x="165" y="126">--:--</text>
+      <text class="lbl" x="35" y="174">10:00</text><text class="lbl" x="165" y="174">BANGKOK</text><text class="lbl" x="295" y="174">01:00</text>
+    </svg>
     <svg class="pen" aria-hidden="true"><rect x="0" y="0" width="100%" height="100%" pathLength="1"/></svg>
-    <div><p class="kick">Open daily · 10:00–01:00</p><p class="say" aria-label="Come and smell it in person">Come and smell <span>it in person</span></p><p class="sub">Sukhumvit Soi 3, Nana, Bangkok</p></div>
+    <div><p class="kick"><span class="live" id="vsLive">Open daily · 10:00–01:00</span></p><p class="say" aria-label="Come and smell it in person">Come and smell <span>it in person</span></p><p class="sub">Sukhumvit Soi 3, Nana, Bangkok</p></div>
     <div class="go"><a class="solid" href="visit.html">Visit us <svg viewBox="0 0 44 22" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 11h40"/><path d="M33 3c2 4 4.6 6.6 9 8-4.4 1.4-7 4-9 8"/></svg></a><a class="plain" href="https://wa.me/66895042876?text=Hello%20Aminar" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg> WhatsApp</a></div>
   </div>
 </section>
@@ -611,6 +634,52 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
     }, 400);
   }, {threshold: .45});
   io.observe(vs);
+})();
+</script>
+<script>
+// Visit strip clock: Bangkok time, whatever the visitor's own clock says. Open 10:00, closes 01:00 (after midnight).
+(() => {
+  const svg = document.getElementById('vsMoon'), live = document.getElementById('vsLive'), vs = document.querySelector('.vs');
+  if (!svg) return;
+  const H = window.AMINAR.shop.hours, LEN = ((H.close + 24 - H.open) % 24) * 60;
+  const moon = svg.querySelector('.moon'), trav = svg.querySelector('.trav'), time = svg.querySelector('.time');
+  const two = (n) => String(n).padStart(2, '0');
+  const span = (m) => ((m >= 60 ? Math.floor(m / 60) + ' h ' : '') + (m % 60 ? (m % 60) + ' min' : '')).trim();
+  const read = () => {
+    const p = new Intl.DateTimeFormat('en-GB', {timeZone: 'Asia/Bangkok', hour: 'numeric', minute: 'numeric', hourCycle: 'h23'}).formatToParts(new Date());
+    const h = +p.find((x) => x.type === 'hour').value, m = +p.find((x) => x.type === 'minute').value, now = h * 60 + m;
+    const since = (now - H.open * 60 + 1440) % 1440, open = since < LEN;
+    return {h, m, open, f: open ? since / LEN : 0, left: LEN - since, wait: 1440 - since};
+  };
+  // f: 0 = 10:00 at the left end, 1 = 01:00 at the right end
+  const place = (f) => {
+    const a = Math.PI * (1 - f), x = 165 + 130 * Math.cos(a), y = 150 - 130 * Math.sin(a);
+    moon.setAttribute('transform', 'translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ')');
+    trav.setAttribute('d', f > .003 ? 'M35 150 A130 130 0 0 1 ' + x.toFixed(1) + ' ' + y.toFixed(1) : '');
+  };
+  let shown = false;
+  const update = () => {
+    const r = read();
+    time.textContent = two(r.h) + ':' + two(r.m);
+    svg.classList.toggle('closed', !r.open);
+    live.classList.toggle('closed', !r.open);
+    live.innerHTML = r.open ? 'Open now <em>· closes in ' + span(r.left) + '</em>' : 'Closed now <em>· opens in ' + span(r.wait) + '</em>';
+    if (shown) place(r.f);
+    return r;
+  };
+  const r0 = update();
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // when the strip comes into view the moon rises from 10:00 to now
+  const rise = () => {
+    const r = update(); shown = true;
+    if (reduce) return place(r.f);
+    const t0 = performance.now(), D = 1500;
+    const step = (t) => { const k = Math.min(1, (t - t0) / D), e = 1 - Math.pow(1 - k, 3); place(r.f * e); if (k < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  };
+  if (!vs.classList.contains('wait')) { shown = true; place(r0.f); }
+  else new MutationObserver((_, mo) => { if (vs.classList.contains('play')) { mo.disconnect(); setTimeout(rise, 250); } }).observe(vs, {attributes: true, attributeFilter: ['class']});
+  setInterval(update, 30000);
 })();
 </script>
 </body>
