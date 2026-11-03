@@ -207,18 +207,26 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
 .sig .title{font:400 10vw/1.08 Marcellus,serif;letter-spacing:.03em;text-transform:uppercase;margin-top:10px}
 .sig .title .l2{display:block;font-size:.42em;letter-spacing:.22em;color:var(--foil);margin-top:.45em}
 .sig .sstage{position:relative}
-.sig .nav-arrow{position:absolute;z-index:5;top:calc(56px + 31vw);transform:translateY(-50%);width:52px;height:52px;display:grid;place-items:center;border-radius:50%;
-  background:rgba(13,11,9,.55);border:1px solid rgba(226,180,60,.45);color:var(--foil);cursor:pointer;transition:background-color .3s,border-color .3s,opacity .3s,transform .3s;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)} /* taste-skill-ignore: arrows float over the photographs */
-.sig .nav-arrow svg{width:26px;height:14px;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
-.sig .nav-arrow.prev{left:10px}
-.sig .nav-arrow.next{right:10px}
-.sig .nav-arrow:hover{background:rgba(13,11,9,.8);border-color:var(--foil)}
-.sig .nav-arrow.prev:hover svg{transform:translateX(-4px)}
-.sig .nav-arrow.next:hover svg{transform:translateX(4px)}
-.sig .nav-arrow:disabled{opacity:0;pointer-events:none}
-@media (prefers-reduced-motion:no-preference){.sig .nav-arrow.next.hint svg{animation:nudge 1.8s ease-in-out 3}}
+.sig .nav-arrow{position:absolute;z-index:5;top:calc(56px + 46vw);transform:translateY(-50%);width:56px;height:56px;display:grid;place-items:center;border-radius:50%;
+  background:rgba(13,11,9,.6);border:1px solid rgba(226,180,60,.5);color:var(--foil);cursor:pointer;-webkit-tap-highlight-color:transparent;
+  transition:background-color .35s,color .35s,border-color .35s,box-shadow .45s,transform .35s cubic-bezier(.2,.7,.2,1)} /* taste-skill-ignore: arrows float over the photographs */
+.sig .nav-arrow::before{content:"";position:absolute;inset:-7px;border-radius:50%;border:1px solid rgba(226,180,60,.35);opacity:0;transform:scale(.85);transition:opacity .4s,transform .45s cubic-bezier(.2,.7,.2,1)}
+.sig .nav-arrow svg{width:30px;height:16px;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.sig .nav-arrow.prev{left:12px}
+.sig .nav-arrow.next{right:12px}
+@media (hover:hover){
+  .sig .nav-arrow:hover{background:var(--foil);color:var(--ink);border-color:var(--foil);box-shadow:0 10px 30px rgba(226,180,60,.28)} /* taste-skill-ignore: hover glow */
+  .sig .nav-arrow:hover::before{opacity:1;transform:scale(1)}
+  .sig .nav-arrow.prev:hover svg{transform:translateX(-5px)}
+  .sig .nav-arrow.next:hover svg{transform:translateX(5px)}
+}
+.sig .nav-arrow:focus-visible{outline:2px solid var(--foil);outline-offset:6px}
+.sig .nav-arrow:active{transform:translateY(-50%) scale(.92)}
+.sig .nav-arrow.pulse::after{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid var(--foil);animation:ring .6s ease-out forwards;pointer-events:none}
+@keyframes ring{from{opacity:.9;transform:scale(1)}to{opacity:0;transform:scale(1.7)}}
+@media (prefers-reduced-motion:no-preference){.sig .nav-arrow.next.coax svg{animation:nudge 1.8s ease-in-out 3}}
 @keyframes nudge{50%{transform:translateX(6px)}}
-.sig .track{display:flex;align-items:flex-start;gap:6px;overflow-x:auto;scroll-snap-type:x mandatory;padding:56px calc(50vw - 33vw) 10px;scrollbar-width:none;scroll-behavior:smooth}
+.sig .track{display:flex;align-items:flex-start;gap:6px;overflow-x:auto;scroll-snap-type:x mandatory;padding:56px 0 10px;scrollbar-width:none}
 .sig .track::-webkit-scrollbar{display:none}
 .sig .arch{--f:0;flex:none;width:66vw;scroll-snap-align:center;text-decoration:none;transform-origin:50% 40%;
   transform:scale(calc(.82 + var(--f) * .18));opacity:calc(.45 + var(--f) * .55);transition:transform .25s linear,opacity .25s linear}
@@ -238,12 +246,12 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
 .sig .bar button[aria-current="true"]::after{background:var(--foil)}
 @media (min-width:900px){
   .sig .title{font-size:4.8vw}
-  .sig .track{padding:72px calc(50vw - min(15vw,220px)) 10px;gap:18px}
+  .sig .track{padding:72px 0 10px;gap:18px}
   .sig .arch{width:min(30vw,440px)}
-  .sig .nav-arrow{top:calc(72px + min(21vw,308px));width:64px;height:64px}
+  .sig .nav-arrow{top:calc(72px + min(21vw,308px));width:66px;height:66px}
   .sig .nav-arrow.prev{left:calc(50vw - min(15vw,220px) - 96px)}
   .sig .nav-arrow.next{right:calc(50vw - min(15vw,220px) - 96px)}
-  .sig .nav-arrow svg{width:32px}
+  .sig .nav-arrow svg{width:34px;height:18px}
   .sig .poem{font-size:36px}
 }
 
@@ -335,9 +343,9 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
     <div><p class="kicker" data-rise>Our signatures</p><h2 class="title" id="sig-h" data-rise style="--d:1">Six collections<span class="l2">One house of oud</span></h2></div>
   </div>
   <div class="sstage">
-    <button type="button" class="nav-arrow prev" id="sigPrev" aria-label="Previous collection"><svg viewBox="0 0 32 14" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M31 7H2M8 1 2 7l6 6"/></svg></button>
+    <button type="button" class="nav-arrow prev" id="sigPrev" aria-label="Previous collection"><svg viewBox="0 0 44 22" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M43 11H3"/><path d="M11 3C9 7 6.4 9.6 2 11c4.4 1.4 7 4 9 8"/></svg></button>
     <div class="track" id="sigTrack"></div>
-    <button type="button" class="nav-arrow next hint" id="sigNext" aria-label="Next collection"><svg viewBox="0 0 32 14" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1 7h29M24 1l6 6-6 6"/></svg></button>
+    <button type="button" class="nav-arrow next coax" id="sigNext" aria-label="Next collection"><svg viewBox="0 0 44 22" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 11h40"/><path d="M33 3c2 4 4.6 6.6 9 8-4.4 1.4-7 4-9 8"/></svg></button>
   </div>
   <div class="bar" id="sigBar"></div>
 </section>
@@ -422,11 +430,13 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
 
   // Our signatures: one arch per category. Picture = category.image, else its first product with a photo.
   const cats = D.categories;
-  document.getElementById('sigTrack').innerHTML = cats.map((c) => {
+  const archHtml = (c, real) => {
     const pic = c.image || (D.products.find((p) => p.category === c.id && p.image) || {}).image;
-    return `<a class="arch" href="#c-${c.id}" id="c-${c.id}"><div class="win">${pic ? `<img src="${img(pic)}" alt="${esc(c.name)}" loading="lazy">` : ''}</div>
+    return `<a class="arch" href="#c-${c.id}"${real ? ` id="c-${c.id}"` : ' aria-hidden="true" tabindex="-1"'}><div class="win">${pic ? `<img src="${img(pic)}" alt="${real ? esc(c.name) : ''}" loading="lazy">` : ''}</div>
       <h3 class="poem">${esc(c.title)}</h3><p class="cat">${esc(c.name)}</p><span class="link">Explore ${arrow}</span></a>`;
-  }).join('');
+  };
+  // three copies so there are always arches on both sides; the page quietly jumps back to the middle copy
+  document.getElementById('sigTrack').innerHTML = [0, 1, 2].map((k) => cats.map((c) => archHtml(c, k === 1)).join('')).join('');
   document.getElementById('sigBar').innerHTML = cats.map((c, i) => `<button type="button" aria-label="${esc(c.title)}" data-i="${i}"></button>`).join('');
 
   // Contact details from the data file
@@ -463,16 +473,19 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
     nav.classList.toggle('solid', r.bottom < innerHeight * .2);
   }
 
-  // Signatures: swipe on phones, arrows on computers; the dashes follow the arch in the middle.
+  // Signatures: an endless ring of arches. Arrows and dashes move one arch; the one in the middle is in focus.
   const sigTrack = document.getElementById('sigTrack'), arches = [...sigTrack.children], dashes = [...document.getElementById('sigBar').children];
   const sigPrev = document.getElementById('sigPrev'), sigNext = document.getElementById('sigNext');
+  const N = cats.length;
+  const centreOf = (a) => a.offsetLeft + a.offsetWidth / 2 - sigTrack.clientWidth / 2;
   const sigNow = () => {
     const mid = sigTrack.scrollLeft + sigTrack.clientWidth / 2;
     let best = 0, bd = Infinity;
     arches.forEach((a, i) => { const d = Math.abs(a.offsetLeft + a.offsetWidth / 2 - mid); if (d < bd) { bd = d; best = i; } });
     return best;
   };
-  const sigGo = (i) => { const a = arches[Math.max(0, Math.min(arches.length - 1, i))]; sigTrack.scrollTo({left: a.offsetLeft + a.offsetWidth / 2 - sigTrack.clientWidth / 2}); };
+  const jump = (left) => { sigTrack.style.scrollSnapType = 'none'; sigTrack.scrollLeft = left; void sigTrack.offsetWidth; sigTrack.style.scrollSnapType = ''; };
+  const sigGo = (i) => sigTrack.scrollTo({left: centreOf(arches[Math.max(0, Math.min(arches.length - 1, i))]), behavior: reduce ? 'auto' : 'smooth'});
   const sigFocus = () => {
     const mid = sigTrack.scrollLeft + sigTrack.clientWidth / 2;
     arches.forEach((a) => {
@@ -481,20 +494,25 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
       a.style.setProperty('--f', (f * f * (3 - 2 * f)).toFixed(3));
     });
   };
-  let sigRaf = 0;
+  let sigRaf = 0, sigIdle = 0;
   const sigSync = () => {
     cancelAnimationFrame(sigRaf); sigRaf = requestAnimationFrame(sigFocus);
     const i = sigNow();
     arches.forEach((a, k) => a.classList.toggle('on', k === i));
-    dashes.forEach((d, k) => d.setAttribute('aria-current', k === i));
-    sigPrev.disabled = sigTrack.scrollLeft < 4;
-    sigNext.disabled = sigTrack.scrollLeft > sigTrack.scrollWidth - sigTrack.clientWidth - 4;
+    dashes.forEach((d, k) => d.setAttribute('aria-current', k === i % N));
+    // once the glide stops, move back into the middle copy without anyone noticing
+    clearTimeout(sigIdle);
+    sigIdle = setTimeout(() => { const j = sigNow(); if (j < N || j >= 2 * N) { jump(sigTrack.scrollLeft + (j < N ? 1 : -1) * (arches[N].offsetLeft - arches[0].offsetLeft)); sigFocus(); } }, 160);
   };
+  const press = (b) => { b.classList.remove('pulse'); void b.offsetWidth; b.classList.add('pulse'); };
   sigTrack.addEventListener('scroll', sigSync, {passive: true});
-  dashes.forEach((d) => d.addEventListener('click', () => sigGo(+d.dataset.i)));
-  sigPrev.addEventListener('click', () => sigGo(sigNow() - 1));
-  sigNext.addEventListener('click', () => { sigNext.classList.remove('hint'); sigGo(sigNow() + 1); });
-  addEventListener('resize', sigSync); sigSync();
+  dashes.forEach((d) => d.addEventListener('click', () => { const i = sigNow(), base = i - (i % N); sigGo(base + +d.dataset.i); }));
+  sigPrev.addEventListener('click', () => { press(sigPrev); sigGo(sigNow() - 1); });
+  sigNext.addEventListener('click', () => { press(sigNext); sigNext.classList.remove('coax'); sigGo(sigNow() + 1); });
+  // open on The Classic in the middle copy, with arches showing on both sides
+  const sigStart = () => { jump(centreOf(arches[N])); sigFocus(); sigSync(); };
+  addEventListener('resize', () => jump(centreOf(arches[N + (sigNow() % N)])));
+  sigStart(); addEventListener('load', sigStart);
 
   const onScroll = () => updOpening();
   addEventListener('scroll', onScroll, {passive: true});
