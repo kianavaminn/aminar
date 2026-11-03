@@ -302,7 +302,8 @@ body,main{background:#f1eadf}
   const PLUS = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>';
 
   // shelves that have something on them, in the order of the data file
-  const P = D.products;
+  // only products that already have a photograph are shown; the rest wait in the data file
+  const P = D.products.filter((p) => p.image || p.imageLight);
   const shelves = D.shelves.filter((s) => P.some((p) => p.shelf === s.id));
   const shelfOf = (p) => D.shelves.find((s) => s.id === p.shelf) || {};
   const label = (p) => p.name + (P.filter((x) => x.name === p.name).length > 1 ? ' (' + p.kind.split(' · ').pop() + ')' : '');
