@@ -230,6 +230,20 @@ main{padding:0 var(--m) 120px}
 .sfoot nav a:hover{color:#e2b43c}
 .sfoot .legal{font-size:13px;color:#c3b7a2}
 @media (min-width:900px){.sfoot{padding:80px clamp(32px,5vw,80px) 34px}.sfoot .ar{font-size:64px}.sfoot .row{grid-template-columns:1fr auto;align-items:end}}
+/* ===== shelf look 7 ===== */
+.card .kind{margin-bottom:12px}.card .add,.card .step{margin-top:auto}
+body,main{background:#f1eadf}
+.shelf .hd{position:relative;overflow:hidden;display:block;margin:0 calc(var(--m) * -1) 30px;padding:60px var(--m) 34px;border:0;background:#0d0b09;color:#efe6d6}
+.shelf .hd .cover{position:absolute;right:-4%;top:50%;width:60%;max-width:640px;aspect-ratio:1;transform:translateY(-50%);background:center/cover;filter:blur(2px) brightness(.8);-webkit-mask-image:linear-gradient(90deg,transparent,#000 55%);mask-image:linear-gradient(90deg,transparent,#000 55%)}
+.shelf .hd > *:not(.cover){position:relative}
+.shelf .n{display:block;font:500 12px var(--sans);letter-spacing:.3em;color:var(--foil);-webkit-text-stroke:0}
+.shelf .n::before{content:"Chapter "}
+.shelf h2{font:500 36px/1 Cinzel,serif;letter-spacing:.04em;margin-top:12px;color:#f3e9d2}
+.shelf .ln{color:#cbbfa9;margin-top:6px}
+.tag{background:none;box-shadow:inset 0 0 0 1px rgba(226,180,60,.4);color:#e7dcc2}
+.tag.gold{background:var(--foil);color:#15110c}
+.card h3{font:500 16px/1.2 Cinzel,serif}
+@media (min-width:1100px){.shelf .hd{display:block;padding:90px var(--m) 50px}.shelf .hd .tags{margin-top:18px}.shelf h2{font-size:64px}}
 </style>
 <script src="data/products.js"></script>
 </head>
@@ -461,6 +475,12 @@ main{padding:0 var(--m) 120px}
   const h = location.hash.slice(1);
   if (h.startsWith('s-') && $(h)) setTimeout(() => $(h).scrollIntoView(), 60);
   if (h.startsWith('p-')) openDet(h.slice(2));
+})();
+</script>
+<script>
+(() => {
+  const deco = () => document.querySelectorAll('.shelf').forEach((s) => { const hd = s.querySelector('.hd'); if (hd.querySelector('.cover')) return; const im = s.querySelector('.card .pic img'); if (im) hd.insertAdjacentHTML('afterbegin', `<span class="cover" style="background-image:url('${im.getAttribute('src')}')"></span>`); });
+  deco(); new MutationObserver(deco).observe(document.getElementById('shelves'), {childList: true});
 })();
 </script>
 </body>
