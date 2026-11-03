@@ -293,7 +293,23 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
 /* Visit strip: a band of the navy box board, stamped in gold foil like the lid */
 .vs{padding:10px var(--m);background:var(--ground)}
 .vs .board{position:relative;max-width:1280px;margin:0 auto;background:var(--navy) url(images/hero/navy-board.jpg) center/cover;padding:24px 18px 20px;text-align:center;box-shadow:0 18px 40px rgba(0,0,0,.45)} /* taste-skill-ignore: the board is a physical box surface */
-.vs .board::before{content:"";position:absolute;inset:6px;border:1px solid rgba(226,180,60,.55);pointer-events:none}
+.vs .pen{position:absolute;left:6px;top:6px;width:calc(100% - 12px);height:calc(100% - 12px);overflow:visible;pointer-events:none}
+.vs .pen rect{fill:none;stroke:rgba(226,180,60,.6);stroke-width:1;stroke-dasharray:1;stroke-dashoffset:0}
+.vs .say .ch{opacity:1}
+.vs .caret{display:inline-block;width:2px;height:.82em;margin-left:3px;vertical-align:-.04em;background:var(--foil);opacity:0}
+/* before it is seen: frame undrawn, title hidden, the rest waiting below */
+.vs.wait .pen rect{stroke-dashoffset:1}
+.vs.wait .say .ch{opacity:0}
+.vs.wait .kick,.vs.wait .sub,.vs.wait .go,.vs.play:not(.typed) .sub,.vs.play:not(.typed) .go{opacity:0;transform:translateY(12px)}
+.vs.play .pen rect{transition:stroke-dashoffset 1.6s cubic-bezier(.6,.1,.3,1)}
+.vs.play .caret{opacity:1;animation:blink .9s steps(1) infinite}
+.vs.play.typed .caret{animation:blink .9s steps(1) 3 forwards,fade .4s 2.7s forwards}
+.vs .kick,.vs .sub,.vs .go{transition:opacity .7s,transform .8s cubic-bezier(.2,.7,.2,1)}
+.vs.play .kick{transition-delay:.5s}
+.vs.typed .sub{transition-delay:.05s}
+.vs.typed .go{transition-delay:.25s}
+@keyframes blink{50%{opacity:0}}
+@keyframes fade{to{opacity:0}}
 .vs .kick{font:500 11px/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--foil)}
 .vs .say{font:400 22px/1.15 Marcellus,serif;letter-spacing:.05em;text-transform:uppercase;color:var(--foil);margin:8px 0 4px;text-shadow:0 1px 0 rgba(0,0,0,.35)}
 .vs .say span{display:block}
@@ -309,7 +325,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
 @media (min-width:900px){
   .vs{padding:20px var(--m)}
   .vs .board{display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px;text-align:left;padding:38px 56px}
-  .vs .board::before{inset:8px}
+  .vs .pen{left:8px;top:8px;width:calc(100% - 16px);height:calc(100% - 16px)}
   .vs .kick{font-size:12px}
   .vs .say{font-size:36px;margin:10px 0 6px}
   .vs .say span{display:inline}
@@ -409,7 +425,8 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
 
 <section class="vs" aria-label="Visit or contact">
   <div class="board">
-    <div><p class="kick">Open daily · 10:00–01:00</p><p class="say">Come and smell <span>it in person</span></p><p class="sub">Sukhumvit Soi 3, Nana, Bangkok</p></div>
+    <svg class="pen" aria-hidden="true"><rect x="0" y="0" width="100%" height="100%" pathLength="1"/></svg>
+    <div><p class="kick">Open daily · 10:00–01:00</p><p class="say" aria-label="Come and smell it in person">Come and smell <span>it in person</span></p><p class="sub">Sukhumvit Soi 3, Nana, Bangkok</p></div>
     <div class="go"><a class="solid" href="visit.html">Visit us <svg viewBox="0 0 44 22" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 11h40"/><path d="M33 3c2 4 4.6 6.6 9 8-4.4 1.4-7 4-9 8"/></svg></a><a class="plain" href="https://wa.me/66895042876?text=Hello%20Aminar" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg> WhatsApp</a></div>
   </div>
 </section>
@@ -558,6 +575,42 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
   // Entrances
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {rootMargin: '0px 0px -6% 0px'});
   document.querySelectorAll('[data-rise]').forEach((el) => io.observe(el));
+})();
+</script>
+<script>
+// Visit strip: pen draws the frame, then the title types out letter by letter
+(() => {
+  const vs = document.querySelector('.vs'); if (!vs) return;
+  const say = vs.querySelector('.say');
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+  // wrap every letter so it can appear on its own; the line-break span on phones stays in place
+  const split = (el) => [...el.childNodes].forEach((n) => {
+    if (n.nodeType === 3) {
+      const f = document.createDocumentFragment();
+      [...n.textContent].forEach((c) => { const i = document.createElement('i'); i.className = 'ch'; i.style.fontStyle = 'normal'; i.textContent = c; i.setAttribute('aria-hidden', 'true'); f.append(i); });
+      n.replaceWith(f);
+    } else split(n);
+  });
+  split(say);
+  const chars = [...say.querySelectorAll('.ch')];
+  const caret = document.createElement('b'); caret.className = 'caret'; caret.setAttribute('aria-hidden', 'true');
+  chars[0].before(caret);
+  vs.classList.add('wait');
+  const io = new IntersectionObserver((es) => {
+    if (!es[0].isIntersecting) return;
+    io.disconnect();
+    vs.classList.add('play'); vs.classList.remove('wait');
+    // keep the letters hidden until the pen is part way round, then type
+    chars.forEach((c) => (c.style.opacity = 0));
+    let k = 0;
+    setTimeout(function type() {
+      if (k < chars.length) {
+        chars[k].style.opacity = 1; chars[k].after(caret); k++;
+        setTimeout(type, chars[k - 1].textContent === ' ' ? 40 : 70 + Math.random() * 50);
+      } else vs.classList.add('typed');
+    }, 700);
+  }, {threshold: .45});
+  io.observe(vs);
 })();
 </script>
 </body>
