@@ -581,7 +581,23 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
     return best;
   };
   const jump = (left) => { sigTrack.style.scrollSnapType = 'none'; sigTrack.scrollLeft = left; void sigTrack.offsetWidth; sigTrack.style.scrollSnapType = ''; };
-  const sigGo = (i) => sigTrack.scrollTo({left: centreOf(arches[Math.max(0, Math.min(arches.length - 1, i))]), behavior: reduce ? 'auto' : 'smooth'});
+  // a slow, soft glide (the browser's own smooth scroll is too quick); snapping is paused while it moves
+  let glideRaf = 0, gliding = false;
+  const sigGo = (i) => {
+    const to = centreOf(arches[Math.max(0, Math.min(arches.length - 1, i))]);
+    if (reduce) return jump(to);
+    cancelAnimationFrame(glideRaf);
+    const from = sigTrack.scrollLeft, D = 1100, t0 = performance.now();
+    const ease = (t) => (t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+    gliding = true; sigTrack.style.scrollSnapType = 'none';
+    const step = (now) => {
+      const k = Math.min(1, (now - t0) / D);
+      sigTrack.scrollLeft = from + (to - from) * ease(k);
+      if (k < 1) glideRaf = requestAnimationFrame(step);
+      else { gliding = false; sigTrack.style.scrollSnapType = ''; sigSync(); }
+    };
+    glideRaf = requestAnimationFrame(step);
+  };
   const sigFocus = () => {
     const mid = sigTrack.scrollLeft + sigTrack.clientWidth / 2;
     arches.forEach((a) => {
@@ -598,7 +614,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
     dashes.forEach((d, k) => d.setAttribute('aria-current', k === i % N));
     // once the glide stops, move back into the middle copy without anyone noticing
     clearTimeout(sigIdle);
-    sigIdle = setTimeout(() => { const j = sigNow(); if (j < N || j >= 2 * N) { jump(sigTrack.scrollLeft + (j < N ? 1 : -1) * (arches[N].offsetLeft - arches[0].offsetLeft)); sigFocus(); } }, 160);
+    sigIdle = setTimeout(() => { if (gliding) return; const j = sigNow(); if (j < N || j >= 2 * N) { jump(sigTrack.scrollLeft + (j < N ? 1 : -1) * (arches[N].offsetLeft - arches[0].offsetLeft)); sigFocus(); } }, 160);
   };
   const press = (b) => { b.classList.remove('pulse'); void b.offsetWidth; b.classList.add('pulse'); };
   sigTrack.addEventListener('scroll', sigSync, {passive: true});
