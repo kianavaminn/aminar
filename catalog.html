@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Collection — Aminar, Bangkok</title>
+<meta name="description" content="Every Aminar scent in one place: perfumes, oud, bakhoor, mists and sprays from our house in Nana, Bangkok. Order on WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Marcellus&family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Jost:wght@400;500&family=Aref+Ruqaa:wght@700&display=swap" rel="stylesheet">
+<style>
+/* ---------- tokens: a cream page, so the dark photographs glow ---------- */
+:root{
+  --cream:#f2ece1;--cream-2:#e9e0d1;--paper:#faf6ef;--ink:#15110c;--ink-2:#2a231a;--soft:#6d6152;
+  --gold-ink:#8a6a2c;--foil:#e2b43c;--gold:#d5b36e;--navy:#1c1f43;--rule:rgba(21,17,12,.12);
+  --sans:Jost,system-ui,sans-serif;--it:"Cormorant Garamond",Georgia,serif;
+  --m:20px;--top:62px;
+}
+@media (min-width:900px){:root{--m:clamp(32px,5vw,80px);--top:76px}}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--cream);scroll-behavior:smooth;scroll-padding-top:calc(var(--top) + 70px)}
+body{background:var(--cream);color:var(--ink);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{display:block;max-width:100%}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold-ink);outline-offset:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.mi{font:500 11px/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase}
+
+/* ---------- header ---------- */
+.top{position:sticky;top:0;z-index:30;height:var(--top);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 var(--m);background:rgba(242,236,225,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--rule)}
+.top nav{display:flex;gap:26px}
+.top nav a{text-decoration:none;font:500 14px var(--sans);min-height:44px;display:inline-flex;align-items:center;transition:color .2s}
+.top nav a:hover,.top nav a[aria-current]{color:var(--gold-ink)}
+.top nav .wide{display:none}
+.top .logo img{height:26px;width:auto}
+.cartbtn{justify-self:end;display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 4px 0 12px;font:500 13px var(--sans);letter-spacing:.16em;text-transform:uppercase}
+.cartbtn svg{width:22px;height:22px}
+.cartbtn b{display:inline-grid;place-items:center;min-width:24px;height:24px;border-radius:12px;background:var(--ink);color:var(--paper);font:500 12px var(--sans);letter-spacing:0;padding:0 7px;transition:transform .3s}
+.cartbtn.bump b{animation:bump .5s}
+@keyframes bump{40%{transform:scale(1.35);background:var(--gold-ink)}}
+.cartbtn .w{display:none}
+@media (min-width:900px){.top nav .wide{display:inline-flex}.top .logo img{height:30px}.cartbtn .w{display:inline}}
+
+/* ---------- 1. the opening: a giant title and a slow procession of arches ---------- */
+.intro{position:relative;padding:54px 0 0;overflow:hidden}
+.intro .in{padding:0 var(--m)}
+.intro .k{color:var(--gold-ink)}
+.intro h1{font:500 12.6vw/.9 Cinzel,serif;white-space:nowrap;letter-spacing:-.01em;text-transform:uppercase;margin:16px 0 0}
+.intro h1 .w{display:block;overflow:hidden}
+.intro h1 .w > span{display:block}
+.intro h1 .o{color:transparent;-webkit-text-stroke:1.2px var(--ink)}
+.intro .lede{font:italic 400 26px/1.25 var(--it);color:var(--ink-2);max-width:24ch;margin-top:20px}
+.stats{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:0 26px;margin-top:28px;padding-top:20px;border-top:1px solid var(--rule)}
+.stats b{display:block;font:500 34px/1 Cinzel,serif}
+.stats span{display:block;margin-top:6px;color:var(--soft)}
+.parade{display:grid;gap:14px;margin-top:46px;padding-bottom:10px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.parade .row{display:flex;gap:14px;width:max-content;animation:march 80s linear infinite}
+.parade .row.r2{animation-direction:reverse;animation-duration:95s}
+.parade:hover .row{animation-play-state:paused}
+@keyframes march{to{transform:translateX(-50%)}}
+.parade a{flex:none;width:112px;aspect-ratio:3/3.9;border-radius:999px 999px 0 0;overflow:hidden;background:#0d0b09;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.parade a:hover{transform:translateY(-6px)}
+.parade img{width:100%;height:100%;object-fit:cover;transform:scale(1.25)}
+@media (prefers-reduced-motion:no-preference){
+  .intro h1 .w > span{animation:rise 1.2s cubic-bezier(.2,.7,.2,1) both}
+  .intro h1 .w:nth-child(2) > span{animation-delay:.12s}
+  .intro .lede,.stats{animation:fade 1.2s .5s both}
+  @keyframes rise{from{transform:translateY(105%)}to{transform:none}}
+  @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+}
+@media (prefers-reduced-motion:reduce){.parade .row{animation:none}}
+@media (min-width:900px){
+  .intro{padding-top:80px}
+  .intro .in{display:grid;grid-template-columns:1fr auto;align-items:end;gap:0 5vw}
+  .intro h1{font-size:10vw;grid-column:1/-1}
+  .intro .lede{font-size:34px;margin-top:28px}
+  .stats{gap:0 54px;margin:0;padding:0;border:0;align-self:end}
+  .stats b{font-size:48px}
+  .parade{margin-top:70px}
+  .parade a{width:150px}
+}
+
+/* ---------- 2. the families: arches you can jump to ---------- */
+.fams{padding:64px 0 10px}
+.fams .hd{display:flex;justify-content:space-between;align-items:baseline;padding:0 var(--m)}
+.fams h2{font:500 13px var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--gold-ink)}
+.fams .hint{font:italic 400 18px var(--it);color:var(--soft)}
+.fams .list{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:20px var(--m) 14px;scrollbar-width:none}
+.fams .list::-webkit-scrollbar{display:none}
+.fam{flex:none;width:150px;scroll-snap-align:start;text-decoration:none;text-align:center}
+.fam .win{position:relative;aspect-ratio:3/3.9;border-radius:999px 999px 0 0;overflow:hidden;background:#0d0b09;outline:1px solid rgba(138,106,44,.45);outline-offset:5px;transition:outline-offset .5s,outline-color .5s}
+.fam .win img{width:100%;height:100%;object-fit:cover;transform:scale(1.18);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.fam:hover .win{outline-color:var(--gold-ink);outline-offset:9px}
+.fam:hover .win img{transform:scale(1.28)}
+.fam .num{position:absolute;left:0;right:0;bottom:8px;font:500 12px Cinzel,serif;color:var(--foil);letter-spacing:.1em}
+.fam b{display:block;font:500 14px/1.25 Cinzel,serif;text-transform:uppercase;margin-top:16px}
+.fam span{display:block;font:italic 400 16px var(--it);color:var(--soft)}
+@media (min-width:900px){.fams{padding-top:90px}.fams .list{gap:22px;justify-content:space-between}.fam{width:calc((100% - 8 * 22px) / 9);min-width:118px}}
+
+/* ---------- 3. the toolbar that follows you ---------- */
+.bar{position:sticky;top:var(--top);z-index:20;background:rgba(242,236,225,.95);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--rule)}
+.bar .in{display:flex;flex-direction:column;gap:10px;padding:12px var(--m)}
+.chips{display:flex;gap:6px;overflow-x:auto;margin:0 calc(var(--m) * -1);padding:0 var(--m);scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chips button{flex:none;min-height:40px;padding:0 15px;border-radius:999px;font:500 12px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--soft);box-shadow:inset 0 0 0 1px var(--rule);transition:background-color .3s,color .3s,box-shadow .3s}
+.chips button:hover{color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);box-shadow:none}
+.chips button i{font-style:normal;opacity:.55;margin-left:6px}
+.search{display:flex;align-items:center;gap:10px;min-height:44px;padding:0 16px;background:var(--paper);border-radius:999px;box-shadow:inset 0 0 0 1px var(--rule)}
+.search svg{flex:none;width:18px;height:18px;color:var(--soft)}
+.search input{flex:1;min-width:0;border:0;outline:none;background:none;font-size:15px}
+@media (min-width:900px){.bar .in{flex-direction:row;align-items:center;justify-content:space-between;gap:30px}.chips{margin:0;padding:0 40px 0 0;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}.search{width:300px;flex:none}}
+
+/* ---------- 4. the shelves ---------- */
+main{padding:0 var(--m) 120px}
+.shelf{padding-top:70px}
+.shelf .hd{display:grid;grid-template-columns:auto 1fr;gap:4px 18px;align-items:end;padding-bottom:22px;margin-bottom:26px;border-bottom:1px solid var(--rule)}
+.shelf .n{grid-row:1/3;font:500 66px/.8 Cinzel,serif;color:transparent;-webkit-text-stroke:1.2px var(--gold-ink)}
+.shelf h2{font:500 30px/1 Cinzel,serif;text-transform:uppercase;letter-spacing:.01em}
+.shelf .ln{font:italic 400 20px/1.25 var(--it);color:var(--soft)}
+.shelf .tags{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.tag{display:inline-flex;align-items:center;gap:8px;min-height:30px;padding:0 12px;border-radius:999px;background:var(--paper);box-shadow:inset 0 0 0 1px var(--rule);font:500 11px var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)}
+.tag.gold{background:var(--ink);color:var(--foil);box-shadow:none}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:30px 12px}
+@media (min-width:700px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media (min-width:1100px){.grid{grid-template-columns:repeat(4,1fr);gap:46px 24px}.shelf{padding-top:110px}.shelf .n{font-size:110px}.shelf h2{font-size:52px}.shelf .ln{font-size:26px}.shelf .hd{grid-template-columns:auto 1fr auto;gap:4px 30px}.shelf .tags{grid-column:3;grid-row:1/3;align-self:end;margin:0}}
+
+/* a product card: the dark photograph is the jewel */
+.card{position:relative;display:flex;flex-direction:column}
+.card .pic{position:relative;display:block;width:100%;aspect-ratio:4/5;overflow:hidden;background:#0d0b09;text-align:left}
+.card .pic img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.card .pic::after{content:"";position:absolute;inset:10px;border:1px solid rgba(226,180,60,0);transition:border-color .5s,inset .5s;pointer-events:none}
+.card .view{position:absolute;left:0;right:0;bottom:0;padding:30px 14px 14px;background:linear-gradient(0deg,rgba(13,11,9,.8),transparent);color:#efe6d6;font:500 11px var(--sans);letter-spacing:.22em;text-transform:uppercase;opacity:0;transform:translateY(8px);transition:opacity .4s,transform .5s cubic-bezier(.2,.7,.2,1)}
+@media (hover:hover){
+  .card:hover .pic img{transform:scale(1.16)}
+  .card:hover .pic::after{border-color:rgba(226,180,60,.75);inset:14px}
+  .card:hover .view{opacity:1;transform:none}
+}
+.badge{position:absolute;z-index:2;left:10px;top:10px;padding:5px 9px;background:var(--foil);color:var(--ink);font:500 10px var(--sans);letter-spacing:.18em;text-transform:uppercase}
+.card .b{display:flex;flex-direction:column;gap:3px;padding-top:14px;flex:1}
+.card .line{font:500 10px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--gold-ink)}
+.card h3{font:500 16px/1.15 Cinzel,serif;text-transform:uppercase}
+.card .kind{font:italic 400 17px/1.2 var(--it);color:var(--soft)}
+.card .add{margin-top:12px;display:flex;align-items:center;justify-content:space-between;min-height:44px;padding:0 14px;background:var(--ink);color:var(--paper);font:500 12px var(--sans);letter-spacing:.16em;text-transform:uppercase;transition:background-color .3s}
+.card .add:hover{background:var(--ink-2)}
+.card .add svg{width:16px;height:16px}
+.step{margin-top:12px;display:grid;grid-template-columns:44px 1fr 44px;align-items:center;min-height:44px;background:var(--foil);color:var(--ink)}
+.step button{height:44px;font:400 22px Marcellus}
+.step span{text-align:center;font:500 12px var(--sans);letter-spacing:.14em;text-transform:uppercase}
+@media (min-width:1100px){.card h3{font-size:19px}.card .kind{font-size:19px}}
+/* no photograph yet: the navy box board, stamped in gold */
+.ph{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:10px;padding:16px;text-align:center;background:var(--navy) url(images/hero/navy-board.jpg) center/cover}
+.ph::before{content:"";position:absolute;inset:8px;border:1px solid rgba(226,180,60,.45)}
+.ph img{width:56%!important;height:auto!important;transform:none!important}
+.ph b{font:500 13px/1.2 Cinzel,serif;letter-spacing:.08em;color:var(--foil);text-transform:uppercase}
+.ph small{font:500 9px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#cfc6dc}
+.empty{padding:80px 0;text-align:center;font:italic 400 26px var(--it);color:var(--soft)}
+.empty a{font:500 13px var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--gold-ink)}
+/* cards rise as they come into view */
+@media (prefers-reduced-motion:no-preference){
+  .js .card{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0) * 70ms)}
+  .js .card.in{opacity:1;transform:none}
+}
+
+/* ---------- 5. the WhatsApp promise band ---------- */
+.promise{margin:40px 0 0;padding:64px var(--m);background:var(--ink);color:#efe6d6;text-align:center}
+.promise .ar{font:700 34px/1.3 "Aref Ruqaa",serif;color:var(--foil)}
+.promise h2{font:500 28px/1.1 Cinzel,serif;text-transform:uppercase;margin:6px 0 10px}
+.promise p{font:italic 400 21px/1.35 var(--it);color:#cbbfa9;max-width:34ch;margin:0 auto 26px}
+.promise ol{list-style:none;display:grid;gap:12px;max-width:900px;margin:0 auto 30px;counter-reset:s}
+.promise li{counter-increment:s;display:grid;grid-template-columns:44px 1fr;align-items:center;gap:14px;text-align:left;padding:14px 16px;border:1px solid rgba(226,180,60,.3)}
+.promise li::before{content:"0" counter(s);font:500 22px Cinzel,serif;color:var(--foil)}
+.wa{display:inline-flex;align-items:center;gap:10px;min-height:54px;padding:0 26px;background:var(--foil);color:var(--ink);text-decoration:none;font:500 13px var(--sans);letter-spacing:.16em;text-transform:uppercase;transition:background-color .3s}
+.wa:hover{background:#f0c95c}
+.wa svg{width:20px;height:20px}
+@media (min-width:900px){.promise{padding:100px var(--m)}.promise h2{font-size:46px}.promise ol{grid-template-columns:repeat(3,1fr)}}
+
+/* ---------- panels: product details and the cart ---------- */
+.shade{position:fixed;inset:0;z-index:40;background:rgba(21,17,12,.5);opacity:0;pointer-events:none;transition:opacity .4s}
+.shade.open{opacity:1;pointer-events:auto}
+.panel{position:fixed;z-index:45;left:0;right:0;bottom:0;max-height:92svh;overflow:auto;overscroll-behavior:contain;background:var(--cream);transform:translateY(104%);transition:transform .6s cubic-bezier(.2,.8,.2,1);box-shadow:0 -30px 80px rgba(21,17,12,.3);border-radius:18px 18px 0 0}
+.panel.open{transform:none}
+.panel .x{position:sticky;top:10px;float:right;z-index:3;width:44px;height:44px;margin:10px 10px -54px 0;border-radius:50%;background:var(--paper);box-shadow:0 4px 14px rgba(21,17,12,.15);font:400 26px/1 Marcellus}
+.panel .in{padding:0 0 30px}
+@media (min-width:900px){.panel{left:auto;top:0;width:min(560px,44vw);max-height:none;border-radius:0;transform:translateX(104%)}}
+.det .pic{position:relative;aspect-ratio:1;background:#0d0b09;overflow:hidden}
+.det .pic img{width:100%;height:100%;object-fit:cover}
+.det .body{padding:24px var(--m) 0;display:grid;gap:20px}
+@media (min-width:900px){.det .body{padding:30px 40px 0}}
+.det .line{color:var(--gold-ink)}
+.det h2{font:500 34px/1 Cinzel,serif;text-transform:uppercase;margin-top:8px}
+.det .kind{font:italic 400 22px var(--it);color:var(--soft);margin-top:6px}
+.spec{display:grid;border-top:1px solid var(--rule)}
+.spec div{display:grid;grid-template-columns:130px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--rule)}
+.spec dt{font:500 11px/1.8 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
+.spec dd{font:400 17px Marcellus}
+.spec dd.soon{font:italic 400 18px var(--it);color:var(--soft)}
+.buy{display:grid;grid-template-columns:auto 1fr;gap:10px}
+.qty{display:inline-flex;align-items:center;box-shadow:inset 0 0 0 1px var(--rule);background:var(--paper)}
+.qty button{width:46px;height:54px;font:400 22px Marcellus}
+.qty span{min-width:30px;text-align:center;font:500 16px var(--sans)}
+.put{min-height:54px;background:var(--ink);color:var(--paper);font:500 13px var(--sans);letter-spacing:.16em;text-transform:uppercase;transition:background-color .3s}
+.put:hover{background:var(--ink-2)}
+.ask{display:flex;align-items:center;justify-content:center;gap:10px;min-height:52px;text-decoration:none;box-shadow:inset 0 0 0 1px var(--ink);font:500 12px var(--sans);letter-spacing:.16em;text-transform:uppercase;transition:background-color .3s,color .3s}
+.ask:hover{background:var(--ink);color:var(--paper)}
+.ask svg{width:18px;height:18px}
+.more h3{font:500 11px var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--soft);margin-bottom:12px}
+.more .row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.more button{text-align:left}
+.more img,.more .mph{width:100%;aspect-ratio:1;object-fit:cover;background:#0d0b09}
+.more .mph{background:var(--navy) url(images/hero/navy-board.jpg) center/cover}
+.more b{display:block;font:500 10px/1.2 Cinzel,serif;text-transform:uppercase;margin-top:6px}
+
+.cart .body{padding:28px var(--m) 0;display:grid;gap:18px}
+@media (min-width:900px){.cart .body{padding:34px 40px 0}}
+.cart h2{font:500 30px Cinzel,serif;text-transform:uppercase}
+.lines{display:grid;gap:10px}
+.lnr{display:grid;grid-template-columns:62px 1fr auto;gap:12px;align-items:center;padding:10px;background:var(--paper)}
+.lnr img,.lnr .mph{width:62px;height:62px;object-fit:cover;background:var(--navy) url(images/hero/navy-board.jpg) center/cover}
+.lnr b{display:block;font:500 14px/1.2 Cinzel,serif;text-transform:uppercase}
+.lnr small{font:italic 400 16px var(--it);color:var(--soft)}
+.lnr .q{display:grid;grid-template-columns:34px 26px 34px;align-items:center;box-shadow:inset 0 0 0 1px var(--rule)}
+.lnr .q button{height:38px;font:400 20px Marcellus}
+.lnr .q span{text-align:center;font:500 14px var(--sans)}
+.fields{display:grid;gap:10px}
+.fields label{display:grid;gap:5px;font:500 11px var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--soft)}
+.fields input,.fields select{min-height:50px;padding:0 14px;border:0;background:var(--paper);box-shadow:inset 0 0 0 1px var(--rule);font:400 16px var(--sans);letter-spacing:0;text-transform:none;color:var(--ink)}
+.note{font-size:14px;color:var(--soft)}
+.preview{background:var(--paper);padding:14px;font:400 13px/1.55 ui-monospace,Consolas,monospace;white-space:pre-wrap;color:var(--soft);box-shadow:inset 0 0 0 1px var(--rule)}
+.go{display:flex;align-items:center;justify-content:center;gap:10px;min-height:58px;background:var(--ink);color:var(--foil);text-decoration:none;font:500 13px var(--sans);letter-spacing:.18em;text-transform:uppercase}
+.go svg{width:20px;height:20px}
+
+/* the phone's cart bar, and the gold drop that flies into the cart */
+.cbar{position:fixed;left:12px;right:12px;bottom:12px;z-index:35;transform:translateY(140%);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.cbar.show{transform:none}
+.cbar button{width:100%;display:flex;justify-content:space-between;align-items:center;min-height:58px;padding:0 20px;background:var(--ink);color:var(--paper);font:500 13px var(--sans);letter-spacing:.16em;text-transform:uppercase;box-shadow:0 18px 40px rgba(21,17,12,.4)}
+.cbar b{color:var(--foil)}
+@media (min-width:900px){.cbar{display:none}}
+.drop{position:fixed;z-index:60;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff3c4,var(--foil) 55%,#a67b20);box-shadow:0 0 16px rgba(226,180,60,.8);pointer-events:none}
+
+/* ---------- footer (same as the other pages) ---------- */
+.sfoot{padding:64px 20px 28px;background:#15110d;color:#efe6d6;font:400 15px/1.6 Jost,system-ui,sans-serif}
+.sfoot .bye{display:flex;align-items:baseline;gap:6px 16px;flex-wrap:wrap}
+.sfoot .ar{font:700 44px/1.4 "Aref Ruqaa",serif;color:#e2b43c;direction:rtl}
+.sfoot .en{font:400 18px Marcellus,serif;letter-spacing:.24em;text-transform:uppercase}
+.sfoot .row{display:grid;gap:18px;margin-top:22px}
+.sfoot nav{display:flex;flex-wrap:wrap;gap:0 24px}
+.sfoot nav a{color:inherit;text-decoration:none;display:inline-flex;min-height:44px;align-items:center;transition:color .2s}
+.sfoot nav a:hover{color:#e2b43c}
+.sfoot .legal{font-size:13px;color:#c3b7a2}
+@media (min-width:900px){.sfoot{padding:80px clamp(32px,5vw,80px) 34px}.sfoot .ar{font-size:64px}.sfoot .row{grid-template-columns:1fr auto;align-items:end}}
+</style>
+<script src="data/products.js"></script>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+
+<header class="top">
+  <nav aria-label="Main"><a href="index.html">← Home</a><a class="wide" href="our-story.html">Our story</a><a class="wide" href="visit.html">Visit</a></nav>
+  <a class="logo" href="index.html" aria-label="Aminar home"><img src="logo/aminar-logo-black.svg" alt="Aminar" width="120" height="31"></a>
+  <button class="cartbtn" id="cartbtn" aria-label="Open your cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 12H6.2L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg><span class="w">Cart</span><b id="cn">0</b></button>
+</header>
+
+<section class="intro" aria-labelledby="h1">
+  <div class="in">
+    <p class="mi k">Aminar · Bangkok · Since 1993</p>
+    <h1 id="h1"><span class="w"><span>The</span></span><span class="w"><span>Collec<span class="o">tion</span></span></span></h1>
+    <p class="lede">Every scent we make, in one place. Choose, then send your order on WhatsApp.</p>
+    <div class="stats" id="stats"></div>
+  </div>
+  <div class="parade" id="parade" aria-hidden="true"></div>
+</section>
+
+<section class="fams" aria-labelledby="fams-h">
+  <div class="hd"><h2 id="fams-h">The families</h2><span class="hint">Tap one to go there</span></div>
+  <div class="list" id="fams"></div>
+</section>
+
+<div class="bar" id="bar">
+  <div class="in">
+    <div class="chips" id="chips" role="group" aria-label="Show a family"></div>
+    <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Search a name, oud, abaya…" aria-label="Search the collection"></label>
+  </div>
+</div>
+
+<main id="shelves" aria-live="polite"></main>
+
+<section class="promise" aria-labelledby="pr-h">
+  <p class="ar" lang="ar" aria-hidden="true">أهلاً وسهلاً</p>
+  <h2 id="pr-h">Ordering is one message</h2>
+  <p>No accounts, no checkout forms. Your cart becomes a WhatsApp message to our shop.</p>
+  <ol><li>Add the scents you like to your cart.</li><li>Press Checkout: the order is written for you.</li><li>Send it on WhatsApp and we reply with prices and delivery.</li></ol>
+  <a class="wa" id="waTop" target="_blank" rel="noopener"></a>
+</section>
+
+<footer class="sfoot">
+  <div class="bye"><span class="ar" lang="ar">السلام عليكم</span><span class="en">Peace be upon you</span></div>
+  <div class="row">
+    <nav aria-label="Footer"><a href="catalog.html">Collection</a><a href="our-story.html">Our story</a><a href="wholesale.html">Wholesale</a><a href="visit.html">Visit</a><a href="https://wa.me/66895042876?text=Hello%20Aminar" target="_blank" rel="noopener">WhatsApp</a><a href="https://instagram.com/aminarthailand" target="_blank" rel="noopener">Instagram</a></nav>
+    <p class="legal">© 2026 Aminar · Sukhumvit Soi 3, Bangkok</p>
+  </div>
+</footer>
+
+<div class="cbar" id="cbar"><button id="cbarBtn"><span id="cbarTxt">Your cart</span><b>View →</b></button></div>
+<div class="shade" id="shade"></div>
+<aside class="panel det" id="det" aria-label="Product details" aria-hidden="true"><div class="in" id="detIn"></div></aside>
+<aside class="panel cart" id="cart" aria-label="Your cart" aria-hidden="true"><div class="in" id="cartIn"></div></aside>
+
+<script>
+(() => {
+  const D = window.AMINAR, S = D.shop;
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+  const img = (p) => '' + p;
+  const pic = (p) => p.image || p.imageLight || '';
+  const wa = (t) => `https://wa.me/${S.whatsapp}?text=${encodeURIComponent(t)}`;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const two = (n) => String(n).padStart(2, '0');
+  const WAI = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>';
+  const PLUS = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>';
+
+  // shelves that have something on them, in the order of the data file
+  const P = D.products;
+  const shelves = D.shelves.filter((s) => P.some((p) => p.shelf === s.id));
+  const shelfOf = (p) => D.shelves.find((s) => s.id === p.shelf) || {};
+  const label = (p) => p.name + (P.filter((x) => x.name === p.name).length > 1 ? ' (' + p.kind.split(' · ').pop() + ')' : '');
+
+  // ----- opening: counts and the procession of arches
+  $('stats').innerHTML = `<div><b>${two(P.length)}</b><span class="mi">Scents &amp; pieces</span></div><div><b>${two(shelves.length)}</b><span class="mi">Families</span></div><div><b>1993</b><span class="mi">Since</span></div>`;
+  const withPic = P.filter(pic);
+  const half = Math.ceil(withPic.length / 2);
+  const arch = (p) => `<a href="#p-${p.id}" tabindex="-1"><img src="${img(pic(p))}" alt="" loading="lazy"></a>`;
+  const row = (list, cls) => `<div class="row${cls}">${list.map(arch).join('')}${list.map(arch).join('')}</div>`;
+  $('parade').innerHTML = row(withPic.slice(0, half), '') + row(withPic.slice(half), ' r2');
+  $('parade').onclick = (e) => { const a = e.target.closest('a'); if (a) { e.preventDefault(); openDet(a.getAttribute('href').slice(3)); } };
+
+  // ----- the families
+  $('fams').innerHTML = shelves.map((s, i) => {
+    const lead = P.find((p) => p.shelf === s.id && p.bestseller && p.image) || P.find((p) => p.shelf === s.id && p.image) || P.find((p) => p.shelf === s.id && pic(p));
+    const n = P.filter((p) => p.shelf === s.id).length;
+    return `<a class="fam" href="#s-${s.id}" data-shelf="${s.id}"><div class="win">${lead ? `<img src="${img(pic(lead))}" alt="" loading="lazy">` : ''}<span class="num">${two(i + 1)}</span></div><b>${esc(s.name)}</b><span>${n} ${n === 1 ? 'piece' : 'pieces'}</span></a>`;
+  }).join('');
+  $('fams').onclick = (e) => { const a = e.target.closest('[data-shelf]'); if (a) { e.preventDefault(); show('', a.dataset.shelf); } };
+
+  // ----- toolbar: family chips and search
+  let only = '', q = '';
+  $('chips').innerHTML = `<button type="button" data-s="" aria-pressed="true">All<i>${P.length}</i></button>` +
+    shelves.map((s) => `<button type="button" data-s="${s.id}" aria-pressed="false">${esc(s.name)}<i>${P.filter((p) => p.shelf === s.id).length}</i></button>`).join('');
+  $('chips').onclick = (e) => { const b = e.target.closest('[data-s]'); if (b) show(b.dataset.s); };
+  $('q').oninput = (e) => { q = e.target.value.trim().toLowerCase(); draw(); };
+  // "All" shows every shelf and scrolls to the one chosen; a chip on its own shows just that family
+  function show(s, jump) {
+    only = s; q = ''; $('q').value = '';
+    [...$('chips').children].forEach((b) => b.setAttribute('aria-pressed', b.dataset.s === s));
+    const on = $('chips').querySelector('[aria-pressed="true"]'); if (on) on.scrollIntoView({inline: 'center', block: 'nearest', behavior: reduce ? 'auto' : 'smooth'});
+    draw();
+    const target = jump ? $('s-' + jump) : $('shelves');
+    if (target) target.scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
+  }
+
+  // ----- cart (kept in this browser only)
+  let cart = {};
+  try { cart = JSON.parse(localStorage.getItem('aminar-cart-v2') || '{}'); } catch (e) {}
+  for (const k of Object.keys(cart)) if (!P.find((p) => p.id === k)) delete cart[k];
+  const save = () => { try { localStorage.setItem('aminar-cart-v2', JSON.stringify(cart)); } catch (e) {} };
+  const count = () => Object.values(cart).reduce((a, b) => a + b, 0);
+  const add = (id, d, from) => {
+    cart[id] = (cart[id] || 0) + d; if (cart[id] <= 0) delete cart[id]; save();
+    if (d > 0 && from) fly(from);
+    sync();
+  };
+  // a gold drop flies from the button into the cart
+  function fly(from) {
+    const b = $('cartbtn'), r1 = from.getBoundingClientRect(), r2 = b.getBoundingClientRect();
+    const bump = () => { b.classList.remove('bump'); void b.offsetWidth; b.classList.add('bump'); };
+    if (reduce || !document.body.animate) return bump();
+    const d = document.createElement('i'); d.className = 'drop'; d.style.left = '0'; d.style.top = '0'; document.body.append(d);
+    const x1 = r1.left + r1.width / 2, y1 = r1.top + r1.height / 2, x2 = r2.right - 16, y2 = r2.top + r2.height / 2;
+    d.animate([{transform: `translate(${x1}px,${y1}px) scale(1)`}, {transform: `translate(${(x1 + x2) / 2}px,${Math.min(y1, y2) - 120}px) scale(1.4)`, offset: .45}, {transform: `translate(${x2}px,${y2}px) scale(.5)`}],
+      {duration: 750, easing: 'cubic-bezier(.4,0,.2,1)'}).onfinish = () => { d.remove(); bump(); };
+  }
+
+  // ----- the shelves
+  const card = (p, i) => {
+    const n = cart[p.id] || 0, s = shelfOf(p);
+    const photo = pic(p)
+      ? `<img src="${img(pic(p))}" alt="${esc(p.name)}" loading="lazy">`
+      : `<span class="ph"><img src="logo/aminar-logo-gold.svg" alt=""><b>${esc(p.name)}</b><small>Photograph coming soon</small></span>`;
+    return `<article class="card" id="p-${p.id}" style="--i:${i % 4}">
+      <button class="pic" type="button" data-open="${p.id}" aria-label="${esc(label(p))}: details">${photo}${p.bestseller ? '<span class="badge">Bestseller</span>' : ''}<span class="view">View details</span></button>
+      <div class="b"><p class="line">${esc(p.line || s.name)}</p><h3>${esc(p.name)}</h3><p class="kind">${esc(p.kind)}</p>
+      ${n ? `<div class="step"><button type="button" data-dec="${p.id}" aria-label="One less">−</button><span>${n} in cart</span><button type="button" data-inc="${p.id}" aria-label="One more">+</button></div>`
+          : `<button class="add" type="button" data-add="${p.id}">Add to cart ${PLUS}</button>`}</div></article>`;
+  };
+  const head = (s, i, n) => `<div class="hd"><span class="n" aria-hidden="true">${two(i + 1)}</span><h2>${esc(s.name)}</h2><p class="ln">${esc(s.line)}</p>
+    <div class="tags"><span class="tag">${n} ${n === 1 ? 'piece' : 'pieces'}</span>${s.lasts ? `<span class="tag gold">${esc(s.lasts)}</span>` : ''}</div></div>`;
+  let io;
+  function draw() {
+    const box = $('shelves');
+    if (q) {
+      const hits = P.filter((p) => [p.name, p.kind, p.line, shelfOf(p).name].join(' ').toLowerCase().includes(q));
+      box.innerHTML = hits.length
+        ? `<section class="shelf"><div class="hd"><span class="n" aria-hidden="true">${two(hits.length)}</span><h2>Found</h2><p class="ln">for “${esc(q)}”</p></div><div class="grid">${hits.map(card).join('')}</div></section>`
+        : `<p class="empty">Nothing by that name yet.<br><a href="${wa('Hello Aminar, I am looking for: ' + q)}" target="_blank" rel="noopener">Ask us on WhatsApp →</a></p>`;
+    } else {
+      box.innerHTML = shelves.map((s, i) => (only && only !== s.id) ? '' : `<section class="shelf" id="s-${s.id}" aria-labelledby="h-${s.id}">${head(s, i, P.filter((p) => p.shelf === s.id).length).replace('<h2>', `<h2 id="h-${s.id}">`)}<div class="grid">${P.filter((p) => p.shelf === s.id).map(card).join('')}</div></section>`).join('');
+    }
+    if (io) io.disconnect();
+    io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {rootMargin: '0px 0px -6% 0px'});
+    box.querySelectorAll('.card').forEach((c) => io.observe(c));
+    sync(true);
+  }
+  // refresh the counters and the buttons on the cards without redrawing everything
+  function sync(skipCards) {
+    const n = count();
+    $('cn').textContent = n;
+    $('cbar').classList.toggle('show', n > 0);
+    $('cbarTxt').textContent = `Your cart · ${n} item${n === 1 ? '' : 's'}`;
+    if (skipCards) return;
+    document.querySelectorAll('.card').forEach((c) => {
+      const id = c.id.slice(2), p = P.find((x) => x.id === id), k = cart[id] || 0;
+      const old = c.querySelector('.add,.step'), tmp = document.createElement('div');
+      tmp.innerHTML = k ? `<div class="step"><button type="button" data-dec="${id}" aria-label="One less">−</button><span>${k} in cart</span><button type="button" data-inc="${id}" aria-label="One more">+</button></div>`
+                        : `<button class="add" type="button" data-add="${id}">Add to cart ${PLUS}</button>`;
+      old.replaceWith(tmp.firstChild);
+    });
+  }
+  $('shelves').onclick = (e) => {
+    const o = e.target.closest('[data-open]'); if (o) return openDet(o.dataset.open);
+    const t = e.target.closest('[data-add],[data-inc],[data-dec]'); if (!t) return;
+    add(t.dataset.add || t.dataset.inc || t.dataset.dec, t.dataset.dec ? -1 : 1, t.dataset.dec ? null : t);
+  };
+
+  // ----- product details
+  let cur = null, qty = 1, lastFocus = null;
+  const openPanel = (el) => { lastFocus = document.activeElement; closeAll(true); el.classList.add('open'); el.setAttribute('aria-hidden', 'false'); $('shade').classList.add('open'); setTimeout(() => el.querySelector('.x').focus(), 50); };
+  function openDet(id) { cur = P.find((x) => x.id === id); if (!cur) return; qty = 1; drawDet(); openPanel($('det')); $('det').scrollTop = 0; }
+  function drawDet() {
+    const p = cur, s = shelfOf(p);
+    const soon = '<dd class="soon">Coming soon</dd>';
+    const kin = P.filter((x) => x.shelf === p.shelf && x.id !== p.id).slice(0, 4);
+    $('detIn').innerHTML = `<button class="x" type="button" data-close aria-label="Close">×</button>
+      <div class="pic">${pic(p) ? `<img src="${img(pic(p))}" alt="${esc(p.name)}">` : `<span class="ph"><img src="logo/aminar-logo-gold.svg" alt=""><b>${esc(p.name)}</b><small>Photograph coming soon</small></span>`}</div>
+      <div class="body">
+        <div><p class="mi line">${esc(p.line || s.name)}</p><h2>${esc(p.name)}</h2><p class="kind">${esc(p.kind)}</p></div>
+        <dl class="spec">
+          <div><dt>Family</dt><dd>${esc(s.name)}</dd></div>
+          <div><dt>Size</dt>${p.size ? `<dd>${esc(p.size)}</dd>` : soon}</div>
+          <div><dt>Lasts</dt>${(p.lasts || s.lasts) ? `<dd>${esc(p.lasts || s.lasts)}</dd>` : soon}</div>
+          <div><dt>Scent notes</dt>${p.notes ? `<dd>${esc(p.notes)}</dd>` : soon}</div>
+        </dl>
+        <div class="buy"><div class="qty"><button type="button" data-q="-1" aria-label="One less">−</button><span>${qty}</span><button type="button" data-q="1" aria-label="One more">+</button></div><button class="put" type="button" data-put>Add ${qty > 1 ? qty + ' ' : ''}to cart</button></div>
+        <a class="ask" href="${wa('Hello Aminar, I have a question about ' + label(p))}" target="_blank" rel="noopener">${WAI} Ask about ${esc(p.name)}</a>
+        ${kin.length ? `<div class="more"><h3>More from ${esc(s.name)}</h3><div class="row">${kin.map((x) => `<button type="button" data-open="${x.id}">${pic(x) ? `<img src="${img(pic(x))}" alt="" loading="lazy">` : '<span class="mph" style="display:block"></span>'}<b>${esc(x.name)}</b></button>`).join('')}</div></div>` : ''}
+      </div>`;
+  }
+  $('detIn').onclick = (e) => {
+    if (e.target.closest('[data-close]')) return closeAll();
+    const o = e.target.closest('[data-open]'); if (o) { openDet(o.dataset.open); return; }
+    const qb = e.target.closest('[data-q]'); if (qb) { qty = Math.max(1, qty + +qb.dataset.q); return drawDet(); }
+    const put = e.target.closest('[data-put]'); if (put) { add(cur.id, qty, put); setTimeout(closeAll, 380); }
+  };
+
+  // ----- the cart and its WhatsApp message
+  const bill = () => {
+    const v = (id) => ($(id) || {}).value || '';
+    const rows = Object.entries(cart).map(([id, n], i) => `${i + 1}. ${label(P.find((p) => p.id === id))} × ${n}`);
+    return ['Hello Aminar, I would like to order:', '', ...rows, '', 'Please send me the prices and the delivery cost.', '', `Name: ${v('cname') || '-'}`, `Country: ${v('ccountry') || '-'}`, `Delivery: ${v('chow')}`].join('\n');
+  };
+  function drawCart() {
+    const ids = Object.keys(cart);
+    $('cartIn').innerHTML = `<button class="x" type="button" data-close aria-label="Close">×</button><div class="body">
+      <div><p class="mi" style="color:var(--gold-ink)">${count()} item${count() === 1 ? '' : 's'}</p><h2>Your cart</h2></div>
+      ${ids.length ? `<div class="lines">${ids.map((id) => { const p = P.find((x) => x.id === id); return `<div class="lnr">${pic(p) ? `<img src="${img(pic(p))}" alt="">` : '<span class="mph"></span>'}<div><b>${esc(p.name)}</b><small>${esc(p.kind)}</small></div>
+        <div class="q"><button type="button" data-dk="${id}" aria-label="One less">−</button><span>${cart[id]}</span><button type="button" data-ik="${id}" aria-label="One more">+</button></div></div>`; }).join('')}</div>
+      <div class="fields"><label>Your name<input id="cname" autocomplete="name"></label><label>Country<input id="ccountry" autocomplete="country-name"></label>
+        <label>Delivery<select id="chow"><option>Ship to my address</option><option>I will collect at the shop in Nana</option></select></label></div>
+      <p class="note">This message opens in WhatsApp, ready to send:</p><pre class="preview" id="pv"></pre>
+      <a class="go" id="go" target="_blank" rel="noopener">${WAI} Checkout on WhatsApp</a>
+      <p class="note">We reply with prices, delivery and how to pay.</p>`
+      : `<p class="note">Your cart is empty. Tap “Add to cart” on any scent.</p>`}</div>`;
+    const upd = () => { const b = bill(); if ($('pv')) $('pv').textContent = b; if ($('go')) $('go').href = wa(b); };
+    ['cname', 'ccountry', 'chow'].forEach((id) => $(id) && ($(id).oninput = $(id).onchange = upd)); upd();
+  }
+  $('cartIn').onclick = (e) => {
+    if (e.target.closest('[data-close]')) return closeAll();
+    const t = e.target.closest('[data-ik],[data-dk]'); if (!t) return;
+    add(t.dataset.ik || t.dataset.dk, t.dataset.dk ? -1 : 1); drawCart();
+  };
+  const openCart = () => { drawCart(); openPanel($('cart')); };
+  function closeAll(keepFocus) {
+    ['det', 'cart'].forEach((id) => { $(id).classList.remove('open'); $(id).setAttribute('aria-hidden', 'true'); });
+    $('shade').classList.remove('open');
+    if (!keepFocus && lastFocus) lastFocus.focus({preventScroll: true});
+  }
+  $('cartbtn').onclick = openCart; $('cbarBtn').onclick = openCart; $('shade').onclick = () => closeAll();
+  addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
+
+  $('waTop').href = wa('Hello Aminar');
+  $('waTop').innerHTML = WAI + ' Message the shop';
+
+  draw();
+  // arriving from the home page with #shelf or #p-product
+  const h = location.hash.slice(1);
+  if (h.startsWith('s-') && $(h)) setTimeout(() => $(h).scrollIntoView(), 60);
+  if (h.startsWith('p-')) openDet(h.slice(2));
+})();
+</script>
+</body>
+</html>

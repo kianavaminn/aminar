@@ -126,7 +126,7 @@ img{display:block;max-width:100%}
 <footer class="sfoot">
   <div class="bye"><span class="ar" lang="ar">السلام عليكم</span><span class="en">Peace be upon you</span></div>
   <div class="row">
-    <nav aria-label="Footer"><a href="index.html#collections">Collections</a><a href="our-story.html">Our story</a><a href="wholesale.html">Wholesale</a><a href="visit.html">Visit</a><a href="https://wa.me/66895042876?text=Hello%20Aminar" target="_blank" rel="noopener">WhatsApp</a><a href="https://instagram.com/aminarthailand" target="_blank" rel="noopener">Instagram</a></nav>
+    <nav aria-label="Footer"><a href="catalog.html">Collections</a><a href="our-story.html">Our story</a><a href="wholesale.html">Wholesale</a><a href="visit.html">Visit</a><a href="https://wa.me/66895042876?text=Hello%20Aminar" target="_blank" rel="noopener">WhatsApp</a><a href="https://instagram.com/aminarthailand" target="_blank" rel="noopener">Instagram</a></nav>
     <p class="legal">© 2026 Aminar · Sukhumvit Soi 3, Bangkok</p>
   </div>
 </footer>
@@ -150,11 +150,11 @@ const T = {
   5: {h1: 'The art behind <em>every scent</em>', h2: 'A heritage <em>crafted in scent</em>', h3: 'Find your <em>signature scent</em>', word: (c) => c.verb.toLowerCase()},
 }[t];
 const ar = t === '3' ? ' ar' : '';
-document.getElementById('root').innerHTML = `<nav class="nav" aria-label="Main"><a class="back" href="index.html">← Home</a><a href="index.html"><img src="logo/aminar-logo-gold.svg" alt="Aminar home"></a><a class="back" href="index.html#collections">Collections</a></nav>
+document.getElementById('root').innerHTML = `<nav class="nav" aria-label="Main"><a class="back" href="index.html">← Home</a><a href="index.html"><img src="logo/aminar-logo-gold.svg" alt="Aminar home"></a><a class="back" href="catalog.html">Collections</a></nav>
   <section class="hero"><img src="${I}black-bottle.jpg" alt=""><div class="t"><p class="kicker" style="margin-bottom:14px">Our story · Since 1993</p><h1 class="h1">${T.h1}</h1></div></section>
   <section class="her m"><p class="kicker">Bangkok, 1993</p><h2 class="h2">${T.h2}</h2><p class="p">${P1}</p><p class="p">${P2}</p></section>
   <div class="panels">${C.map((c) => `<section class="panel"><img src="${I}${c.img}" alt=""><div class="t"><span class="word${ar}">${T.word(c)}</span><h3 class="name">${c.name}</h3><p class="p" style="margin:12px 0 0">${c.p}</p></div></section>`).join('')}</div>
-  <section class="close"><p class="kicker">Visit us in Bangkok</p><h2 class="h3">${T.h3}</h2><a class="btn" href="index.html#collections" style="text-decoration:none">Explore the collections →</a></section>`;
+  <section class="close"><p class="kicker">Visit us in Bangkok</p><h2 class="h3">${T.h3}</h2><a class="btn" href="catalog.html" style="text-decoration:none">Explore the collections →</a></section>`;
 
 document.querySelectorAll('.h1,.h2,.h3,.word,.name,.p,.panel > img').forEach((el) => el.setAttribute('data-rise', ''));
 const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {rootMargin: '0px 0px -8% 0px'});

@@ -15,6 +15,7 @@ window.AMINAR = {
     phones: ['+66 81 137 1737', '+66 89 504 2876'],
     instagram: 'aminarthailand',
     snapchat: 'aminarthailand', // TO CONFIRM (not on the old contact page)
+    showPrices: false, // prices stay hidden until the accountant answers about excise tax
     area: 'Sukhumvit Soi 3, Nana, Bangkok',
     hours: {open: 10, close: 1, days: 'Every day', text: '10:00 AM – 1:00 AM'}, // closes after midnight
     mapQuery: 'Aminar shop, Sukhumvit Soi 3, Bangkok', // for the embedded map
@@ -36,31 +37,72 @@ window.AMINAR = {
     {id: 'sprays', title: 'The Precious', name: 'Sprays for clothes & special area', note: 'Scent for abayas and clothes, and intimate care sprays.'},
   ],
 
+  // The catalog's shelves (families). Each product sits on one shelf; `category` above is only for the home page's six collections.
+  // A shelf with no products stays hidden until something is added to it. `lasts` = confirmed by เกีย; leave it out when not known.
+  shelves: [
+    {id: 'perfumes', name: 'Perfumes', line: 'Breathtaking by Aminar, our perfume house', lasts: '10–12 hours on skin'},
+    {id: 'oud', name: 'Oud & Tablets', line: 'Oud Trat, pure oud and our tablets'},
+    {id: 'oud-oil', name: 'Oud Oils', line: 'Oud in its purest liquid form'},
+    {id: 'bakhoor', name: 'Bakhoor & Mamoul', line: 'To burn at home, for the house and for guests'},
+    {id: 'body-mist', name: 'Body Mists', line: 'Light scent for the skin'},
+    {id: 'hair', name: 'Hair Fragrance', line: 'Mists and bakhoor made for the hair'},
+    {id: 'fabric', name: 'Fabric & Abaya Sprays', line: 'For abayas, scarves and clothes', lasts: '2 days on fabric'},
+    {id: 'home', name: 'Home & Linen', line: 'For bed sheets, pillows and rooms'},
+    {id: 'bath', name: 'Bath & Body', line: 'Oud for the shower, the hair and the skin'},
+    {id: 'intimate', name: 'Intimate Care', line: 'Delicate sprays for personal care'},
+  ],
+
   products: [
-    // id, name, category, kind (shown under the name), bestseller, image, confirmed
-    {id: 'oud-trat-tablets', name: 'Oud Trat Tablets', category: 'oud', kind: 'Oud tablets · 24 g box', bestseller: true, image: 'images/products/Oud/Tablets/trat-tablets.jpg', confirmed: true},
-    {id: 'pure-oud-tablets', name: 'Pure oud tablets', category: 'oud', kind: '24 g box · also by the kilogram', image: '', confirmed: true},
-    {id: 'oud-oil-tablets', name: 'Oud oil tablets', category: 'oud', kind: '7 g box', image: '', confirmed: true},
-    {id: 'glory', name: 'Glory', category: 'oud', kind: 'The house scent', image: '', confirmed: true},
-    {id: 'oud-oil', name: 'Oud oil', category: 'oud-oil', kind: 'Oud oil', image: 'images/products/Oud oil/oud-oil.jpg', confirmed: false},
+    // id, name, shelf, category (home page only), line (sub-brand), kind (shown under the name), size, bestseller, image, confirmed
+    // Spelling as printed on the labels. Photos: dark background in `image`; light ones in `imageLight` until a dark one exists.
+    {id: 'addict-noir', name: 'Addict Noir', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Parfum', image: 'images/products/Perfumes/Breathtaking/addict-noir.jpg', confirmed: true}, // file was "Addicted noir"; the label reads ADDICT NOIR
+    {id: 'golden-sins', name: 'Golden Sins', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume', bestseller: true, image: 'images/products/Perfumes/Breathtaking/golden-sins.jpg', confirmed: false},
+    {id: 'make-me-yours', name: 'Make Me Yours', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Parfum', image: 'images/products/Perfumes/Breathtaking/make-me-yours.jpg', confirmed: true},
+    {id: 'nude', name: 'Nude', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Parfum', image: 'images/products/Perfumes/Breathtaking/nude.jpg', confirmed: true},
+    {id: 'the-king', name: 'The King', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume', image: 'images/products/Perfumes/Breathtaking/the-king.jpg', confirmed: true},
+    {id: 'the-queen', name: 'The Queen', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume', image: 'images/products/Perfumes/Breathtaking/the-queen.jpg', confirmed: false}, // TO CHECK: the script on the label may read "The Groom"
+    {id: 'the-prince', name: 'The Prince', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume', image: 'images/products/Perfumes/Breathtaking/the-prince.jpg', confirmed: true},
+    {id: 'the-princess', name: 'The Princess', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume', image: 'images/products/Perfumes/Breathtaking/the-princess.jpg', confirmed: true},
+    {id: 'oud-romantic', name: 'Oud Romantic', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume', image: '', confirmed: false}, // from older notes, no photo yet
 
-    {id: 'nude', name: 'Nude', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume · for her', image: 'images/products/Perfumes/Breathtaking/nude.jpg', confirmed: false},
-    {id: 'make-me-yours', name: 'Make Me Yours', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume · unisex', image: '', confirmed: false},
-    {id: 'golden-sins', name: 'Golden Sins', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume · for her', bestseller: true, image: 'images/products/Perfumes/Breathtaking/golden-sins.jpg', confirmed: false},
-    {id: 'oud-romantic', name: 'Oud Romantic', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume · unisex', image: '', confirmed: false},
+    {id: 'oud-trat-tablets', name: 'Oud Trat Tablets', shelf: 'oud', category: 'oud', kind: 'Oud tablets · 24 g box', size: '24 g box', bestseller: true, image: 'images/products/Oud/Tablets/trat-tablets.jpg', confirmed: true},
+    {id: 'pure-oud-tablets', name: 'Pure Oud Tablets', shelf: 'oud', category: 'oud', kind: 'Oud tablets', size: '24 g box · also by the kilogram', image: '', confirmed: true},
+    {id: 'oud-oil-tablets', name: 'Oud Oil Tablets', shelf: 'oud', category: 'oud', kind: 'Oud tablets with oud oil', size: '7 g box', image: '', confirmed: true},
+    {id: 'glory', name: 'Glory', shelf: 'oud', category: 'oud', kind: 'The house scent', image: '', confirmed: true},
 
-    // Spelling as printed on the labels. Dark-background photos go in `image`; light ones wait in `imageLight`.
-    {id: 'cambodia-kadeem', name: 'Cambodi Kadeem', category: 'body-mist', kind: 'Body mist', image: 'images/products/body-mist/cambodia-kadeem-dark.jpg', imageLight: 'images/products/body-mist/cambodia-kadeem.jpg', confirmed: false},
-    {id: 'hindi-siufi', name: 'Hindi Siufi', category: 'body-mist', kind: 'Body mist', image: '', imageLight: 'images/products/body-mist/hindi-siufi.jpg', confirmed: false},
-    {id: 'bint-al-khaleej', name: 'Bint Al Khaleej', category: 'body-mist', kind: 'Body mist', image: '', imageLight: 'images/products/body-mist/bint-al-khaleej.jpg', confirmed: false},
-    {id: 'trat-legend-oud', name: 'Trat Legend Oud', category: 'body-mist', kind: 'Body mist', image: '', imageLight: 'images/products/body-mist/trat-legend-oud.jpg', confirmed: false},
-    {id: 'blue-diamond-oud', name: 'Blue Diamond Oud', category: 'body-mist', kind: 'Body mist', image: '', imageLight: 'images/products/body-mist/blue-diamond-oud.jpg', confirmed: false},
-    {id: 'oud-patchouli', name: 'Oud Patchouli', category: 'body-mist', kind: 'Body mist', bestseller: true, image: 'images/products/body-mist/oud-patchouli-dark.jpg', imageLight: 'images/products/body-mist/oud-patchouli.jpg', confirmed: false},
+    {id: 'oud-oil', name: 'Oud Oil', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', image: 'images/products/Oud oil/oud-oil.jpg', confirmed: false},
 
-    {id: 'sunshine', name: 'Sunshine', category: 'sprays', kind: 'Spray for clothes', bestseller: true, image: 'images/products/Spray for clothes/sunshine.jpg', confirmed: true}, // label reads "My Sunshine"
+    {id: 'dream-bakhoor', name: 'Dream Bakhoor', shelf: 'bakhoor', category: 'bakhoor', kind: 'Bakhoor', image: 'images/products/Bakhoor/Bakhoor/dream-bakhoor.jpg', confirmed: true},
+    {id: 'mamoul', name: 'Mamoul', shelf: 'bakhoor', category: 'bakhoor', kind: 'Mamoul', image: 'images/products/Bakhoor/Mamoul/mamoul.jpg', confirmed: false},
 
-    {id: 'mamoul', name: 'Mamoul', category: 'bakhoor', kind: 'Mamoul', image: 'images/products/Mamoul/mamoul.jpg', confirmed: false},
+    {id: 'cambodia-kadeem', name: 'Cambodi Kadeem', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', image: 'images/products/body-mist/cambodia-kadeem-dark.jpg', imageLight: 'images/products/body-mist/cambodia-kadeem.jpg', confirmed: false},
+    {id: 'oud-patchouli', name: 'Oud Patchouli', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', bestseller: true, image: 'images/products/body-mist/oud-patchouli-dark.jpg', imageLight: 'images/products/body-mist/oud-patchouli.jpg', confirmed: false},
+    {id: 'hindi-siufi', name: 'Hindi Siufi', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', image: '', imageLight: 'images/products/body-mist/hindi-siufi.jpg', confirmed: false},
+    {id: 'bint-al-khaleej', name: 'Bint Al Khaleej', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', image: '', imageLight: 'images/products/body-mist/bint-al-khaleej.jpg', confirmed: false},
+    {id: 'trat-legend-oud', name: 'Trat Legend Oud', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', image: '', imageLight: 'images/products/body-mist/trat-legend-oud.jpg', confirmed: false},
+    {id: 'blue-diamond-oud', name: 'Blue Diamond Oud', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', image: '', imageLight: 'images/products/body-mist/blue-diamond-oud.jpg', confirmed: false},
 
+    {id: 'malaki-hair', name: 'Malaki Hair', shelf: 'hair', kind: 'Hair mist · Dehn Al Oud Malaki', image: 'images/products/hair-sprays/malaki-hair.jpg', confirmed: true},
+    {id: 'oud-hair', name: 'Oud Hair', shelf: 'hair', kind: 'Hair mist · Dahn Al Oud', image: 'images/products/hair-sprays/oud-hair.jpg', confirmed: true},
+    {id: 'the-royal', name: 'The Royal', shelf: 'hair', kind: 'Hair mist', image: 'images/products/hair-sprays/the-royal.jpg', confirmed: true},
+    {id: 'bakhoor-for-hair-1', name: 'Bakhoor for Hair', shelf: 'hair', kind: 'Hair bakhoor · red', image: 'images/products/Bakhoor/Bakhoor/bakhoor-for-hair-1.jpg', confirmed: true},
+    {id: 'bakhoor-for-hair-2', name: 'Bakhoor for Hair', shelf: 'hair', kind: 'Hair bakhoor · yellow', image: 'images/products/Bakhoor/Bakhoor/bakhoor-for-hair-2.jpg', confirmed: true},
 
+    {id: 'sunshine', name: 'My Sunshine', shelf: 'fabric', category: 'sprays', kind: 'Spray for clothes', bestseller: true, image: 'images/products/Spray for clothes/sunshine.jpg', confirmed: true},
+    {id: 'abaya', name: 'Abaya', shelf: 'fabric', category: 'sprays', kind: 'Spray for abayas', image: 'images/products/Spray for clothes/abaya.jpg', confirmed: true},
+    {id: 'my-cinderella', name: 'My Cinderella', shelf: 'fabric', category: 'sprays', kind: 'Spray for abayas', image: 'images/products/Spray for clothes/my-cinderella.jpg', confirmed: true},
+    {id: 'cupid-tobacco', name: 'Cupid Tobacco', shelf: 'fabric', category: 'sprays', kind: 'Spray for clothes', image: 'images/products/Spray for clothes/cupid-tobacco.jpg', confirmed: true},
+    {id: 'gentleman', name: 'Gentleman', shelf: 'fabric', category: 'sprays', kind: 'Spray for abayas', image: 'images/products/Spray for clothes/gentleman.jpg', confirmed: true}, // file was "Gentelman"
+    {id: 'magic-leather', name: 'Magic Leather', shelf: 'fabric', category: 'sprays', kind: 'Spray for clothes', image: 'images/products/Spray for clothes/magic-leather.jpg', confirmed: true},
+    {id: 'the-prime', name: 'The Prime', shelf: 'fabric', category: 'sprays', kind: 'Spray for clothes', image: 'images/products/Spray for clothes/the-prime.jpg', confirmed: true},
+
+    {id: 'bed-sheet-1', name: 'Bed Sheet No. 1', shelf: 'home', kind: 'Linen spray', image: 'images/products/Room-spray/bed-sheet-1.jpg', confirmed: true},
+    {id: 'bed-sheet-2', name: 'Bed Sheet No. 2', shelf: 'home', kind: 'Linen spray', image: 'images/products/Room-spray/bed-sheet-2.jpg', confirmed: true},
+    {id: 'bed-sheet-3', name: 'Bed Sheet No. 3', shelf: 'home', kind: 'Linen spray', image: 'images/products/Room-spray/bed-sheet-3.jpg', confirmed: true},
+    {id: 'bed-sheet-4', name: 'Bed Sheet No. 4', shelf: 'home', kind: 'Linen spray', image: 'images/products/Room-spray/bed-sheet-4.jpg', confirmed: true},
+
+    {id: 'cambodi-oud-shampoo', name: 'Cambodi Oud Shampoo', shelf: 'bath', kind: 'Shampoo', image: 'images/products/Skincares/cambodi-oud-shampoo.jpg', confirmed: true},
+    {id: 'cambodi-oud-shower', name: 'Cambodi Oud Shower', shelf: 'bath', kind: 'Shower gel', image: 'images/products/Skincares/cambodi-oud-shower.jpg', confirmed: true},
+    {id: 'ouds-oil-cream', name: "Oud's Oil Cream", shelf: 'bath', kind: 'Cream', image: 'images/products/Skincares/ouds-oil-cream.jpg', confirmed: false}, // TO CHECK: the jar label reads معمول ممتاز (premium mamoul)
   ],
 };

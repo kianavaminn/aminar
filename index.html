@@ -365,7 +365,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
 <header class="nav" id="nav">
   <button class="icon menu" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="overlay"><span class="burger"></span></button>
   <nav class="links" aria-label="Main">
-    <a href="#collections">Collections</a><a href="our-story.html">Our story</a><a href="wholesale.html">Wholesale</a><a href="visit.html">Visit</a>
+    <a href="catalog.html">Collections</a><a href="our-story.html">Our story</a><a href="wholesale.html">Wholesale</a><a href="visit.html">Visit</a>
   </nav>
   <img class="mark" src="logo/aminar-logo-gold.svg" alt="Aminar" width="117" height="30">
   <a class="icon" data-wa="Hello Aminar" href="#top" aria-label="Message Aminar on WhatsApp">
@@ -373,7 +373,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
   </a>
 </header>
 <div class="overlay" id="overlay" aria-hidden="true">
-  <a href="#collections">Collections</a><a href="#bestsellers">Bestsellers</a><a href="our-story.html">Our story</a><a href="wholesale.html">Wholesale</a><a href="visit.html">Visit the shop</a>
+  <a href="catalog.html">Collections</a><a href="#bestsellers">Bestsellers</a><a href="our-story.html">Our story</a><a href="wholesale.html">Wholesale</a><a href="visit.html">Visit the shop</a>
   <a class="btn" data-wa="Hello Aminar" href="#top">Order on WhatsApp</a>
 </div>
 
@@ -479,7 +479,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
 <footer class="sfoot">
   <div class="bye"><span class="ar" lang="ar">السلام عليكم</span><span class="en">Peace be upon you</span></div>
   <div class="row">
-    <nav aria-label="Footer"><a href="#collections">Collections</a><a href="our-story.html">Our story</a><a href="wholesale.html">Wholesale</a><a href="visit.html">Visit</a><a href="https://wa.me/66895042876?text=Hello%20Aminar" target="_blank" rel="noopener">WhatsApp</a><a href="https://instagram.com/aminarthailand" target="_blank" rel="noopener">Instagram</a></nav>
+    <nav aria-label="Footer"><a href="catalog.html">Collections</a><a href="our-story.html">Our story</a><a href="wholesale.html">Wholesale</a><a href="visit.html">Visit</a><a href="https://wa.me/66895042876?text=Hello%20Aminar" target="_blank" rel="noopener">WhatsApp</a><a href="https://instagram.com/aminarthailand" target="_blank" rel="noopener">Instagram</a></nav>
     <p class="legal">© 2026 Aminar · Sukhumvit Soi 3, Bangkok</p>
   </div>
 </footer>
@@ -498,7 +498,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
 
   // Bestsellers: the box opens when it scrolls into view; a name closes it, swaps what is inside, opens it again.
   const why = {'oud-trat-tablets': 'Our bestselling oud.', sunshine: 'Stays on fabric for two days.', 'golden-sins': 'Our bestselling perfume. 10 to 12 hours on skin.', 'oud-patchouli': 'Our bestselling body mist.'};
-  const lidName = {'oud-trat-tablets': 'Oud Trat'};
+  const lidName = {'oud-trat-tablets': 'Oud Trat', sunshine: 'Sunshine'};
   const bOrder = ['oud-trat-tablets', 'sunshine', 'golden-sins', 'oud-patchouli'];
   const B = D.products.filter((p) => p.bestseller && p.image).sort((a, b) => bOrder.indexOf(a.id) - bOrder.indexOf(b.id));
   const bBox = document.getElementById('bestBox'), bTray = document.getElementById('bestTray'), bLid = document.getElementById('bestLid'), bCap = document.getElementById('bestCap');
@@ -528,7 +528,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
   const cats = D.categories;
   const archHtml = (c, real) => {
     const pic = c.image || (D.products.find((p) => p.category === c.id && p.image) || {}).image;
-    return `<a class="arch" href="#c-${c.id}"${real ? ` id="c-${c.id}"` : ' aria-hidden="true" tabindex="-1"'}><div class="win">${pic ? `<img src="${img(pic)}" alt="${real ? esc(c.name) : ''}" loading="lazy">` : ''}</div>
+    return `<a class="arch" href="catalog.html#s-${c.id === 'sprays' ? 'fabric' : c.id}"${real ? ` id="c-${c.id}"` : ' aria-hidden="true" tabindex="-1"'}><div class="win">${pic ? `<img src="${img(pic)}" alt="${real ? esc(c.name) : ''}" loading="lazy">` : ''}</div>
       <h3 class="poem">${esc(c.title)}</h3><p class="cat">${esc(c.name)}</p><span class="link">Explore ${arrow}</span></a>`;
   };
   // three copies so there are always arches on both sides; the page quietly jumps back to the middle copy
