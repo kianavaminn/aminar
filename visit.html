@@ -98,47 +98,96 @@ a{color:inherit}
   .route .map{height:76svh}
 }
 
-/* ---------- 3. hours: the clock face of the week ---------- */
-.hours{margin-top:var(--gap);background:var(--ground-2);padding:var(--gap) var(--m)}
-.hours .time{display:block;font:500 17vw/.9 Cinzel,serif;color:var(--foil);margin:18px 0 8px;letter-spacing:-.01em}
-.hours .time span{color:transparent;-webkit-text-stroke:1.5px var(--stroke);margin:0 .12em}
-.hours .sub{font:400 22px/1.3 Marcellus,serif;letter-spacing:.24em;text-transform:uppercase}
-.week{list-style:none;display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:40px}
-.week li{text-align:center;padding:14px 0 12px;background:var(--ground);font:400 14px Marcellus;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
-.week li b{display:block;font:500 11px var(--sans);letter-spacing:.1em;color:var(--soft);margin-top:4px}
-.week li.today{background:var(--foil);color:var(--ink)}
+/* ---------- 3. hours: a night sky over the shop's day ---------- */
+.hours{position:relative;overflow:hidden;margin-top:var(--gap);padding:var(--gap) var(--m);
+  background:radial-gradient(ellipse 70% 60% at 78% 38%,rgba(226,180,60,.11),transparent 70%),radial-gradient(ellipse 60% 50% at 10% 100%,rgba(42,46,92,.45),transparent 70%),linear-gradient(180deg,#15110d,#0d0b09)}
+.hours::before{content:"";position:absolute;left:var(--m);right:var(--m);top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(226,180,60,.5),transparent)}
+.hours .stars{position:absolute;inset:0;pointer-events:none}
+.hours .stars i{position:absolute;width:2px;height:2px;border-radius:50%;background:#f3e3b4;opacity:.25;animation:twinkle 4s ease-in-out infinite}
+@keyframes twinkle{50%{opacity:.85;transform:scale(1.6)}}
+.hours .in2{position:relative;display:grid;gap:36px}
+.hstatus{display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:22px;padding:10px 16px;border:1px solid rgba(226,180,60,.35);border-radius:999px;font:500 12px/1.3 var(--sans);letter-spacing:.18em;text-transform:uppercase;background:rgba(13,11,9,.5)}
+.hstatus .dot{width:8px;height:8px;border-radius:50%;background:#7fc28d;animation:beat 2.2s infinite}
+.hstatus.closed .dot{background:#8a8296;animation:none}
+.hstatus b{font-weight:500}
+.hstatus em{font-style:normal;color:var(--foil)}
+@keyframes beat{0%{box-shadow:0 0 0 0 rgba(127,194,141,.6)}70%,100%{box-shadow:0 0 0 9px rgba(127,194,141,0)}}
+.hours .time{display:flex;align-items:flex-start;font:500 19vw/.9 Cinzel,serif;color:var(--foil);margin:22px 0 10px;letter-spacing:-.01em}
+.hours .time small{font:500 .2em/1 var(--sans);letter-spacing:.2em;color:var(--text);margin:.35em 0 0 .25em}
+.hours .time .dash{align-self:center;width:.9em;height:1px;background:linear-gradient(90deg,transparent,var(--foil),transparent);margin:0 .22em}
+.hours .sub{font:400 20px/1.3 Marcellus,serif;letter-spacing:.24em;text-transform:uppercase}
+.hours .note{color:var(--soft);margin-top:18px;max-width:44ch}
+.day{width:100%;height:auto;overflow:visible}
+.day .sky{fill:none;stroke:rgba(226,180,60,.25);stroke-width:1.2;stroke-dasharray:2 7}
+.day .trav{fill:none;stroke:url(#hGold);stroke-width:3;stroke-linecap:round}
+.day .floor{stroke:rgba(226,180,60,.55);stroke-width:1}
+.day .tk{stroke:rgba(226,180,60,.55);stroke-width:1.2}
+.day .hr{font:500 15px Jost,sans-serif;letter-spacing:1px;fill:#bdb19c;text-anchor:middle}
+.day .hr.edge{fill:#e9c66a;font-size:17px}
+.day .now{font:500 15px Jost,sans-serif;letter-spacing:2.5px;fill:#efe6d6;text-anchor:middle}
+.day .moon{transition:opacity .6s}
+.day.closed .moon{opacity:.45}
+.week{list-style:none;display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:8px}
+.week li{position:relative;text-align:center;padding:16px 0 12px;background:rgba(13,11,9,.55);border:1px solid rgba(226,180,60,.16);font:400 14px Marcellus;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);transition:border-color .3s,transform .4s cubic-bezier(.2,.7,.2,1)}
+.week li:hover{border-color:rgba(226,180,60,.6);transform:translateY(-3px)}
+.week li b{display:none;font:500 11px var(--sans);letter-spacing:.08em;color:var(--soft);margin-top:4px}
+.week li.today{background:linear-gradient(160deg,#f0cc62,#c9992f);border-color:var(--foil);color:var(--ink);box-shadow:0 14px 34px rgba(226,180,60,.25)} /* taste-skill-ignore: today glows */
 .week li.today b{color:var(--ink)}
-.hours .note{color:var(--soft);margin-top:24px;max-width:44ch}
+.week li.today::before{content:"Today";position:absolute;left:50%;top:-9px;transform:translateX(-50%);background:var(--ink);color:var(--foil);font:500 9px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;padding:4px 7px;border:1px solid var(--foil)}
 @media (min-width:900px){
-  .hours .time{font-size:9vw}
-  .hours .sub{font-size:28px}
-  .week{gap:10px;max-width:960px}
-  .week li{padding:22px 0 18px;font-size:17px}
+  .hours .in2{grid-template-columns:5fr 6fr;align-items:end;gap:0 5vw}
+  .hours .time{font-size:8.4vw}
+  .hours .sub{font-size:26px}
+  .week{grid-column:1/-1;gap:12px;margin-top:64px;max-width:1100px}
+  .week li{padding:24px 0 18px;font-size:17px}
+  .week li b{display:block}
 }
 
-/* ---------- 4. the calling card: every way to reach us, set on the box's navy board ---------- */
-.reach{padding-top:var(--gap)}
-.reach .grid{display:grid;gap:44px;margin-top:44px;align-items:center}
-.card{position:relative;aspect-ratio:1.75/1;background:var(--navy) url(images/hero/navy-board.jpg) center/cover;padding:7% 8%;display:flex;flex-direction:column;justify-content:space-between;
-  box-shadow:0 40px 80px rgba(0,0,0,.6);transform:rotate(-2deg);transition:transform .8s cubic-bezier(.2,.7,.2,1)} /* taste-skill-ignore: a real card lying on the table */
-.card:hover{transform:rotate(0)}
-.card .logo{width:42%}
-.card .lines{font:400 clamp(13px,3.4vw,19px)/1.6 Marcellus,serif;letter-spacing:.12em;color:var(--foil);text-transform:uppercase}
-.card .lines small{display:block;color:var(--text);opacity:.85}
-.gift{margin:0;overflow:hidden}
-.gift img{width:100%;aspect-ratio:3/3.4;object-fit:cover;object-position:50% 40%;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
-.gift:hover img{transform:scale(1.04)}
+/* ---------- 4. talk to us: arched photo, a calling card, the ways to reach us ---------- */
+.reach{position:relative;padding-top:var(--gap);overflow-x:clip}
+.reach .grid{display:grid;gap:64px;margin-top:44px;align-items:center}
+.gift{position:relative;margin:0 10px 0 0}
+.gift::before{content:"";position:absolute;inset:-60px -40px;background:radial-gradient(closest-side,rgba(226,180,60,.16),transparent);pointer-events:none}
+.gift .arch{position:relative;overflow:hidden;border-radius:999px 999px 0 0;outline:1px solid rgba(226,180,60,.65);outline-offset:10px}
+.gift .arch img{width:100%;aspect-ratio:3/3.6;object-fit:cover;object-position:50% 40%;transition:transform 1.6s cubic-bezier(.2,.7,.2,1)}
+.gift:hover .arch img{transform:scale(1.05)}
+.card{position:absolute;right:-6px;bottom:-34px;width:62%;aspect-ratio:1.75/1;background:var(--navy) url(images/hero/navy-board.jpg) center/cover;padding:6% 7%;display:flex;flex-direction:column;justify-content:space-between;
+  box-shadow:0 30px 60px rgba(0,0,0,.65);transform:rotate(-4deg);transition:transform .8s cubic-bezier(.2,.7,.2,1)} /* taste-skill-ignore: a real card lying on the photo */
+.card::before{content:"";position:absolute;inset:5px;border:1px solid rgba(226,180,60,.5);pointer-events:none}
+.gift:hover .card{transform:rotate(-1deg) translateY(-6px)}
+.card .logo{width:46%}
+.card .lines{font:400 clamp(10px,2.7vw,14px)/1.55 Marcellus,serif;letter-spacing:.14em;color:var(--foil);text-transform:uppercase}
+.card .lines small{display:block;color:var(--text);opacity:.85;font-size:.85em}
+.side{display:grid;gap:22px}
+.primary{position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;padding:22px 20px;text-decoration:none;
+  background:var(--navy) url(images/hero/navy-board.jpg) center/cover;box-shadow:0 20px 44px rgba(0,0,0,.5);transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s} /* taste-skill-ignore: the main way in */
+.primary::before{content:"";position:absolute;inset:5px;border:1px solid rgba(226,180,60,.45);pointer-events:none}
+.primary:hover{transform:translateY(-4px);box-shadow:0 30px 60px rgba(0,0,0,.6)}
+.primary .ic{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:var(--foil);color:var(--ink)}
+.primary .ic svg{width:26px;height:26px}
+.primary .k{display:block;font:500 11px var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--foil)}
+.primary .v{display:block;font:400 26px/1.15 Marcellus,serif;letter-spacing:.03em;margin-top:4px}
+.primary .n{display:block;font-size:14px;color:#d8d2e6;margin-top:2px}
+.circ{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(226,180,60,.55);color:var(--foil);transition:background-color .35s,color .35s,transform .45s cubic-bezier(.2,.7,.2,1)}
+.circ svg{width:22px;height:12px}
+.primary:hover .circ,.ways li a:hover .circ{background:var(--foil);color:var(--ink);transform:translateX(4px)}
 .ways{list-style:none}
-.ways li a{display:grid;grid-template-columns:1fr auto;gap:2px 16px;align-items:center;padding:20px 0;text-decoration:none;box-shadow:inset 0 -1px 0 rgba(226,180,60,.22);transition:padding .3s}
-.ways li a:hover{padding-left:10px}
-.ways .k{font:500 12px var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--foil);grid-column:1}
-.ways .v{font:400 26px/1.15 Marcellus,serif;letter-spacing:.04em;grid-column:1}
-.ways .go{grid-column:2;grid-row:1/3;color:var(--foil);font:400 26px Marcellus;transition:transform .3s}
-.ways li a:hover .go{transform:translateX(6px)}
+.ways li a{display:grid;grid-template-columns:auto 1fr auto;gap:2px 16px;align-items:center;padding:16px 0;text-decoration:none;box-shadow:inset 0 -1px 0 rgba(226,180,60,.2);transition:padding .35s}
+.ways li a:hover{padding-left:8px}
+.ways .ic{grid-row:1/3;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(226,180,60,.3);color:var(--foil)}
+.ways .ic svg{width:20px;height:20px}
+.ways .k{font:500 11px var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--foil);grid-column:2}
+.ways .v{font:400 23px/1.15 Marcellus,serif;letter-spacing:.04em;grid-column:2}
+.ways .circ{grid-column:3;grid-row:1/3;width:40px;height:40px}
 @media (min-width:900px){
-  .reach .grid{grid-template-columns:5fr 6fr;gap:0 6vw;margin-top:64px}
-  .gift img{aspect-ratio:3/4}
-  .ways .v{font-size:32px}
+  .reach .grid{grid-template-columns:5fr 6fr;gap:0 7vw;margin-top:72px}
+  .gift{margin:0}
+  .gift .arch img{aspect-ratio:3/3.9}
+  .card{width:58%;right:-14%;bottom:-40px}
+  .card .lines{font-size:15px}
+  .primary{padding:28px 30px}
+  .primary .v{font-size:32px}
+  .ways .v{font-size:28px}
 }
 
 /* ---------- 5. wholesale line + close ---------- */
@@ -216,12 +265,28 @@ a{color:inherit}
 
 <!-- 3. Hours -->
 <section class="hours" aria-labelledby="hours-h">
-  <p class="kicker" data-rise>Opening hours</p>
-  <h2 class="sr" id="hours-h">Open every day, 10:00 AM to 1:00 AM</h2>
-  <span class="time" aria-hidden="true" data-rise style="--d:1">10<span>—</span>1</span>
-  <p class="sub" data-rise style="--d:2">AM to AM · every day</p>
+  <div class="stars" id="stars" aria-hidden="true"></div>
+  <div class="in2">
+    <div>
+      <p class="kicker" data-rise>Opening hours</p>
+      <h2 class="sr" id="hours-h">Open every day, 10:00 AM to 1:00 AM</h2>
+      <p class="hstatus" id="hstatus" data-rise style="--d:1"><span class="dot"></span><b>Open daily</b><em>10 AM – 1 AM</em></p>
+      <span class="time" aria-hidden="true" data-rise style="--d:1">10<small>AM</small><span class="dash"></span>1<small>AM</small></span>
+      <p class="sub" data-rise style="--d:2">Every day · past midnight</p>
+      <p class="note" data-rise style="--d:3">Come in the afternoon or late into the evening. The shop stays open past midnight, every day of the week.</p>
+    </div>
+    <svg class="day" id="day" viewBox="0 0 640 360" role="img" aria-label="The shop's day in Bangkok time, from 10 AM to 1 AM" data-rise style="--d:2">
+      <defs><linearGradient id="hGold" x1="0" x2="1"><stop offset="0" stop-color="#b8862b"/><stop offset="1" stop-color="#f3d27a"/></linearGradient>
+        <filter id="hGlow" x="-1" y="-1" width="3" height="3"><feGaussianBlur stdDeviation="8"/></filter></defs>
+      <path class="sky" d="M40 300 A280 280 0 0 1 600 300"/>
+      <path class="trav" id="dayTrav" d=""/>
+      <g id="dayTicks"></g>
+      <line class="floor" x1="0" y1="300" x2="640" y2="300"/>
+      <g class="moon" id="dayMoon" transform="translate(40 300)"><circle r="26" fill="#f3d27a" opacity=".35" filter="url(#hGlow)"/><path d="M8 -17 A19 19 0 1 0 8 17 A14.5 14.5 0 1 1 8 -17 Z" fill="#f3d27a"/></g>
+      <text class="now" id="dayNow" x="40" y="250"></text>
+    </svg>
+  </div>
   <ul class="week" id="week" aria-label="Open Monday to Sunday" data-rise style="--d:3"></ul>
-  <p class="note" data-rise style="--d:4">Come in the afternoon or late into the evening. The shop stays open past midnight, every day of the week.</p>
 </section>
 
 <!-- 4. Every way to reach us -->
@@ -229,8 +294,14 @@ a{color:inherit}
   <p class="kicker" data-rise>Contact</p>
   <h2 class="title" id="reach-h" data-rise style="--d:1">Talk to us<span class="l2">Before you visit, or from anywhere</span></h2>
   <div class="grid">
-    <figure class="gift" data-rise style="--d:2"><img src="images/banners/gift-bag.jpg" alt="An Aminar box handed over the counter in a black gift bag" width="1100" height="1467" loading="lazy"></figure>
-    <ul class="ways" id="ways"></ul>
+    <figure class="gift" data-rise style="--d:2">
+      <div class="arch"><img src="images/banners/gift-bag.jpg" alt="An Aminar box handed over the counter in a gift bag" width="1100" height="1467" loading="lazy"></div>
+      <div class="card" aria-hidden="true"><img class="logo" src="logo/aminar-logo-gold.svg" alt=""><p class="lines">Sukhumvit Soi 3 · Nana<small>Bangkok · Thailand</small></p></div>
+    </figure>
+    <div class="side">
+      <a class="primary" id="waCard" data-rise style="--d:2" data-wa="Hello Aminar"><span class="ic" id="waIcon"></span><span><span class="k">WhatsApp</span><span class="v">Message us</span><span class="n" id="waNum"></span></span><span class="circ"><svg viewBox="0 0 44 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 11h40"/><path d="M33 3c2 4 4.6 6.6 9 8-4.4 1.4-7 4-9 8"/></svg></span></a>
+      <ul class="ways" id="ways"></ul>
+    </div>
   </div>
 </section>
 
@@ -282,7 +353,50 @@ a{color:inherit}
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   // after midnight it is still "yesterday's" opening
   let today = days.indexOf(t.day); if (t.h < H.close) today = (today + 6) % 7;
-  document.getElementById('week').innerHTML = days.map((d, i) => `<li class="${i === today ? 'today' : ''}">${d}<b>10–1</b></li>`).join('');
+  document.getElementById('week').innerHTML = days.map((d, i) => `<li class="${i === today ? 'today' : ''}">${d}<b>10 AM–1 AM</b></li>`).join('');
+
+  // Hours: live pill + the moon travelling the shop's day (left = 10 AM, right = 1 AM)
+  const LEN = ((H.close + 24 - H.open) % 24) * 60, nowMin = t.h * 60 + t.m, since = (nowMin - H.open * 60 + 1440) % 1440;
+  const span = (m) => ((m >= 60 ? Math.floor(m / 60) + ' h ' : '') + (m % 60 ? (m % 60) + ' min' : '')).trim();
+  const pill = document.getElementById('hstatus');
+  pill.innerHTML = open ? '<span class="dot"></span><b>Open now</b><em>· closes in ' + span(LEN - since) + '</em>'
+                        : '<span class="dot"></span><b>Closed now</b><em>· opens in ' + span(1440 - since) + '</em>';
+  pill.classList.toggle('closed', !open);
+  const day = document.getElementById('day'), CX = 320, CY = 300, R = 280;
+  const at = (f) => { const a = Math.PI * (1 - f); return [CX + R * Math.cos(a), CY - R * Math.sin(a)]; };
+  const marks = [[0, '10 AM', 1], [2 / 15, '12 PM'], [5 / 15, '3 PM'], [8 / 15, '6 PM'], [11 / 15, '9 PM'], [14 / 15, '12 AM'], [1, '1 AM', 1]];
+  document.getElementById('dayTicks').innerHTML = Array.from({length: 16}, (_, i) => {
+    const f = i / 15, a = Math.PI * (1 - f), c = Math.cos(a), sn = Math.sin(a);
+    return `<line class="tk" x1="${(CX + (R - 8) * c).toFixed(1)}" y1="${(CY - (R - 8) * sn).toFixed(1)}" x2="${(CX + (R + 8) * c).toFixed(1)}" y2="${(CY - (R + 8) * sn).toFixed(1)}"/>`;
+  }).join('') + marks.map(([f, l, edge]) => {
+    const a = Math.PI * (1 - f), r = edge ? R : R - 60, x = CX + r * Math.cos(a), y = edge ? CY + 30 : CY - r * Math.sin(a) + 5;
+    return `<text class="hr${edge ? ' edge' : ''}" x="${x.toFixed(1)}" y="${y.toFixed(1)}">${l}</text>`;
+  }).join('');
+  const moon = document.getElementById('dayMoon'), trav = document.getElementById('dayTrav'), nowT = document.getElementById('dayNow');
+  const two = (n) => String(n).padStart(2, '0');
+  const place = (f) => {
+    const [x, y] = at(f);
+    moon.setAttribute('transform', `translate(${x.toFixed(1)} ${y.toFixed(1)})`);
+    trav.setAttribute('d', f > .003 ? `M40 300 A280 280 0 0 1 ${x.toFixed(1)} ${y.toFixed(1)}` : '');
+    nowT.setAttribute('x', Math.max(70, Math.min(570, x)).toFixed(1)); nowT.setAttribute('y', (y - 40).toFixed(1));
+  };
+  const target = open ? since / LEN : 0;
+  nowT.textContent = (open ? 'NOW ' : 'CLOSED · ') + two(t.h) + ':' + two(t.m);
+  day.classList.toggle('closed', !open);
+  place(0);
+  const reduceM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const rise = () => {
+    if (reduceM) return place(target);
+    const t0 = performance.now(), D = 1800;
+    const step = (now) => { const k = Math.min(1, (now - t0) / D), e = 1 - Math.pow(1 - k, 3); place(target * e); if (k < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  };
+  new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { o.disconnect(); setTimeout(rise, 350); } }, {threshold: .4}).observe(day);
+  // a few quiet stars over the night side of the sky
+  document.getElementById('stars').innerHTML = Array.from({length: 22}, (_, i) => {
+    const x = (i * 47.3) % 100, y = (i * 29.7) % 62, d = (i * .37) % 4;
+    return `<i style="left:${x.toFixed(1)}%;top:${(4 + y).toFixed(1)}%;animation-delay:-${d.toFixed(2)}s"></i>`;
+  }).join('');
 
   // Route: BTS or taxi
   const stops = document.getElementById('stops'), modes = [...document.querySelectorAll('.modes button')];
@@ -295,14 +409,22 @@ a{color:inherit}
 
   // Contact card and the ways to reach us
   const tel = (p) => 'tel:' + p.replace(/[^+\d]/g, '');
+  const I = {
+    wa: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>',
+    tel: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2Z"/></svg>',
+    ig: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>',
+    sc: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c3.3 0 5.5 2.4 5.5 5.6v2.6l1.9-.6c.6-.2 1 .6.5 1l-2.1 1.3c.6 1.6 1.9 2.8 3.5 3.3.4.1.4.7 0 .9-1 .4-2 .4-2.6.8-.4.3-.3 1.2-.8 1.4-.8.2-1.9-.4-3 .1-1 .5-1.7 1.6-2.9 1.6s-1.9-1.1-2.9-1.6c-1.1-.5-2.2.1-3-.1-.5-.2-.4-1.1-.8-1.4-.6-.4-1.6-.4-2.6-.8-.4-.2-.4-.8 0-.9 1.6-.5 2.9-1.7 3.5-3.3L4.1 11.6c-.5-.4-.1-1.2.5-1l1.9.6V8.6C6.5 5.4 8.7 3 12 3Z"/></svg>',
+  };
+  const go = '<span class="circ" aria-hidden="true"><svg viewBox="0 0 44 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11h40"/><path d="M33 3c2 4 4.6 6.6 9 8-4.4 1.4-7 4-9 8"/></svg></span>';
+  document.getElementById('waIcon').innerHTML = I.wa;
+  document.getElementById('waNum').textContent = S.phones[1];
   const ways = [
-    {k: 'WhatsApp · tap to chat', v: 'Message us', href: wa('Hello Aminar'), ext: true},
-    {k: 'Call the shop', v: S.phones[0], href: tel(S.phones[0])},
-    {k: 'Call or WhatsApp', v: S.phones[1], href: tel(S.phones[1])},
-    {k: 'Instagram', v: '@' + S.instagram, href: `https://instagram.com/${S.instagram}`, ext: true},
-    {k: 'Snapchat', v: S.snapchat, href: `https://www.snapchat.com/add/${S.snapchat}`, ext: true},
+    {i: 'tel', k: 'Call the shop', v: S.phones[0], href: tel(S.phones[0])},
+    {i: 'tel', k: 'Call or WhatsApp', v: S.phones[1], href: tel(S.phones[1])},
+    {i: 'ig', k: 'Instagram', v: '@' + S.instagram, href: `https://instagram.com/${S.instagram}`, ext: true},
+    {i: 'sc', k: 'Snapchat', v: S.snapchat, href: `https://www.snapchat.com/add/${S.snapchat}`, ext: true},
   ];
-  document.getElementById('ways').innerHTML = ways.map((w, i) => `<li data-rise style="--d:${i + 2}"><a href="${w.href}"${w.ext ? ' target="_blank" rel="noopener"' : ''}><span class="k">${esc(w.k)}</span><span class="v">${esc(w.v)}</span><span class="go" aria-hidden="true">→</span></a></li>`).join('');
+  document.getElementById('ways').innerHTML = ways.map((w, i) => `<li data-rise style="--d:${i + 3}"><a href="${w.href}"${w.ext ? ' target="_blank" rel="noopener"' : ''}><span class="ic">${I[w.i]}</span><span class="k">${esc(w.k)}</span><span class="v">${esc(w.v)}</span>${go}</a></li>`).join('');
 
   // Nav turns solid once the first screen has gone
   const nav = document.getElementById('nav');
