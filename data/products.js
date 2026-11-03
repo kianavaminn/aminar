@@ -70,7 +70,11 @@ window.AMINAR = {
     {id: 'oud-oil-tablets', name: 'Oud Oil Tablets', shelf: 'oud', category: 'oud', kind: 'Oud tablets with oud oil', size: '7 g box', image: '', confirmed: true},
     {id: 'glory', name: 'Glory', shelf: 'oud', category: 'oud', kind: 'The house scent', image: '', confirmed: true},
 
-    {id: 'oud-oil', name: 'Oud Oil', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', image: 'images/products/Oud oil/oud-oil.jpg', confirmed: false},
+    {id: 'dekra', name: 'Dekra', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', image: 'images/products/Oud oil/dekra.jpg', confirmed: true},
+    {id: 'fawah', name: 'Fawah', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', image: 'images/products/Oud oil/fawah.jpg', confirmed: true},
+    {id: 'malaki', name: 'Malaki', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', image: 'images/products/Oud oil/malaki.jpg', confirmed: true},
+    {id: 'nimma', name: 'Nimma', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', image: 'images/products/Oud oil/nimma.jpg', confirmed: true},
+    {id: 'trat-strong', name: 'Trat Strong', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', image: 'images/products/Oud oil/trat-strong.jpg', confirmed: true}, // file was "Trat Stong"; the label reads Trat Strong
 
     {id: 'dream-bakhoor', name: 'Dream Bakhoor', shelf: 'bakhoor', category: 'bakhoor', kind: 'Bakhoor', image: 'images/products/Bakhoor/Bakhoor/dream-bakhoor.jpg', confirmed: true},
     {id: 'mamoul', name: 'Mamoul', shelf: 'bakhoor', category: 'bakhoor', kind: 'Mamoul', image: 'images/products/Bakhoor/Mamoul/mamoul.jpg', confirmed: false},

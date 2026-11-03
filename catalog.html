@@ -12,7 +12,7 @@
 <style>
 /* ---------- tokens: a cream page, so the dark photographs glow ---------- */
 :root{
-  --cream:#f2ece1;--cream-2:#e9e0d1;--paper:#faf6ef;--ink:#15110c;--ink-2:#2a231a;--soft:#6d6152;
+  --cream:#ece3d3;--cream-2:#e2d7c4;--paper:#f6f0e5;--ink:#15110c;--ink-2:#2a231a;--soft:#6d6152;
   --gold-ink:#8a6a2c;--foil:#e2b43c;--gold:#d5b36e;--navy:#1c1f43;--rule:rgba(21,17,12,.12);
   --sans:Jost,system-ui,sans-serif;--it:"Cormorant Garamond",Georgia,serif;
   --m:20px;--top:62px;
@@ -20,7 +20,7 @@
 @media (min-width:900px){:root{--m:clamp(32px,5vw,80px);--top:76px}}
 *{box-sizing:border-box;margin:0;padding:0}
 html{background:var(--cream);scroll-behavior:smooth;scroll-padding-top:calc(var(--top) + 70px)}
-body{background:var(--cream);color:var(--ink);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
+body{background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .32  0 0 0 0 .25  0 0 0 0 .15  0 0 0 .1 0'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>") var(--cream);color:var(--ink);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
 img{display:block;max-width:100%}
 button,input,select{font:inherit;color:inherit}
 button{cursor:pointer;background:none;border:0}
@@ -44,61 +44,39 @@ a{color:inherit}
 .cartbtn .w{display:none}
 @media (min-width:900px){.top nav .wide{display:inline-flex}.top .logo img{height:30px}.cartbtn .w{display:inline}}
 
-/* ---------- 1. the opening: a giant title and a slow procession of arches ---------- */
-.intro{position:relative;padding:54px 0 0;overflow:hidden}
-.intro .in{padding:0 var(--m)}
-.intro .k{color:var(--gold-ink)}
-.intro h1{font:500 12.6vw/.9 Cinzel,serif;white-space:nowrap;letter-spacing:-.01em;text-transform:uppercase;margin:16px 0 0}
-.intro h1 .w{display:block;overflow:hidden}
-.intro h1 .w > span{display:block}
-.intro h1 .o{color:transparent;-webkit-text-stroke:1.2px var(--ink)}
-.intro .lede{font:italic 400 26px/1.25 var(--it);color:var(--ink-2);max-width:24ch;margin-top:20px}
-.stats{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:0 26px;margin-top:28px;padding-top:20px;border-top:1px solid var(--rule)}
-.stats b{display:block;font:500 34px/1 Cinzel,serif}
-.stats span{display:block;margin-top:6px;color:var(--soft)}
-.parade{display:grid;gap:14px;margin-top:46px;padding-bottom:10px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.parade .row{display:flex;gap:14px;width:max-content;animation:march 80s linear infinite}
-.parade .row.r2{animation-direction:reverse;animation-duration:95s}
-.parade:hover .row{animation-play-state:paused}
-@keyframes march{to{transform:translateX(-50%)}}
-.parade a{flex:none;width:112px;aspect-ratio:3/3.9;border-radius:999px 999px 0 0;overflow:hidden;background:#0d0b09;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-.parade a:hover{transform:translateY(-6px)}
-.parade img{width:100%;height:100%;object-fit:cover;transform:scale(1.25)}
+/* ---------- 1. the opening (sample D) ---------- */
+.hx h1{font:500 12.6vw/.9 Cinzel,serif;white-space:nowrap;text-transform:uppercase;letter-spacing:-.01em;margin:16px 0 0}
+.hx h1 .w{display:block;overflow:hidden}.hx h1 .w > span{display:block}
+.hx .lede{font:italic 400 24px/1.28 var(--it);max-width:24ch;margin-top:18px}
+.hx .stats{display:flex;gap:0 30px;margin-top:26px}
+.hx .stats b{display:block;font:500 34px/1 Cinzel,serif}
+.hx .stats span{display:block;margin-top:6px}
 @media (prefers-reduced-motion:no-preference){
-  .intro h1 .w > span{animation:rise 1.2s cubic-bezier(.2,.7,.2,1) both}
-  .intro h1 .w:nth-child(2) > span{animation-delay:.12s}
-  .intro .lede,.stats{animation:fade 1.2s .5s both}
+  .hx h1 .w > span{animation:rise 1.2s cubic-bezier(.2,.7,.2,1) both}.hx h1 .w:nth-child(2) > span{animation-delay:.12s}
+  .hx .lede,.hx .stats{animation:fade 1.2s .5s both}
   @keyframes rise{from{transform:translateY(105%)}to{transform:none}}
   @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 }
-@media (prefers-reduced-motion:reduce){.parade .row{animation:none}}
-@media (min-width:900px){
-  .intro{padding-top:80px}
-  .intro .in{display:grid;grid-template-columns:1fr auto;align-items:end;gap:0 5vw}
-  .intro h1{font-size:10vw;grid-column:1/-1}
-  .intro .lede{font-size:34px;margin-top:28px}
-  .stats{gap:0 54px;margin:0;padding:0;border:0;align-self:end}
-  .stats b{font-size:48px}
-  .parade{margin-top:70px}
-  .parade a{width:150px}
-}
-
-/* ---------- 2. the families: arches you can jump to ---------- */
-.fams{padding:64px 0 10px}
-.fams .hd{display:flex;justify-content:space-between;align-items:baseline;padding:0 var(--m)}
-.fams h2{font:500 13px var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--gold-ink)}
-.fams .hint{font:italic 400 18px var(--it);color:var(--soft)}
-.fams .list{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:20px var(--m) 14px;scrollbar-width:none}
-.fams .list::-webkit-scrollbar{display:none}
-.fam{flex:none;width:150px;scroll-snap-align:start;text-decoration:none;text-align:center}
-.fam .win{position:relative;aspect-ratio:3/3.9;border-radius:999px 999px 0 0;overflow:hidden;background:#0d0b09;outline:1px solid rgba(138,106,44,.45);outline-offset:5px;transition:outline-offset .5s,outline-color .5s}
-.fam .win img{width:100%;height:100%;object-fit:cover;transform:scale(1.18);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
-.fam:hover .win{outline-color:var(--gold-ink);outline-offset:9px}
-.fam:hover .win img{transform:scale(1.28)}
-.fam .num{position:absolute;left:0;right:0;bottom:8px;font:500 12px Cinzel,serif;color:var(--foil);letter-spacing:.1em}
-.fam b{display:block;font:500 14px/1.25 Cinzel,serif;text-transform:uppercase;margin-top:16px}
-.fam span{display:block;font:italic 400 16px var(--it);color:var(--soft)}
-@media (min-width:900px){.fams{padding-top:90px}.fams .list{gap:22px;justify-content:space-between}.fam{width:calc((100% - 8 * 22px) / 9);min-width:118px}}
+@media (min-width:900px){.hx h1{font-size:8.6vw}.hx .lede{font-size:32px}.hx .stats{gap:0 50px}.hx .stats b{font-size:46px}}
+.names{position:relative;overflow:hidden;color:#efe6d6;background:#0d0b09;padding:46px 0 40px}
+.names .txt{padding:0 var(--m)}
+.names .k{color:var(--foil)}
+.names h1 .o{color:transparent;-webkit-text-stroke:1.2px var(--foil)}
+.names .lede{color:#cbbfa9}
+.names .stats span{color:#bdb19c}
+.rib{display:grid;gap:6px;margin-top:40px}
+.rib .r{display:flex;width:max-content;white-space:nowrap;animation:march 70s linear infinite}
+.rib .r:nth-child(2){animation-direction:reverse;animation-duration:85s}
+.rib .r:nth-child(3){animation-duration:100s}
+.rib button{font:500 42px/1.1 Cinzel,serif;text-transform:uppercase;padding:0 18px;color:#efe6d6;transition:color .3s}
+.rib .r:nth-child(2) button{color:transparent;-webkit-text-stroke:1px var(--foil)}
+.rib .r:nth-child(3) button{color:var(--foil)}
+.rib button:hover{color:#fff1c2;-webkit-text-stroke:0}
+.rib button::after{content:"✦";font-size:.35em;vertical-align:middle;margin-left:36px;color:var(--gold-ink);-webkit-text-stroke:0}
+.rib:hover .r{animation-play-state:paused}
+@keyframes march{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.rib .r{animation:none}}
+@media (min-width:900px){.names{padding:70px 0 60px}.rib button{font-size:68px}}
 
 /* ---------- 3. the toolbar that follows you ---------- */
 .bar{position:sticky;top:var(--top);z-index:20;background:rgba(242,236,225,.95);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--rule)}
@@ -264,20 +242,7 @@ main{padding:0 var(--m) 120px}
   <button class="cartbtn" id="cartbtn" aria-label="Open your cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 12H6.2L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg><span class="w">Cart</span><b id="cn">0</b></button>
 </header>
 
-<section class="intro" aria-labelledby="h1">
-  <div class="in">
-    <p class="mi k">Aminar · Bangkok · Since 1993</p>
-    <h1 id="h1"><span class="w"><span>The</span></span><span class="w"><span>Collec<span class="o">tion</span></span></span></h1>
-    <p class="lede">Every scent we make, in one place. Choose, then send your order on WhatsApp.</p>
-    <div class="stats" id="stats"></div>
-  </div>
-  <div class="parade" id="parade" aria-hidden="true"></div>
-</section>
-
-<section class="fams" aria-labelledby="fams-h">
-  <div class="hd"><h2 id="fams-h">The families</h2><span class="hint">Tap one to go there</span></div>
-  <div class="list" id="fams"></div>
-</section>
+<section class="hx names" aria-labelledby="h1"><div class="txt"><p class="mi k">Aminar · Bangkok · Since 1993</p><h1 id="h1"><span class="w"><span>The</span></span><span class="w"><span>Collec<span class="o">tion</span></span></span></h1><p class="lede">Every scent we make, in one place. Choose, then send your order on WhatsApp.</p><div class="stats" id="stats"></div></div><div class="rib" id="rib" aria-hidden="true"></div></section>
 
 <div class="bar" id="bar">
   <div class="in">
@@ -328,22 +293,11 @@ main{padding:0 var(--m) 120px}
   const shelfOf = (p) => D.shelves.find((s) => s.id === p.shelf) || {};
   const label = (p) => p.name + (P.filter((x) => x.name === p.name).length > 1 ? ' (' + p.kind.split(' · ').pop() + ')' : '');
 
-  // ----- opening: counts and the procession of arches
+  // ----- opening (sample D)
   $('stats').innerHTML = `<div><b>${two(P.length)}</b><span class="mi">Scents &amp; pieces</span></div><div><b>${two(shelves.length)}</b><span class="mi">Families</span></div><div><b>1993</b><span class="mi">Since</span></div>`;
-  const withPic = P.filter(pic);
-  const half = Math.ceil(withPic.length / 2);
-  const arch = (p) => `<a href="#p-${p.id}" tabindex="-1"><img src="${img(pic(p))}" alt="" loading="lazy"></a>`;
-  const row = (list, cls) => `<div class="row${cls}">${list.map(arch).join('')}${list.map(arch).join('')}</div>`;
-  $('parade').innerHTML = row(withPic.slice(0, half), '') + row(withPic.slice(half), ' r2');
-  $('parade').onclick = (e) => { const a = e.target.closest('a'); if (a) { e.preventDefault(); openDet(a.getAttribute('href').slice(3)); } };
-
-  // ----- the families
-  $('fams').innerHTML = shelves.map((s, i) => {
-    const lead = P.find((p) => p.shelf === s.id && p.bestseller && p.image) || P.find((p) => p.shelf === s.id && p.image) || P.find((p) => p.shelf === s.id && pic(p));
-    const n = P.filter((p) => p.shelf === s.id).length;
-    return `<a class="fam" href="#s-${s.id}" data-shelf="${s.id}"><div class="win">${lead ? `<img src="${img(pic(lead))}" alt="" loading="lazy">` : ''}<span class="num">${two(i + 1)}</span></div><b>${esc(s.name)}</b><span>${n} ${n === 1 ? 'piece' : 'pieces'}</span></a>`;
-  }).join('');
-  $('fams').onclick = (e) => { const a = e.target.closest('[data-shelf]'); if (a) { e.preventDefault(); show('', a.dataset.shelf); } };
+  const third = Math.ceil(P.length / 3), rowOf = (l) => { const h = l.map((p) => `<button type="button" tabindex="-1" data-open="${p.id}">${esc(p.name)}</button>`).join(''); return `<div class="r">${h}${h}</div>`; };
+  $('rib').innerHTML = [0, 1, 2].map((k) => rowOf(P.slice(k * third, (k + 1) * third))).join('');
+  $('rib').onclick = (e) => { const b = e.target.closest('[data-open]'); if (b) openDet(b.dataset.open); };
 
   // ----- toolbar: family chips and search
   let only = '', q = '';
