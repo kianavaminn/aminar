@@ -66,6 +66,10 @@ window.AMINAR = {
     {id: 'oud-romantic', name: 'Oud Romantic', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume', image: '', confirmed: false}, // from older notes, no photo yet
 
     {id: 'oud-trat-tablets', name: 'Oud Trat Tablets', shelf: 'oud', category: 'oud', kind: 'Oud tablets · 24 g box', size: '24 g box', bestseller: true, image: 'images/products/Oud/Tablets/trat-tablets.jpg', confirmed: true},
+    {id: 'altah', name: 'Altah', shelf: 'oud', category: 'oud', kind: 'Oud tablets', image: 'images/products/Oud/Tablets/altah.jpg', confirmed: true},
+    {id: 'khaoyai', name: 'Khaoyai', shelf: 'oud', category: 'oud', kind: 'Oud tablets', image: 'images/products/Oud/Tablets/khaoyai.jpg', confirmed: true}, // file was "Khaoyhai"; the box reads Khaoyai
+    {id: 'laos', name: 'Laos', shelf: 'oud', category: 'oud', kind: 'Oud tablets', image: 'images/products/Oud/Tablets/laos.jpg', confirmed: true},
+    {id: 'malaysia', name: 'Malaysia', shelf: 'oud', category: 'oud', kind: 'Oud tablets', image: 'images/products/Oud/Tablets/malaysia.jpg', confirmed: true},
     {id: 'pure-oud-tablets', name: 'Pure Oud Tablets', shelf: 'oud', category: 'oud', kind: 'Oud tablets', size: '24 g box · also by the kilogram', image: '', confirmed: true},
     {id: 'oud-oil-tablets', name: 'Oud Oil Tablets', shelf: 'oud', category: 'oud', kind: 'Oud tablets with oud oil', size: '7 g box', image: '', confirmed: true},
     {id: 'glory', name: 'Glory', shelf: 'oud', category: 'oud', kind: 'The house scent', image: '', confirmed: true},
