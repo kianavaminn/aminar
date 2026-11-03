@@ -301,13 +301,13 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
 .vs.wait .pen rect{stroke-dashoffset:1}
 .vs.wait .say .ch{opacity:0}
 .vs.wait .kick,.vs.wait .sub,.vs.wait .go,.vs.play:not(.typed) .sub,.vs.play:not(.typed) .go{opacity:0;transform:translateY(12px)}
-.vs.play .pen rect{transition:stroke-dashoffset 1.6s cubic-bezier(.6,.1,.3,1)}
+.vs.play .pen rect{transition:stroke-dashoffset 1s cubic-bezier(.6,.1,.3,1)}
 .vs.play .caret{opacity:1;animation:blink .9s steps(1) infinite}
-.vs.play.typed .caret{animation:blink .9s steps(1) 3 forwards,fade .4s 2.7s forwards}
-.vs .kick,.vs .sub,.vs .go{transition:opacity .7s,transform .8s cubic-bezier(.2,.7,.2,1)}
-.vs.play .kick{transition-delay:.5s}
+.vs.play.typed .caret{animation:blink .8s steps(1) 2 forwards,fade .3s 1.6s forwards}
+.vs .kick,.vs .sub,.vs .go{transition:opacity .5s,transform .6s cubic-bezier(.2,.7,.2,1)}
+.vs.play .kick{transition-delay:.3s}
 .vs.typed .sub{transition-delay:.05s}
-.vs.typed .go{transition-delay:.25s}
+.vs.typed .go{transition-delay:.15s}
 @keyframes blink{50%{opacity:0}}
 @keyframes fade{to{opacity:0}}
 .vs .kick{font:500 11px/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--foil)}
@@ -606,9 +606,9 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
     setTimeout(function type() {
       if (k < chars.length) {
         chars[k].style.opacity = 1; chars[k].after(caret); k++;
-        setTimeout(type, chars[k - 1].textContent === ' ' ? 40 : 70 + Math.random() * 50);
+        setTimeout(type, chars[k - 1].textContent === ' ' ? 25 : 42 + Math.random() * 30);
       } else vs.classList.add('typed');
-    }, 700);
+    }, 400);
   }, {threshold: .45});
   io.observe(vs);
 })();
