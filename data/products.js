@@ -33,7 +33,7 @@ window.AMINAR = {
     {id: 'body-mist', title: 'The Air', name: 'Body mists & hair mists', note: 'Light scents for skin and hair.'},
     {id: 'oud', title: 'The Root', name: 'Oud & tablets', note: 'Oud Trat tablets, pure oud tablets by the box or by the kilogram, and Glory.'},
     {id: 'oud-oil', title: 'The Spirit', name: 'Oud oils', note: 'Oud in its purest liquid form.'},
-    {id: 'bakhoor', title: 'The Heart', name: 'Bakhoor & Mamoul', note: 'Mamoul in many scents, to burn at home.'},
+    {id: 'bakhoor', title: 'The Heart', name: 'Bakhoor & Mamoul', note: 'Mamoul in many scents, to burn at home.', image: 'images/products/Bakhoor/Mamoul/mamoul.jpg'}, // home page shows the mamoul tin, not Dream Bakhoor
     {id: 'sprays', title: 'The Precious', name: 'Sprays for clothes & special area', note: 'Scent for abayas and clothes, and intimate care sprays.'},
   ],
 
