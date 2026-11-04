@@ -76,6 +76,7 @@ window.AMINAR = {
     {id: 'oud-oil-tablets', name: 'Oud Oil Tablets', shelf: 'oud', category: 'oud', kind: 'Oud tablets with oud oil', size: '7 g box', image: '', confirmed: true},
     {id: 'glory', name: 'Glory', shelf: 'oud', category: 'oud', kind: 'The house scent', image: '', confirmed: true},
 
+    // Oud oils: เกีย gives the 12 ml price; 6 ml = half, 3 ml = a quarter (same as Dekra and Malaki).
     // Oud wood is sold by the tola (12 g): give `tola` = the price of 1 tola and the 5-tola pack is worked out below.
     // Oud wood: catalog only (no `category`, so not on the home page). The photo of the wood inside each pouch
     // goes in `gallery` once เกีย adds it, e.g. "Sweet Trat (AAA) wood.png" → gallery: ['images/products/Oud/Oud/sweet-trat-wood.jpg']
@@ -85,10 +86,10 @@ window.AMINAR = {
     {id: 'vietnam-jar', name: 'Vietnam Jar', shelf: 'oud-wood', kind: 'Oud wood', tola: 950, image: 'images/products/Oud/Oud/vietnam-jar.jpg', confirmed: true},
 
     {id: 'dekra', name: 'Dekra', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', sizes: [['3 ml', 1000], ['6 ml', 2000], ['12 ml', 4000]], image: 'images/products/Oud oil/dekra.jpg', confirmed: true},
-    {id: 'fawah', name: 'Fawah', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', price: 3500, image: 'images/products/Oud oil/fawah.jpg', confirmed: true},
+    {id: 'fawah', name: 'Fawah', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', sizes: [['3 ml', 875], ['6 ml', 1750], ['12 ml', 3500]], image: 'images/products/Oud oil/fawah.jpg', confirmed: true},
     {id: 'malaki', name: 'Malaki', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', sizes: [['3 ml', 1000], ['6 ml', 2000], ['12 ml', 4000]], image: 'images/products/Oud oil/malaki.jpg', confirmed: true},
-    {id: 'nimma', name: 'Nimma', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', price: 3500, image: 'images/products/Oud oil/nimma.jpg', confirmed: true},
-    {id: 'trat-strong', name: 'Trat Strong', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', price: 4500, image: 'images/products/Oud oil/trat-strong.jpg', confirmed: true}, // file was "Trat Stong"; the label reads Trat Strong
+    {id: 'nimma', name: 'Nimma', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', sizes: [['3 ml', 875], ['6 ml', 1750], ['12 ml', 3500]], image: 'images/products/Oud oil/nimma.jpg', confirmed: true},
+    {id: 'trat-strong', name: 'Trat Strong', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', sizes: [['3 ml', 1125], ['6 ml', 2250], ['12 ml', 4500]], image: 'images/products/Oud oil/trat-strong.jpg', confirmed: true}, // file was "Trat Stong"; the label reads Trat Strong
 
     {id: 'dream-bakhoor', name: 'Dream Bakhoor', shelf: 'bakhoor', category: 'bakhoor', kind: 'Bakhoor', image: 'images/products/Bakhoor/Bakhoor/dream-bakhoor.jpg', confirmed: true},
     {id: 'mamoul', name: 'Mamoul', shelf: 'bakhoor', category: 'bakhoor', kind: 'Mamoul', image: 'images/products/Bakhoor/Mamoul/mamoul.jpg', confirmed: false},
