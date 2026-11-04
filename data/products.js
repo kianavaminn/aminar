@@ -41,7 +41,8 @@ window.AMINAR = {
   // A shelf with no products stays hidden until something is added to it. `lasts` = confirmed by เกีย; leave it out when not known.
   shelves: [
     {id: 'perfumes', name: 'Perfumes', line: 'Breathtaking by Aminar, our perfume house', lasts: '10–12 hours on skin'},
-    {id: 'oud', name: 'Oud & Tablets', line: 'Oud Trat, pure oud and our tablets'},
+    {id: 'oud', name: 'Oud Tablets', line: 'Oud Trat and our tablets, boxed in gold'},
+    {id: 'oud-wood', name: 'Oud Wood', line: 'Pieces of agarwood, sealed in their pouch'},
     {id: 'oud-oil', name: 'Oud Oils', line: 'Oud in its purest liquid form'},
     {id: 'bakhoor', name: 'Bakhoor & Mamoul', line: 'To burn at home, for the house and for guests'},
     {id: 'body-mist', name: 'Body Mists', line: 'Light scent for the skin'},
@@ -73,6 +74,13 @@ window.AMINAR = {
     {id: 'pure-oud-tablets', name: 'Pure Oud Tablets', shelf: 'oud', category: 'oud', kind: 'Oud tablets', size: '24 g box · also by the kilogram', image: '', confirmed: true},
     {id: 'oud-oil-tablets', name: 'Oud Oil Tablets', shelf: 'oud', category: 'oud', kind: 'Oud tablets with oud oil', size: '7 g box', image: '', confirmed: true},
     {id: 'glory', name: 'Glory', shelf: 'oud', category: 'oud', kind: 'The house scent', image: '', confirmed: true},
+
+    // Oud wood: catalog only (no `category`, so not on the home page). The photo of the wood inside each pouch
+    // goes in `gallery` once เกีย adds it, e.g. "Sweet Trat (AAA) wood.png" → gallery: ['images/products/Oud/Oud/sweet-trat-wood.jpg']
+    {id: 'sweet-trat', name: 'Sweet Trat Candy', shelf: 'oud-wood', kind: 'Oud wood · grade AAA', image: 'images/products/Oud/Oud/sweet-trat.jpg', confirmed: true}, // file "Sweet Trat (AAA)"; the pouch reads Sweet Trat Candy, AAA
+    {id: 'trat-2a-plus', name: 'Trat 2A+', shelf: 'oud-wood', kind: 'Oud wood · TR 1002', size: '1 tola', image: 'images/products/Oud/Oud/trat-2a-plus.jpg', confirmed: true}, // 1 tola is printed on the pouch
+    {id: 'vietnam-vn1009', name: 'Vietnam', shelf: 'oud-wood', kind: 'Oud wood · VN 1009', image: 'images/products/Oud/Oud/vietnam-vn1009.jpg', confirmed: true}, // file was "Veitnam"
+    {id: 'vietnam-jar', name: 'Vietnam Jar', shelf: 'oud-wood', kind: 'Oud wood', image: 'images/products/Oud/Oud/vietnam-jar.jpg', confirmed: true},
 
     {id: 'dekra', name: 'Dekra', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', image: 'images/products/Oud oil/dekra.jpg', confirmed: true},
     {id: 'fawah', name: 'Fawah', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', image: 'images/products/Oud oil/fawah.jpg', confirmed: true},
