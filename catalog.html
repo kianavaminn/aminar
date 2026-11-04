@@ -198,6 +198,12 @@ main{padding:0 var(--m) 120px}
 .sizes button[aria-pressed="true"]{background:var(--ink);color:var(--paper);box-shadow:none}
 .sizes button[aria-pressed="true"] b{color:var(--foil)}
 .sizes button em{font-style:normal;margin-left:8px;padding:3px 7px;background:var(--foil);color:var(--ink);font:500 10px var(--sans);letter-spacing:.14em;text-transform:uppercase}
+.sizes .bulk{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 16px;text-decoration:none;box-shadow:inset 0 0 0 1px var(--ink);font:500 13px var(--sans);letter-spacing:.1em;transition:background-color .3s,color .3s}
+.sizes .bulk:hover{background:var(--ink);color:var(--paper)}
+.sizes .bulk svg{width:16px;height:16px}
+.deal{display:flex;gap:12px;align-items:center;margin-top:12px;padding:12px 14px;background:var(--ink);color:#efe6d6;font-size:14px;line-height:1.4}
+.deal b{flex:none;padding:5px 9px;background:var(--foil);color:var(--ink);font:500 10px var(--sans);letter-spacing:.18em;text-transform:uppercase}
+.badge.off{background:var(--ink);color:var(--foil);box-shadow:inset 0 0 0 1px var(--foil)}
 .det .price{font:500 26px/1 Cinzel,serif;margin-top:12px}
 .total{display:flex;justify-content:space-between;align-items:baseline;padding-top:6px;border-top:1px solid var(--rule)}
 .total span{font:500 11px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
@@ -271,7 +277,7 @@ body,main{background:#f1eadf}
 .card h3{font:500 16px/1.2 Cinzel,serif}
 @media (min-width:1100px){.shelf .hd{display:block;padding:90px var(--m) 50px}.shelf .hd .tags{margin-top:18px}.shelf h2{font-size:64px}}
 </style>
-<script src="data/products.js?v=mw25cuus"></script>
+<script src="data/products.js?v=mw25fkq7"></script>
 </head>
 <body>
 <script>document.documentElement.classList.add('js')</script>
@@ -326,7 +332,7 @@ body,main{background:#f1eadf}
   const SHOW = S.showPrices || new URLSearchParams(location.search).get('prices') === '1';
   const baht = (n) => (S.currency || '฿') + n.toLocaleString('en-US');
   const sizesOf = (p) => p.sizes || (p.price ? [[p.size || '', p.price]] : []);
-  const priceTag = (p) => { const z = sizesOf(p); if (!SHOW || !z.length) return ''; return z.length > 1 ? `<small>from</small>${baht(Math.min(...z.map((x) => x[1])))}` : baht(z[0][1]); };
+  const priceTag = (p) => { const z = sizesOf(p); if (!SHOW || !z.length) return ''; if (p.tola) return baht(p.tola) + '<small style="margin:0 0 0 4px">/ tola</small>'; return z.length > 1 ? `<small>from</small>${baht(Math.min(...z.map((x) => x[1])))}` : baht(z[0][1]); };
   const pics = (p) => [pic(p), ...(p.gallery || [])].filter(Boolean);
   const wa = (t) => `https://wa.me/${S.whatsapp}?text=${encodeURIComponent(t)}`;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -397,7 +403,7 @@ body,main{background:#f1eadf}
       ? `<img src="${img(pic(p))}" alt="${esc(p.name)}" loading="lazy">${pics(p).length > 1 ? `<img class="alt" src="${img(pics(p)[1])}" alt="" loading="lazy"><span class="cnt">${pics(p).length} photos</span>` : ''}`
       : `<span class="ph"><img src="logo/aminar-logo-gold.svg" alt=""><b>${esc(p.name)}</b><small>Photograph coming soon</small></span>`;
     return `<article class="card" id="p-${p.id}" style="--i:${i % 4}">
-      <button class="pic" type="button" data-open="${p.id}" aria-label="${esc(label(p))}: details">${photo}${p.bestseller ? '<span class="badge">Bestseller</span>' : ''}<span class="view">View details</span></button>
+      <button class="pic" type="button" data-open="${p.id}" aria-label="${esc(label(p))}: details">${photo}${p.bestseller ? '<span class="badge">Bestseller</span>' : p.tola ? '<span class="badge off">Big size discount</span>' : ''}<span class="view">View details</span></button>
       <div class="b"><p class="line">${esc(p.line || s.name)}</p><h3>${esc(p.name)}</h3><p class="kind">${esc(p.kind)}</p>${priceTag(p) ? `<p class="price">${priceTag(p)}</p>` : ''}
       ${n ? `<div class="step"><button type="button" data-dec="${p.id}" aria-label="One less">−</button><span>${n} in cart</span><button type="button" data-inc="${p.id}" aria-label="One more">+</button></div>`
           : `<button class="add" type="button" data-add="${p.id}">${many(p) ? 'Choose a size' : 'Add to cart'} ${PLUS}</button>`}</div></article>`;
@@ -457,7 +463,7 @@ body,main{background:#f1eadf}
       <div class="pic">${pics(p).length > 1 ? `<div class="gal" id="gal">${pics(p).map((u, k) => `<img src="${img(u)}" alt="${esc(p.name)}, photo ${k + 1}">`).join('')}</div><span class="gdots" id="gdots">${pics(p).map((_, k) => `<i class="${k === gi ? 'on' : ''}"></i>`).join('')}</span><button type="button" class="garr l" data-g="-1" aria-label="Previous photo">‹</button><button type="button" class="garr r" data-g="1" aria-label="Next photo">›</button>` : pic(p) ? `<img src="${img(pic(p))}" alt="${esc(p.name)}">` : `<span class="ph"><img src="logo/aminar-logo-gold.svg" alt=""><b>${esc(p.name)}</b><small>Photograph coming soon</small></span>`}</div>
       <div class="body">
         <div><p class="mi line">${esc(p.line || s.name)}</p><h2>${esc(p.name)}</h2><p class="kind">${esc(p.kind)}</p>${SHOW && sizesOf(p).length ? `<p class="price">${baht(many(p) ? p.sizes.find((z) => z[0] === sz)[1] : sizesOf(p)[0][1])}</p>` : ''}</div>
-        ${many(p) ? `<div><p class="mi" style="color:var(--soft);margin-bottom:10px">Choose a size</p><div class="sizes">${p.sizes.map((z) => `<button type="button" data-sz="${esc(z[0])}" aria-pressed="${z[0] === sz}">${esc(z[0])}${SHOW ? `<b>${baht(z[1])}</b>` : ''}${z[2] ? `<em>${esc(z[2])}</em>` : ''}</button>`).join('')}</div></div>` : ''}
+        ${many(p) ? `<div><p class="mi" style="color:var(--soft);margin-bottom:10px">Choose a size</p><div class="sizes">${p.sizes.map((z) => `<button type="button" data-sz="${esc(z[0])}" aria-pressed="${z[0] === sz}">${esc(z[0])}${SHOW ? `<b>${baht(z[1])}</b>` : ''}${z[2] ? `<em>${SHOW ? 'Discount ' + baht(z[2]) : 'Discount'}</em>` : ''}</button>`).join('')}${p.bulk ? `<a class="bulk" href="${wa('Hello Aminar, I would like ' + p.bulk + ' of ' + label(p) + '. Please send me the price.')}" target="_blank" rel="noopener">${WAI} ${esc(p.bulk)} · ask on WhatsApp</a>` : ''}</div>${p.tola ? `<p class="deal"><b>Discount</b><span>${SHOW ? 'Big size: take 5 tola (60 g) and save ' + baht(100) + ' on every tola, ' + baht(500) + ' off in total.' : 'Big size: take 5 tola (60 g) and get a discount on every tola.'}</span></p>` : ''}</div>` : ''}
         <dl class="spec">
           <div><dt>Family</dt><dd>${esc(s.name)}</dd></div>
           <div><dt>Size</dt>${many(p) ? `<dd>${esc(p.sizes.map((z) => z[0]).join(' · '))}</dd>` : p.size ? `<dd>${esc(p.size)}</dd>` : soon}</div>

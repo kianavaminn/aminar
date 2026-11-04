@@ -79,10 +79,10 @@ window.AMINAR = {
     // Oud wood is sold by the tola (12 g): give `tola` = the price of 1 tola and the 5-tola pack is worked out below.
     // Oud wood: catalog only (no `category`, so not on the home page). The photo of the wood inside each pouch
     // goes in `gallery` once เกีย adds it, e.g. "Sweet Trat (AAA) wood.png" → gallery: ['images/products/Oud/Oud/sweet-trat-wood.jpg']
-    {id: 'sweet-trat', name: 'Sweet Trat Candy', shelf: 'oud-wood', kind: 'Oud wood · grade AAA', image: 'images/products/Oud/Oud/sweet-trat.jpg', confirmed: true}, // file "Sweet Trat (AAA)"; the pouch reads Sweet Trat Candy, AAA
+    {id: 'sweet-trat', name: 'Sweet Trat Candy', shelf: 'oud-wood', kind: 'Oud wood · grade AAA', tola: 1500, image: 'images/products/Oud/Oud/sweet-trat.jpg', confirmed: true}, // file "Sweet Trat (AAA)"; the pouch reads Sweet Trat Candy, AAA
     {id: 'trat-2a-plus', name: 'Trat 2A+', shelf: 'oud-wood', kind: 'Oud wood · TR 1002', tola: 1200, image: 'images/products/Oud/Oud/trat-2a-plus.jpg', confirmed: true}, // 1 tola is printed on the pouch
-    {id: 'vietnam-vn1009', name: 'Vietnam', shelf: 'oud-wood', kind: 'Oud wood · VN 1009', image: 'images/products/Oud/Oud/vietnam-vn1009.jpg', confirmed: true}, // file was "Veitnam"
-    {id: 'vietnam-jar', name: 'Vietnam Jar', shelf: 'oud-wood', kind: 'Oud wood', image: 'images/products/Oud/Oud/vietnam-jar.jpg', confirmed: true},
+    {id: 'vietnam-vn1009', name: 'Vietnam', shelf: 'oud-wood', kind: 'Oud wood · VN 1009', tola: 800, image: 'images/products/Oud/Oud/vietnam-vn1009.jpg', confirmed: true}, // file was "Veitnam"
+    {id: 'vietnam-jar', name: 'Vietnam Jar', shelf: 'oud-wood', kind: 'Oud wood', tola: 950, image: 'images/products/Oud/Oud/vietnam-jar.jpg', confirmed: true},
 
     {id: 'dekra', name: 'Dekra', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', sizes: [['3 ml', 1000], ['6 ml', 2000], ['12 ml', 4000]], image: 'images/products/Oud oil/dekra.jpg', confirmed: true},
     {id: 'fawah', name: 'Fawah', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', image: 'images/products/Oud oil/fawah.jpg', confirmed: true},
@@ -131,6 +131,7 @@ window.AMINAR = {
 
 // Oud wood pricing (เกีย, 4 Nov): 1 tola = 12 g. The big 5-tola pack is always ฿100 off per tola,
 // so 5 tola = (price of 1 tola × 5) − 500. Example: TR 1002 → 1 tola ฿1,200, 5 tola ฿5,500.
+// 1 kg or more: no price online, the customer asks on WhatsApp (`bulk`).
 window.AMINAR.products.forEach((p) => {
-  if (p.tola) p.sizes = [['1 tola · 12 g', p.tola], ['5 tola · 60 g', p.tola * 5 - 500, 'Save ฿500']];
+  if (p.tola) { p.sizes = [['1 tola · 12 g', p.tola], ['5 tola · 60 g', p.tola * 5 - 500, 500]]; p.bulk = '1 kg or more'; }
 });
