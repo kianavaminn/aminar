@@ -277,7 +277,7 @@ body,main{background:#f1eadf}
 .card h3{font:500 16px/1.2 Cinzel,serif}
 @media (min-width:1100px){.shelf .hd{display:block;padding:90px var(--m) 50px}.shelf .hd .tags{margin-top:18px}.shelf h2{font-size:64px}}
 </style>
-<script src="data/products.js?v=mw25fkq7"></script>
+<script src="data/products.js?v=mw25iq0w"></script>
 </head>
 <body>
 <script>document.documentElement.classList.add('js')</script>
@@ -403,7 +403,7 @@ body,main{background:#f1eadf}
       ? `<img src="${img(pic(p))}" alt="${esc(p.name)}" loading="lazy">${pics(p).length > 1 ? `<img class="alt" src="${img(pics(p)[1])}" alt="" loading="lazy"><span class="cnt">${pics(p).length} photos</span>` : ''}`
       : `<span class="ph"><img src="logo/aminar-logo-gold.svg" alt=""><b>${esc(p.name)}</b><small>Photograph coming soon</small></span>`;
     return `<article class="card" id="p-${p.id}" style="--i:${i % 4}">
-      <button class="pic" type="button" data-open="${p.id}" aria-label="${esc(label(p))}: details">${photo}${p.bestseller ? '<span class="badge">Bestseller</span>' : p.tola ? '<span class="badge off">Big size discount</span>' : ''}<span class="view">View details</span></button>
+      <button class="pic" type="button" data-open="${p.id}" aria-label="${esc(label(p))}: details">${photo}${p.bestseller ? '<span class="badge">Bestseller</span>' : ''}${p.tola ? `<span class="badge off"${p.bestseller ? ' style="top:40px"' : ''}>Big size discount</span>` : ''}<span class="view">View details</span></button>
       <div class="b"><p class="line">${esc(p.line || s.name)}</p><h3>${esc(p.name)}</h3><p class="kind">${esc(p.kind)}</p>${priceTag(p) ? `<p class="price">${priceTag(p)}</p>` : ''}
       ${n ? `<div class="step"><button type="button" data-dec="${p.id}" aria-label="One less">−</button><span>${n} in cart</span><button type="button" data-inc="${p.id}" aria-label="One more">+</button></div>`
           : `<button class="add" type="button" data-add="${p.id}">${many(p) ? 'Choose a size' : 'Add to cart'} ${PLUS}</button>`}</div></article>`;

@@ -360,7 +360,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
 </head>
 <body>
 <script>document.documentElement.classList.add('js')</script>
-<script src="data/products.js?v=mw25fkq7"></script>
+<script src="data/products.js?v=mw25iq0w"></script>
 
 <header class="nav" id="nav">
   <button class="icon menu" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="overlay"><span class="burger"></span></button>
@@ -500,7 +500,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
   const why = {'oud-trat-tablets': 'Our bestselling oud.', sunshine: 'Stays on fabric for two days.', 'golden-sins': 'Our bestselling perfume. 10 to 12 hours on skin.', 'oud-patchouli': 'Our bestselling body mist.'};
   const lidName = {'oud-trat-tablets': 'Oud Trat', sunshine: 'Sunshine'};
   const bOrder = ['oud-trat-tablets', 'sunshine', 'golden-sins', 'oud-patchouli'];
-  const B = D.products.filter((p) => p.bestseller && p.image).sort((a, b) => bOrder.indexOf(a.id) - bOrder.indexOf(b.id));
+  const B = D.products.filter((p) => p.bestseller && p.image && bOrder.includes(p.id)).sort((a, b) => bOrder.indexOf(a.id) - bOrder.indexOf(b.id));
   const bBox = document.getElementById('bestBox'), bTray = document.getElementById('bestTray'), bLid = document.getElementById('bestLid'), bCap = document.getElementById('bestCap');
   const bTabs = document.getElementById('bestTabs');
   bTabs.innerHTML = B.map((p, i) => `<button type="button" aria-pressed="${i === 0}">${esc(lidName[p.id] || p.name)}</button>`).join('');

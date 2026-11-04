@@ -80,7 +80,7 @@ window.AMINAR = {
     // Oud wood: catalog only (no `category`, so not on the home page). The photo of the wood inside each pouch
     // goes in `gallery` once เกีย adds it, e.g. "Sweet Trat (AAA) wood.png" → gallery: ['images/products/Oud/Oud/sweet-trat-wood.jpg']
     {id: 'sweet-trat', name: 'Sweet Trat Candy', shelf: 'oud-wood', kind: 'Oud wood · grade AAA', tola: 1500, image: 'images/products/Oud/Oud/sweet-trat.jpg', confirmed: true}, // file "Sweet Trat (AAA)"; the pouch reads Sweet Trat Candy, AAA
-    {id: 'trat-2a-plus', name: 'Trat 2A+', shelf: 'oud-wood', kind: 'Oud wood · TR 1002', tola: 1200, image: 'images/products/Oud/Oud/trat-2a-plus.jpg', confirmed: true}, // 1 tola is printed on the pouch
+    {id: 'trat-2a-plus', name: 'Trat 2A+', shelf: 'oud-wood', kind: 'Oud wood · TR 1002', tola: 1200, bestseller: true, image: 'images/products/Oud/Oud/trat-2a-plus.jpg', confirmed: true}, // 1 tola is printed on the pouch
     {id: 'vietnam-vn1009', name: 'Vietnam', shelf: 'oud-wood', kind: 'Oud wood · VN 1009', tola: 800, image: 'images/products/Oud/Oud/vietnam-vn1009.jpg', confirmed: true}, // file was "Veitnam"
     {id: 'vietnam-jar', name: 'Vietnam Jar', shelf: 'oud-wood', kind: 'Oud wood', tola: 950, image: 'images/products/Oud/Oud/vietnam-jar.jpg', confirmed: true},
 
