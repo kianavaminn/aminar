@@ -276,8 +276,28 @@ body,main{background:#f1eadf}
 .tag.gold{background:var(--foil);color:#15110c}
 .card h3{font:500 16px/1.2 Cinzel,serif}
 @media (min-width:1100px){.shelf .hd{display:block;padding:90px var(--m) 50px}.shelf .hd .tags{margin-top:18px}.shelf h2{font-size:64px}}
+/* ===== family bar B ===== */
+.bar .in{flex-direction:row;align-items:center;gap:10px}
+.famBtn{flex:none;display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 18px;background:var(--ink);color:#efe6d6;border-radius:999px}
+.famBtn .k{font:500 10px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--foil)}
+.famBtn b{font:500 14px var(--sans);letter-spacing:.06em;font-weight:500;white-space:nowrap;max-width:36vw;overflow:hidden;text-overflow:ellipsis}
+.famBtn .ch{font-size:11px;transition:transform .3s}
+body.famOpen .famBtn .ch{transform:rotate(180deg)}
+.search{flex:1;min-width:0}
+.chips{position:absolute;left:var(--m);right:var(--m);top:calc(100% + 8px);z-index:25;display:grid!important;grid-template-columns:1fr;gap:0;margin:0!important;padding:8px!important;background:var(--paper);box-shadow:0 30px 60px rgba(21,17,12,.25),inset 0 0 0 1px var(--rule);-webkit-mask-image:none!important;mask-image:none!important;
+  opacity:0;transform:translateY(-8px);pointer-events:none;transition:opacity .3s,transform .4s cubic-bezier(.2,.7,.2,1)}
+body.famOpen .chips{opacity:1;transform:none;pointer-events:auto}
+.chips button{display:flex;justify-content:space-between;align-items:center;min-height:50px;padding:0 16px;border-radius:0;box-shadow:none;border-bottom:1px solid var(--rule);font:500 15px Cinzel,serif;letter-spacing:.06em;color:var(--ink);text-align:left}
+.chips button:last-child{border:0}
+.chips button i{font:italic 400 17px var(--it);opacity:1;color:var(--soft)}
+.chips button:hover{background:var(--cream);box-shadow:none}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--foil)}
+.chips button[aria-pressed="true"] i{color:#cbbfa9}
+.famShade{position:fixed;inset:0;z-index:19;background:rgba(21,17,12,.25);opacity:0;pointer-events:none;transition:opacity .3s}
+body.famOpen .famShade{opacity:1;pointer-events:auto}
+@media (min-width:900px){.chips{left:auto;right:auto;width:640px;grid-template-columns:1fr 1fr;column-gap:8px}.search{flex:none;width:340px;margin-left:auto}}
 </style>
-<script src="data/products.js?v=mw25nxv3"></script>
+<script src="data/products.js?v=mw2636g4"></script>
 </head>
 <body>
 <script>document.documentElement.classList.add('js')</script>
@@ -292,7 +312,7 @@ body,main{background:#f1eadf}
 
 <div class="bar" id="bar">
   <div class="in">
-    <div class="chips" id="chips" role="group" aria-label="Show a family"></div>
+    <div class="chips" id="chips" role="group" aria-label="Choose a category"></div>
     <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Search a name, oud, abaya…" aria-label="Search the collection"></label>
   </div>
 </div>
@@ -348,7 +368,7 @@ body,main{background:#f1eadf}
   const label = (p) => p.name + (P.filter((x) => x.name === p.name).length > 1 ? ' (' + p.kind.split(' · ').pop() + ')' : '');
 
   // ----- opening (sample D)
-  $('stats').innerHTML = `<div><b>${two(P.length)}</b><span class="mi">Scents &amp; pieces</span></div><div><b>${two(shelves.length)}</b><span class="mi">Families</span></div><div><b>1993</b><span class="mi">Since</span></div>`;
+  $('stats').innerHTML = `<div><b>${two(P.length)}</b><span class="mi">Scents &amp; pieces</span></div><div><b>${two(shelves.length)}</b><span class="mi">Categories</span></div><div><b>1993</b><span class="mi">Since</span></div>`;
   const third = Math.ceil(P.length / 3), rowOf = (l) => { const h = l.map((p) => `<button type="button" tabindex="-1" data-open="${p.id}">${esc(p.name)}</button>`).join(''); return `<div class="r">${h}${h}</div>`; };
   $('rib').innerHTML = [0, 1, 2].map((k) => rowOf(P.slice(k * third, (k + 1) * third))).join('');
   $('rib').onclick = (e) => { const b = e.target.closest('[data-open]'); if (b) openDet(b.dataset.open); };
@@ -465,7 +485,7 @@ body,main{background:#f1eadf}
         <div><p class="mi line">${esc(p.line || s.name)}</p><h2>${esc(p.name)}</h2><p class="kind">${esc(p.kind)}</p>${SHOW && sizesOf(p).length ? `<p class="price">${baht(many(p) ? p.sizes.find((z) => z[0] === sz)[1] : sizesOf(p)[0][1])}</p>` : ''}</div>
         ${many(p) ? `<div><p class="mi" style="color:var(--soft);margin-bottom:10px">Choose a size</p><div class="sizes">${p.sizes.map((z) => `<button type="button" data-sz="${esc(z[0])}" aria-pressed="${z[0] === sz}">${esc(z[0])}${SHOW ? `<b>${baht(z[1])}</b>` : ''}${z[2] ? `<em>${SHOW ? 'Discount ' + baht(z[2]) : 'Discount'}</em>` : ''}</button>`).join('')}${p.bulk ? `<a class="bulk" href="${wa('Hello Aminar, I would like ' + p.bulk + ' of ' + label(p) + '. Please send me the price.')}" target="_blank" rel="noopener">${WAI} ${esc(p.bulk)} · ask on WhatsApp</a>` : ''}</div>${p.tola ? `<p class="deal"><b>Discount</b><span>${SHOW ? 'Big size: take 5 tola (60 g) and save ' + baht(100) + ' on every tola, ' + baht(500) + ' off in total.' : 'Big size: take 5 tola (60 g) and get a discount on every tola.'}</span></p>` : ''}</div>` : ''}
         <dl class="spec">
-          <div><dt>Family</dt><dd>${esc(s.name)}</dd></div>
+          <div><dt>Category</dt><dd>${esc(s.name)}</dd></div>
           <div><dt>Size</dt>${many(p) ? `<dd>${esc(p.sizes.map((z) => z[0]).join(' · '))}</dd>` : p.size ? `<dd>${esc(p.size)}</dd>` : soon}</div>
           <div><dt>Lasts</dt>${(p.lasts || s.lasts) ? `<dd>${esc(p.lasts || s.lasts)}</dd>` : soon}</div>
           <div><dt>Scent notes</dt>${p.notes ? `<dd>${esc(p.notes)}</dd>` : soon}</div>
@@ -541,6 +561,21 @@ body,main{background:#f1eadf}
 (() => {
   const deco = () => document.querySelectorAll('.shelf').forEach((s) => { const hd = s.querySelector('.hd'); if (hd.querySelector('.cover')) return; const im = s.querySelector('.card .pic img'); if (im) hd.insertAdjacentHTML('afterbegin', `<span class="cover" style="background-image:url('${im.getAttribute('src')}')"></span>`); });
   deco(); new MutationObserver(deco).observe(document.getElementById('shelves'), {childList: true});
+})();
+</script>
+<script>
+(() => {
+  const bar = document.getElementById('bar'), chips = document.getElementById('chips');
+  const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'famBtn'; btn.setAttribute('aria-expanded', 'false');
+  chips.before(btn);
+  const shade = document.createElement('div'); shade.className = 'famShade'; document.body.append(shade);
+  const label = () => { const on = chips.querySelector('[aria-pressed="true"]'); btn.innerHTML = '<span class="k">Category</span><b>' + (on ? on.firstChild.textContent : 'All') + '</b><span class="ch" aria-hidden="true">▾</span>'; };
+  const open = (v) => { document.body.classList.toggle('famOpen', v); btn.setAttribute('aria-expanded', v); };
+  btn.onclick = () => open(!document.body.classList.contains('famOpen'));
+  shade.onclick = () => open(false);
+  chips.addEventListener('click', () => setTimeout(() => { label(); open(false); }, 0));
+  addEventListener('keydown', (e) => { if (e.key === 'Escape') open(false); });
+  label();
 })();
 </script>
 </body>
