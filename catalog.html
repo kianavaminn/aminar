@@ -197,6 +197,7 @@ main{padding:0 var(--m) 120px}
 .sizes button b{font-weight:500;color:var(--gold-ink);margin-left:8px}
 .sizes button[aria-pressed="true"]{background:var(--ink);color:var(--paper);box-shadow:none}
 .sizes button[aria-pressed="true"] b{color:var(--foil)}
+.sizes button em{font-style:normal;margin-left:8px;padding:3px 7px;background:var(--foil);color:var(--ink);font:500 10px var(--sans);letter-spacing:.14em;text-transform:uppercase}
 .det .price{font:500 26px/1 Cinzel,serif;margin-top:12px}
 .total{display:flex;justify-content:space-between;align-items:baseline;padding-top:6px;border-top:1px solid var(--rule)}
 .total span{font:500 11px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
@@ -270,7 +271,7 @@ body,main{background:#f1eadf}
 .card h3{font:500 16px/1.2 Cinzel,serif}
 @media (min-width:1100px){.shelf .hd{display:block;padding:90px var(--m) 50px}.shelf .hd .tags{margin-top:18px}.shelf h2{font-size:64px}}
 </style>
-<script src="data/products.js?v=mw259rzi"></script>
+<script src="data/products.js?v=mw25cuus"></script>
 </head>
 <body>
 <script>document.documentElement.classList.add('js')</script>
@@ -456,7 +457,7 @@ body,main{background:#f1eadf}
       <div class="pic">${pics(p).length > 1 ? `<div class="gal" id="gal">${pics(p).map((u, k) => `<img src="${img(u)}" alt="${esc(p.name)}, photo ${k + 1}">`).join('')}</div><span class="gdots" id="gdots">${pics(p).map((_, k) => `<i class="${k === gi ? 'on' : ''}"></i>`).join('')}</span><button type="button" class="garr l" data-g="-1" aria-label="Previous photo">‹</button><button type="button" class="garr r" data-g="1" aria-label="Next photo">›</button>` : pic(p) ? `<img src="${img(pic(p))}" alt="${esc(p.name)}">` : `<span class="ph"><img src="logo/aminar-logo-gold.svg" alt=""><b>${esc(p.name)}</b><small>Photograph coming soon</small></span>`}</div>
       <div class="body">
         <div><p class="mi line">${esc(p.line || s.name)}</p><h2>${esc(p.name)}</h2><p class="kind">${esc(p.kind)}</p>${SHOW && sizesOf(p).length ? `<p class="price">${baht(many(p) ? p.sizes.find((z) => z[0] === sz)[1] : sizesOf(p)[0][1])}</p>` : ''}</div>
-        ${many(p) ? `<div><p class="mi" style="color:var(--soft);margin-bottom:10px">Choose a size</p><div class="sizes">${p.sizes.map((z) => `<button type="button" data-sz="${esc(z[0])}" aria-pressed="${z[0] === sz}">${esc(z[0])}${SHOW ? `<b>${baht(z[1])}</b>` : ''}</button>`).join('')}</div></div>` : ''}
+        ${many(p) ? `<div><p class="mi" style="color:var(--soft);margin-bottom:10px">Choose a size</p><div class="sizes">${p.sizes.map((z) => `<button type="button" data-sz="${esc(z[0])}" aria-pressed="${z[0] === sz}">${esc(z[0])}${SHOW ? `<b>${baht(z[1])}</b>` : ''}${z[2] ? `<em>${esc(z[2])}</em>` : ''}</button>`).join('')}</div></div>` : ''}
         <dl class="spec">
           <div><dt>Family</dt><dd>${esc(s.name)}</dd></div>
           <div><dt>Size</dt>${many(p) ? `<dd>${esc(p.sizes.map((z) => z[0]).join(' · '))}</dd>` : p.size ? `<dd>${esc(p.size)}</dd>` : soon}</div>
