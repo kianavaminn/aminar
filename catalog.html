@@ -166,6 +166,20 @@ main{padding:0 var(--m) 120px}
 @media (min-width:900px){.panel{left:auto;top:0;width:min(560px,44vw);max-height:none;border-radius:0;transform:translateX(104%)}}
 .det .pic{position:relative;aspect-ratio:1;background:#0d0b09;overflow:hidden}
 .det .pic img{width:100%;height:100%;object-fit:cover}
+/* several photographs: swipe, the dots follow, arrows on computers */
+.gal{display:flex;width:100%;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.gal::-webkit-scrollbar{display:none}
+.gal img{flex:none;width:100%;height:100%;scroll-snap-align:center}
+.gdots{position:absolute;left:0;right:0;bottom:14px;display:flex;justify-content:center;gap:8px;pointer-events:none}
+.gdots i{width:22px;height:2px;background:rgba(239,230,214,.4);transition:background-color .3s}
+.gdots i.on{background:var(--foil)}
+.garr{position:absolute;top:50%;width:44px;height:44px;margin-top:-22px;border-radius:50%;display:none;place-items:center;background:rgba(13,11,9,.55);color:var(--foil);border:1px solid rgba(226,180,60,.5);font:400 20px Marcellus;transition:background-color .3s,color .3s}
+.garr:hover{background:var(--foil);color:var(--ink)}
+.garr.l{left:14px}.garr.r{right:14px}
+@media (hover:hover){.garr{display:grid}}
+.card .pic .alt{position:absolute;inset:0;opacity:0;transition:opacity .7s,transform 1.4s cubic-bezier(.2,.7,.2,1)}
+@media (hover:hover){.card:hover .pic .alt{opacity:1}.card:hover .pic .cnt{opacity:0}}
+.card .pic .cnt{position:absolute;z-index:2;right:10px;bottom:10px;padding:5px 8px;background:rgba(13,11,9,.7);color:#efe6d6;font:500 10px var(--sans);letter-spacing:.16em;text-transform:uppercase}
 .det .body{padding:24px var(--m) 0;display:grid;gap:20px}
 @media (min-width:900px){.det .body{padding:30px 40px 0}}
 .det .line{color:var(--gold-ink)}
@@ -245,7 +259,7 @@ body,main{background:#f1eadf}
 .card h3{font:500 16px/1.2 Cinzel,serif}
 @media (min-width:1100px){.shelf .hd{display:block;padding:90px var(--m) 50px}.shelf .hd .tags{margin-top:18px}.shelf h2{font-size:64px}}
 </style>
-<script src="data/products.js?v=mw0pucsk"></script>
+<script src="data/products.js?v=mw24yyqq"></script>
 </head>
 <body>
 <script>document.documentElement.classList.add('js')</script>
@@ -295,6 +309,8 @@ body,main{background:#f1eadf}
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
   const img = (p) => '' + p;
   const pic = (p) => p.image || p.imageLight || '';
+  // extra photographs of the same product (e.g. the front of the pack and the wood inside) go in `gallery`
+  const pics = (p) => [pic(p), ...(p.gallery || [])].filter(Boolean);
   const wa = (t) => `https://wa.me/${S.whatsapp}?text=${encodeURIComponent(t)}`;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const two = (n) => String(n).padStart(2, '0');
@@ -356,7 +372,7 @@ body,main{background:#f1eadf}
   const card = (p, i) => {
     const n = cart[p.id] || 0, s = shelfOf(p);
     const photo = pic(p)
-      ? `<img src="${img(pic(p))}" alt="${esc(p.name)}" loading="lazy">`
+      ? `<img src="${img(pic(p))}" alt="${esc(p.name)}" loading="lazy">${pics(p).length > 1 ? `<img class="alt" src="${img(pics(p)[1])}" alt="" loading="lazy"><span class="cnt">${pics(p).length} photos</span>` : ''}`
       : `<span class="ph"><img src="logo/aminar-logo-gold.svg" alt=""><b>${esc(p.name)}</b><small>Photograph coming soon</small></span>`;
     return `<article class="card" id="p-${p.id}" style="--i:${i % 4}">
       <button class="pic" type="button" data-open="${p.id}" aria-label="${esc(label(p))}: details">${photo}${p.bestseller ? '<span class="badge">Bestseller</span>' : ''}<span class="view">View details</span></button>
@@ -404,15 +420,15 @@ body,main{background:#f1eadf}
   };
 
   // ----- product details
-  let cur = null, qty = 1, lastFocus = null;
+  let cur = null, qty = 1, lastFocus = null, gi = 0;
   const openPanel = (el) => { lastFocus = document.activeElement; closeAll(true); el.classList.add('open'); el.setAttribute('aria-hidden', 'false'); $('shade').classList.add('open'); setTimeout(() => el.querySelector('.x').focus(), 50); };
-  function openDet(id) { cur = P.find((x) => x.id === id); if (!cur) return; qty = 1; drawDet(); openPanel($('det')); $('det').scrollTop = 0; }
+  function openDet(id) { cur = P.find((x) => x.id === id); if (!cur) return; qty = 1; gi = 0; drawDet(); openPanel($('det')); $('det').scrollTop = 0; }
   function drawDet() {
     const p = cur, s = shelfOf(p);
     const soon = '<dd class="soon">Coming soon</dd>';
     const kin = P.filter((x) => x.shelf === p.shelf && x.id !== p.id).slice(0, 4);
     $('detIn').innerHTML = `<button class="x" type="button" data-close aria-label="Close">×</button>
-      <div class="pic">${pic(p) ? `<img src="${img(pic(p))}" alt="${esc(p.name)}">` : `<span class="ph"><img src="logo/aminar-logo-gold.svg" alt=""><b>${esc(p.name)}</b><small>Photograph coming soon</small></span>`}</div>
+      <div class="pic">${pics(p).length > 1 ? `<div class="gal" id="gal">${pics(p).map((u, k) => `<img src="${img(u)}" alt="${esc(p.name)}, photo ${k + 1}">`).join('')}</div><span class="gdots" id="gdots">${pics(p).map((_, k) => `<i class="${k === gi ? 'on' : ''}"></i>`).join('')}</span><button type="button" class="garr l" data-g="-1" aria-label="Previous photo">‹</button><button type="button" class="garr r" data-g="1" aria-label="Next photo">›</button>` : pic(p) ? `<img src="${img(pic(p))}" alt="${esc(p.name)}">` : `<span class="ph"><img src="logo/aminar-logo-gold.svg" alt=""><b>${esc(p.name)}</b><small>Photograph coming soon</small></span>`}</div>
       <div class="body">
         <div><p class="mi line">${esc(p.line || s.name)}</p><h2>${esc(p.name)}</h2><p class="kind">${esc(p.kind)}</p></div>
         <dl class="spec">
@@ -425,8 +441,14 @@ body,main{background:#f1eadf}
         <a class="ask" href="${wa('Hello Aminar, I have a question about ' + label(p))}" target="_blank" rel="noopener">${WAI} Ask about ${esc(p.name)}</a>
         ${kin.length ? `<div class="more"><h3>More from ${esc(s.name)}</h3><div class="row">${kin.map((x) => `<button type="button" data-open="${x.id}">${pic(x) ? `<img src="${img(pic(x))}" alt="" loading="lazy">` : '<span class="mph" style="display:block"></span>'}<b>${esc(x.name)}</b></button>`).join('')}</div></div>` : ''}
       </div>`;
+    const g = $('gal');
+    if (g) {
+      g.scrollLeft = gi * g.clientWidth;
+      g.onscroll = () => { gi = Math.round(g.scrollLeft / g.clientWidth); [...$('gdots').children].forEach((d, k) => d.classList.toggle('on', k === gi)); };
+    }
   }
   $('detIn').onclick = (e) => {
+    const gb = e.target.closest('[data-g]'); if (gb) { const g = $('gal'), n = g.children.length; gi = (gi + +gb.dataset.g + n) % n; g.scrollTo({left: gi * g.clientWidth, behavior: reduce ? 'auto' : 'smooth'}); return; }
     if (e.target.closest('[data-close]')) return closeAll();
     const o = e.target.closest('[data-open]'); if (o) { openDet(o.dataset.open); return; }
     const qb = e.target.closest('[data-q]'); if (qb) { qty = Math.max(1, qty + +qb.dataset.q); return drawDet(); }
