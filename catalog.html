@@ -121,6 +121,8 @@ main{padding:0 var(--m) 120px}
 .card .b{display:flex;flex-direction:column;gap:3px;padding-top:14px;flex:1}
 .card .line{font:500 10px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--gold-ink)}
 .card h3{font:500 16px/1.15 Cinzel,serif;text-transform:uppercase}
+.card .price{font:500 15px/1 var(--sans);letter-spacing:.06em;color:var(--ink);margin:2px 0 12px}
+.card .price small{font:italic 400 15px var(--it);letter-spacing:0;color:var(--soft);margin-right:4px}
 .card .kind{font:italic 400 17px/1.2 var(--it);color:var(--soft)}
 .card .add{margin-top:12px;display:flex;align-items:center;justify-content:space-between;min-height:44px;padding:0 14px;background:var(--ink);color:var(--paper);font:500 12px var(--sans);letter-spacing:.16em;text-transform:uppercase;transition:background-color .3s}
 .card .add:hover{background:var(--ink-2)}
@@ -190,6 +192,15 @@ main{padding:0 var(--m) 120px}
 .spec dt{font:500 11px/1.8 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
 .spec dd{font:400 17px Marcellus}
 .spec dd.soon{font:italic 400 18px var(--it);color:var(--soft)}
+.sizes{display:flex;flex-wrap:wrap;gap:8px}
+.sizes button{min-height:46px;padding:0 18px;box-shadow:inset 0 0 0 1px var(--rule);background:var(--paper);font:500 13px var(--sans);letter-spacing:.12em;transition:background-color .3s,color .3s,box-shadow .3s}
+.sizes button b{font-weight:500;color:var(--gold-ink);margin-left:8px}
+.sizes button[aria-pressed="true"]{background:var(--ink);color:var(--paper);box-shadow:none}
+.sizes button[aria-pressed="true"] b{color:var(--foil)}
+.det .price{font:500 26px/1 Cinzel,serif;margin-top:12px}
+.total{display:flex;justify-content:space-between;align-items:baseline;padding-top:6px;border-top:1px solid var(--rule)}
+.total span{font:500 11px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
+.total b{font:500 26px Cinzel,serif}
 .buy{display:grid;grid-template-columns:auto 1fr;gap:10px}
 .qty{display:inline-flex;align-items:center;box-shadow:inset 0 0 0 1px var(--rule);background:var(--paper)}
 .qty button{width:46px;height:54px;font:400 22px Marcellus}
@@ -259,7 +270,7 @@ body,main{background:#f1eadf}
 .card h3{font:500 16px/1.2 Cinzel,serif}
 @media (min-width:1100px){.shelf .hd{display:block;padding:90px var(--m) 50px}.shelf .hd .tags{margin-top:18px}.shelf h2{font-size:64px}}
 </style>
-<script src="data/products.js?v=mw252ebx"></script>
+<script src="data/products.js?v=mw259rzi"></script>
 </head>
 <body>
 <script>document.documentElement.classList.add('js')</script>
@@ -310,6 +321,11 @@ body,main{background:#f1eadf}
   const img = (p) => '' + p;
   const pic = (p) => p.image || p.imageLight || '';
   // extra photographs of the same product (e.g. the front of the pack and the wood inside) go in `gallery`
+  // prices: one `price`, or several `sizes`; shown only when the shop turns them on (?prices=1 previews them)
+  const SHOW = S.showPrices || new URLSearchParams(location.search).get('prices') === '1';
+  const baht = (n) => (S.currency || '฿') + n.toLocaleString('en-US');
+  const sizesOf = (p) => p.sizes || (p.price ? [[p.size || '', p.price]] : []);
+  const priceTag = (p) => { const z = sizesOf(p); if (!SHOW || !z.length) return ''; return z.length > 1 ? `<small>from</small>${baht(Math.min(...z.map((x) => x[1])))}` : baht(z[0][1]); };
   const pics = (p) => [pic(p), ...(p.gallery || [])].filter(Boolean);
   const wa = (t) => `https://wa.me/${S.whatsapp}?text=${encodeURIComponent(t)}`;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -349,11 +365,16 @@ body,main{background:#f1eadf}
   // ----- cart (kept in this browser only)
   let cart = {};
   try { cart = JSON.parse(localStorage.getItem('aminar-cart-v2') || '{}'); } catch (e) {}
-  for (const k of Object.keys(cart)) if (!P.find((p) => p.id === k)) delete cart[k];
+  const keyOf = (k) => { const [id, size] = k.split('|'); const p = P.find((x) => x.id === id); return {p, size: size || '', unit: p ? (sizesOf(p).find((z) => z[0] === (size || sizesOf(p)[0] && sizesOf(p)[0][0])) || [])[1] : 0}; };
+  for (const k of Object.keys(cart)) if (!keyOf(k).p || (k.includes('|') && !sizesOf(keyOf(k).p).some((z) => z[0] === keyOf(k).size))) delete cart[k];
+  const inCart = (id) => Object.entries(cart).filter(([k]) => k.split('|')[0] === id).reduce((a, [, n]) => a + n, 0);
+  const many = (p) => (p.sizes || []).length > 1;
+  const total = () => Object.entries(cart).reduce((a, [k, n]) => a + (keyOf(k).unit || 0) * n, 0);
+  const priced = () => Object.keys(cart).every((k) => keyOf(k).unit);
   const save = () => { try { localStorage.setItem('aminar-cart-v2', JSON.stringify(cart)); } catch (e) {} };
   const count = () => Object.values(cart).reduce((a, b) => a + b, 0);
-  const add = (id, d, from) => {
-    cart[id] = (cart[id] || 0) + d; if (cart[id] <= 0) delete cart[id]; save();
+  const add = (key, d, from) => {
+    cart[key] = (cart[key] || 0) + d; if (cart[key] <= 0) delete cart[key]; save();
     if (d > 0 && from) fly(from);
     sync();
   };
@@ -370,15 +391,15 @@ body,main{background:#f1eadf}
 
   // ----- the shelves
   const card = (p, i) => {
-    const n = cart[p.id] || 0, s = shelfOf(p);
+    const n = inCart(p.id), s = shelfOf(p);
     const photo = pic(p)
       ? `<img src="${img(pic(p))}" alt="${esc(p.name)}" loading="lazy">${pics(p).length > 1 ? `<img class="alt" src="${img(pics(p)[1])}" alt="" loading="lazy"><span class="cnt">${pics(p).length} photos</span>` : ''}`
       : `<span class="ph"><img src="logo/aminar-logo-gold.svg" alt=""><b>${esc(p.name)}</b><small>Photograph coming soon</small></span>`;
     return `<article class="card" id="p-${p.id}" style="--i:${i % 4}">
       <button class="pic" type="button" data-open="${p.id}" aria-label="${esc(label(p))}: details">${photo}${p.bestseller ? '<span class="badge">Bestseller</span>' : ''}<span class="view">View details</span></button>
-      <div class="b"><p class="line">${esc(p.line || s.name)}</p><h3>${esc(p.name)}</h3><p class="kind">${esc(p.kind)}</p>
+      <div class="b"><p class="line">${esc(p.line || s.name)}</p><h3>${esc(p.name)}</h3><p class="kind">${esc(p.kind)}</p>${priceTag(p) ? `<p class="price">${priceTag(p)}</p>` : ''}
       ${n ? `<div class="step"><button type="button" data-dec="${p.id}" aria-label="One less">−</button><span>${n} in cart</span><button type="button" data-inc="${p.id}" aria-label="One more">+</button></div>`
-          : `<button class="add" type="button" data-add="${p.id}">Add to cart ${PLUS}</button>`}</div></article>`;
+          : `<button class="add" type="button" data-add="${p.id}">${many(p) ? 'Choose a size' : 'Add to cart'} ${PLUS}</button>`}</div></article>`;
   };
   const head = (s, i, n) => `<div class="hd"><span class="n" aria-hidden="true">${two(i + 1)}</span><h2>${esc(s.name)}</h2><p class="ln">${esc(s.line)}</p>
     <div class="tags"><span class="tag">${n} ${n === 1 ? 'piece' : 'pieces'}</span>${s.lasts ? `<span class="tag gold">${esc(s.lasts)}</span>` : ''}</div></div>`;
@@ -406,23 +427,27 @@ body,main{background:#f1eadf}
     $('cbarTxt').textContent = `Your cart · ${n} item${n === 1 ? '' : 's'}`;
     if (skipCards) return;
     document.querySelectorAll('.card').forEach((c) => {
-      const id = c.id.slice(2), p = P.find((x) => x.id === id), k = cart[id] || 0;
+      const id = c.id.slice(2), p = P.find((x) => x.id === id), k = inCart(id);
       const old = c.querySelector('.add,.step'), tmp = document.createElement('div');
       tmp.innerHTML = k ? `<div class="step"><button type="button" data-dec="${id}" aria-label="One less">−</button><span>${k} in cart</span><button type="button" data-inc="${id}" aria-label="One more">+</button></div>`
-                        : `<button class="add" type="button" data-add="${id}">Add to cart ${PLUS}</button>`;
+                        : `<button class="add" type="button" data-add="${id}">${many(p) ? 'Choose a size' : 'Add to cart'} ${PLUS}</button>`;
       old.replaceWith(tmp.firstChild);
     });
   }
   $('shelves').onclick = (e) => {
     const o = e.target.closest('[data-open]'); if (o) return openDet(o.dataset.open);
     const t = e.target.closest('[data-add],[data-inc],[data-dec]'); if (!t) return;
-    add(t.dataset.add || t.dataset.inc || t.dataset.dec, t.dataset.dec ? -1 : 1, t.dataset.dec ? null : t);
+    const id = t.dataset.add || t.dataset.inc || t.dataset.dec, p = P.find((x) => x.id === id);
+    // several sizes: adding opens the details to choose; taking one away removes the last size added
+    if (!t.dataset.dec && many(p)) return openDet(id);
+    const keys = Object.keys(cart).filter((k) => k.split('|')[0] === id);
+    add(t.dataset.dec ? keys[keys.length - 1] : (many(p) ? keys[keys.length - 1] : id), t.dataset.dec ? -1 : 1, t.dataset.dec ? null : t);
   };
 
   // ----- product details
-  let cur = null, qty = 1, lastFocus = null, gi = 0;
+  let cur = null, qty = 1, lastFocus = null, gi = 0, sz = '';
   const openPanel = (el) => { lastFocus = document.activeElement; closeAll(true); el.classList.add('open'); el.setAttribute('aria-hidden', 'false'); $('shade').classList.add('open'); setTimeout(() => el.querySelector('.x').focus(), 50); };
-  function openDet(id) { cur = P.find((x) => x.id === id); if (!cur) return; qty = 1; gi = 0; drawDet(); openPanel($('det')); $('det').scrollTop = 0; }
+  function openDet(id) { cur = P.find((x) => x.id === id); if (!cur) return; qty = 1; gi = 0; sz = many(cur) ? cur.sizes[0][0] : ''; drawDet(); openPanel($('det')); $('det').scrollTop = 0; }
   function drawDet() {
     const p = cur, s = shelfOf(p);
     const soon = '<dd class="soon">Coming soon</dd>';
@@ -430,10 +455,11 @@ body,main{background:#f1eadf}
     $('detIn').innerHTML = `<button class="x" type="button" data-close aria-label="Close">×</button>
       <div class="pic">${pics(p).length > 1 ? `<div class="gal" id="gal">${pics(p).map((u, k) => `<img src="${img(u)}" alt="${esc(p.name)}, photo ${k + 1}">`).join('')}</div><span class="gdots" id="gdots">${pics(p).map((_, k) => `<i class="${k === gi ? 'on' : ''}"></i>`).join('')}</span><button type="button" class="garr l" data-g="-1" aria-label="Previous photo">‹</button><button type="button" class="garr r" data-g="1" aria-label="Next photo">›</button>` : pic(p) ? `<img src="${img(pic(p))}" alt="${esc(p.name)}">` : `<span class="ph"><img src="logo/aminar-logo-gold.svg" alt=""><b>${esc(p.name)}</b><small>Photograph coming soon</small></span>`}</div>
       <div class="body">
-        <div><p class="mi line">${esc(p.line || s.name)}</p><h2>${esc(p.name)}</h2><p class="kind">${esc(p.kind)}</p></div>
+        <div><p class="mi line">${esc(p.line || s.name)}</p><h2>${esc(p.name)}</h2><p class="kind">${esc(p.kind)}</p>${SHOW && sizesOf(p).length ? `<p class="price">${baht(many(p) ? p.sizes.find((z) => z[0] === sz)[1] : sizesOf(p)[0][1])}</p>` : ''}</div>
+        ${many(p) ? `<div><p class="mi" style="color:var(--soft);margin-bottom:10px">Choose a size</p><div class="sizes">${p.sizes.map((z) => `<button type="button" data-sz="${esc(z[0])}" aria-pressed="${z[0] === sz}">${esc(z[0])}${SHOW ? `<b>${baht(z[1])}</b>` : ''}</button>`).join('')}</div></div>` : ''}
         <dl class="spec">
           <div><dt>Family</dt><dd>${esc(s.name)}</dd></div>
-          <div><dt>Size</dt>${p.size ? `<dd>${esc(p.size)}</dd>` : soon}</div>
+          <div><dt>Size</dt>${many(p) ? `<dd>${esc(p.sizes.map((z) => z[0]).join(' · '))}</dd>` : p.size ? `<dd>${esc(p.size)}</dd>` : soon}</div>
           <div><dt>Lasts</dt>${(p.lasts || s.lasts) ? `<dd>${esc(p.lasts || s.lasts)}</dd>` : soon}</div>
           <div><dt>Scent notes</dt>${p.notes ? `<dd>${esc(p.notes)}</dd>` : soon}</div>
         </dl>
@@ -451,27 +477,31 @@ body,main{background:#f1eadf}
     const gb = e.target.closest('[data-g]'); if (gb) { const g = $('gal'), n = g.children.length; gi = (gi + +gb.dataset.g + n) % n; g.scrollTo({left: gi * g.clientWidth, behavior: reduce ? 'auto' : 'smooth'}); return; }
     if (e.target.closest('[data-close]')) return closeAll();
     const o = e.target.closest('[data-open]'); if (o) { openDet(o.dataset.open); return; }
+    const zb = e.target.closest('[data-sz]'); if (zb) { sz = zb.dataset.sz; return drawDet(); }
     const qb = e.target.closest('[data-q]'); if (qb) { qty = Math.max(1, qty + +qb.dataset.q); return drawDet(); }
-    const put = e.target.closest('[data-put]'); if (put) { add(cur.id, qty, put); setTimeout(closeAll, 380); }
+    const put = e.target.closest('[data-put]'); if (put) { add(many(cur) ? cur.id + '|' + sz : cur.id, qty, put); setTimeout(closeAll, 380); }
   };
 
   // ----- the cart and its WhatsApp message
   const bill = () => {
     const v = (id) => ($(id) || {}).value || '';
-    const rows = Object.entries(cart).map(([id, n], i) => `${i + 1}. ${label(P.find((p) => p.id === id))} × ${n}`);
-    return ['Hello Aminar, I would like to order:', '', ...rows, '', 'Please send me the prices and the delivery cost.', '', `Name: ${v('cname') || '-'}`, `Country: ${v('ccountry') || '-'}`, `Delivery: ${v('chow')}`].join('\n');
+    const rows = Object.entries(cart).map(([k, n], i) => { const {p, size, unit} = keyOf(k); return `${i + 1}. ${label(p)}${size ? ' (' + size + ')' : ''} × ${n}${SHOW && unit ? ' = ' + baht(unit * n) : ''}`; });
+    const sum = SHOW && priced() ? ['Total: ' + baht(total()) + ' (before delivery)', '', 'Please send me the delivery cost.'] : ['Please send me the prices and the delivery cost.'];
+    return ['Hello Aminar, I would like to order:', '', ...rows, '', ...sum, '', `Name: ${v('cname') || '-'}`, `Country: ${v('ccountry') || '-'}`, `Delivery: ${v('chow')}`].join('\n');
   };
   function drawCart() {
     const ids = Object.keys(cart);
+    const line = (k) => { const {p, size, unit} = keyOf(k); return {p, size, unit}; };
     $('cartIn').innerHTML = `<button class="x" type="button" data-close aria-label="Close">×</button><div class="body">
       <div><p class="mi" style="color:var(--gold-ink)">${count()} item${count() === 1 ? '' : 's'}</p><h2>Your cart</h2></div>
-      ${ids.length ? `<div class="lines">${ids.map((id) => { const p = P.find((x) => x.id === id); return `<div class="lnr">${pic(p) ? `<img src="${img(pic(p))}" alt="">` : '<span class="mph"></span>'}<div><b>${esc(p.name)}</b><small>${esc(p.kind)}</small></div>
+      ${ids.length ? `<div class="lines">${ids.map((id) => { const {p, size, unit} = line(id); return `<div class="lnr">${pic(p) ? `<img src="${img(pic(p))}" alt="">` : '<span class="mph"></span>'}<div><b>${esc(p.name)}</b><small>${esc(size || p.kind)}${SHOW && unit ? ' · ' + baht(unit) : ''}</small></div>
         <div class="q"><button type="button" data-dk="${id}" aria-label="One less">−</button><span>${cart[id]}</span><button type="button" data-ik="${id}" aria-label="One more">+</button></div></div>`; }).join('')}</div>
+      ${SHOW && priced() ? `<p class="total"><span>Total before delivery</span><b>${baht(total())}</b></p>` : ''}
       <div class="fields"><label>Your name<input id="cname" autocomplete="name"></label><label>Country<input id="ccountry" autocomplete="country-name"></label>
         <label>Delivery<select id="chow"><option>Ship to my address</option><option>I will collect at the shop in Nana</option></select></label></div>
       <p class="note">This message opens in WhatsApp, ready to send:</p><pre class="preview" id="pv"></pre>
       <a class="go" id="go" target="_blank" rel="noopener">${WAI} Checkout on WhatsApp</a>
-      <p class="note">We reply with prices, delivery and how to pay.</p>`
+      <p class="note">We reply with ${SHOW && priced() ? 'the delivery cost' : 'prices, delivery'} and how to pay.</p>`
       : `<p class="note">Your cart is empty. Tap “Add to cart” on any scent.</p>`}</div>`;
     const upd = () => { const b = bill(); if ($('pv')) $('pv').textContent = b; if ($('go')) $('go').href = wa(b); };
     ['cname', 'ccountry', 'chow'].forEach((id) => $(id) && ($(id).oninput = $(id).onchange = upd)); upd();

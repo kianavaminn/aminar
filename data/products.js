@@ -15,7 +15,8 @@ window.AMINAR = {
     phones: ['+66 81 137 1737', '+66 89 504 2876'],
     instagram: 'aminarthailand',
     snapchat: 'aminarthailand', // TO CONFIRM (not on the old contact page)
-    showPrices: false, // prices stay hidden until the accountant answers about excise tax
+    showPrices: false, // prices stay hidden until the accountant answers about excise tax (add ?prices=1 to the address to preview them)
+    currency: '฿',
     area: 'Sukhumvit Soi 3, Nana, Bangkok',
     hours: {open: 10, close: 1, days: 'Every day', text: '10:00 AM – 1:00 AM'}, // closes after midnight
     mapQuery: 'Aminar shop, Sukhumvit Soi 3, Bangkok', // for the embedded map
@@ -66,11 +67,11 @@ window.AMINAR = {
     {id: 'the-princess', name: 'The Princess', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume', image: 'images/products/Perfumes/Breathtaking/the-princess.jpg', confirmed: true},
     {id: 'oud-romantic', name: 'Oud Romantic', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume', image: '', confirmed: false}, // from older notes, no photo yet
 
-    {id: 'oud-trat-tablets', name: 'Oud Trat Tablets', shelf: 'oud', category: 'oud', kind: 'Oud tablets · 24 g box', size: '24 g box', bestseller: true, image: 'images/products/Oud/Tablets/trat-tablets.jpg', confirmed: true},
-    {id: 'altah', name: 'Altah', shelf: 'oud', category: 'oud', kind: 'Oud tablets', image: 'images/products/Oud/Tablets/altah.jpg', confirmed: true},
-    {id: 'khaoyai', name: 'Khaoyai', shelf: 'oud', category: 'oud', kind: 'Oud tablets', image: 'images/products/Oud/Tablets/khaoyai.jpg', confirmed: true}, // file was "Khaoyhai"; the box reads Khaoyai
-    {id: 'laos', name: 'Laos', shelf: 'oud', category: 'oud', kind: 'Oud tablets', image: 'images/products/Oud/Tablets/laos.jpg', confirmed: true},
-    {id: 'malaysia', name: 'Malaysia', shelf: 'oud', category: 'oud', kind: 'Oud tablets', image: 'images/products/Oud/Tablets/malaysia.jpg', confirmed: true},
+    {id: 'oud-trat-tablets', name: 'Oud Trat Tablets', shelf: 'oud', category: 'oud', kind: 'Oud tablets · 24 g box', size: '24 g box', bestseller: true, price: 900, image: 'images/products/Oud/Tablets/trat-tablets.jpg', confirmed: true},
+    {id: 'altah', name: 'Altah', shelf: 'oud', category: 'oud', kind: 'Oud tablets', size: '24 g box', price: 800, image: 'images/products/Oud/Tablets/altah.jpg', confirmed: true},
+    {id: 'khaoyai', name: 'Khaoyai', shelf: 'oud', category: 'oud', kind: 'Oud tablets', size: '24 g box', price: 800, image: 'images/products/Oud/Tablets/khaoyai.jpg', confirmed: true}, // file was "Khaoyhai"; the box reads Khaoyai
+    {id: 'laos', name: 'Laos', shelf: 'oud', category: 'oud', kind: 'Oud tablets', size: '24 g box', price: 800, image: 'images/products/Oud/Tablets/laos.jpg', confirmed: true},
+    {id: 'malaysia', name: 'Malaysia', shelf: 'oud', category: 'oud', kind: 'Oud tablets', size: '24 g box', price: 800, image: 'images/products/Oud/Tablets/malaysia.jpg', confirmed: true},
     {id: 'pure-oud-tablets', name: 'Pure Oud Tablets', shelf: 'oud', category: 'oud', kind: 'Oud tablets', size: '24 g box · also by the kilogram', image: '', confirmed: true},
     {id: 'oud-oil-tablets', name: 'Oud Oil Tablets', shelf: 'oud', category: 'oud', kind: 'Oud tablets with oud oil', size: '7 g box', image: '', confirmed: true},
     {id: 'glory', name: 'Glory', shelf: 'oud', category: 'oud', kind: 'The house scent', image: '', confirmed: true},
@@ -82,47 +83,47 @@ window.AMINAR = {
     {id: 'vietnam-vn1009', name: 'Vietnam', shelf: 'oud-wood', kind: 'Oud wood · VN 1009', image: 'images/products/Oud/Oud/vietnam-vn1009.jpg', confirmed: true}, // file was "Veitnam"
     {id: 'vietnam-jar', name: 'Vietnam Jar', shelf: 'oud-wood', kind: 'Oud wood', image: 'images/products/Oud/Oud/vietnam-jar.jpg', confirmed: true},
 
-    {id: 'dekra', name: 'Dekra', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', image: 'images/products/Oud oil/dekra.jpg', confirmed: true},
+    {id: 'dekra', name: 'Dekra', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', sizes: [['3 ml', 1000], ['6 ml', 2000], ['12 ml', 4000]], image: 'images/products/Oud oil/dekra.jpg', confirmed: true},
     {id: 'fawah', name: 'Fawah', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', image: 'images/products/Oud oil/fawah.jpg', confirmed: true},
-    {id: 'malaki', name: 'Malaki', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', image: 'images/products/Oud oil/malaki.jpg', confirmed: true},
+    {id: 'malaki', name: 'Malaki', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', sizes: [['3 ml', 1000], ['6 ml', 2000], ['12 ml', 4000]], image: 'images/products/Oud oil/malaki.jpg', confirmed: true},
     {id: 'nimma', name: 'Nimma', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', image: 'images/products/Oud oil/nimma.jpg', confirmed: true},
     {id: 'trat-strong', name: 'Trat Strong', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', image: 'images/products/Oud oil/trat-strong.jpg', confirmed: true}, // file was "Trat Stong"; the label reads Trat Strong
 
     {id: 'dream-bakhoor', name: 'Dream Bakhoor', shelf: 'bakhoor', category: 'bakhoor', kind: 'Bakhoor', image: 'images/products/Bakhoor/Bakhoor/dream-bakhoor.jpg', confirmed: true},
     {id: 'mamoul', name: 'Mamoul', shelf: 'bakhoor', category: 'bakhoor', kind: 'Mamoul', image: 'images/products/Bakhoor/Mamoul/mamoul.jpg', confirmed: false},
 
-    {id: 'cambodia-kadeem', name: 'Cambodi Kadeem', shelf: 'body-mist', category: 'body-mist', line: 'Body Secrets by Aminar', kind: 'Body mist', image: 'images/products/body-mist/cambodia-kadeem-dark.jpg', imageLight: 'images/products/body-mist/cambodia-kadeem.jpg', confirmed: true},
-    {id: 'oud-patchouli', name: 'Oud Patchouli', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', bestseller: true, image: 'images/products/body-mist/oud-patchouli-dark.jpg', imageLight: 'images/products/body-mist/oud-patchouli.jpg', confirmed: true},
-    {id: 'hindi-siufi', name: 'Hindi Siufi', shelf: 'body-mist', category: 'body-mist', line: 'Body Secrets by Aminar', kind: 'Body mist', image: 'images/products/body-mist/hindi-siufi-dark.jpg', imageLight: 'images/products/body-mist/hindi-siufi.jpg', confirmed: true},
-    {id: 'bint-al-khaleej', name: 'Bint Al Khaleej', shelf: 'body-mist', category: 'body-mist', line: 'Body Secrets by Aminar', kind: 'Body mist', size: '120 ml', image: 'images/products/body-mist/bint-al-khaleej-dark.jpg', imageLight: 'images/products/body-mist/bint-al-khaleej.jpg', confirmed: true}, // 120 ml is printed on the label
-    {id: 'trat-legend-oud', name: 'Trat Legend Oud', shelf: 'body-mist', category: 'body-mist', line: 'Body Secrets by Aminar', kind: 'Body mist', image: 'images/products/body-mist/trat-legend-oud-dark.jpg', imageLight: 'images/products/body-mist/trat-legend-oud.jpg', confirmed: true}, // file was "Trat Oud"; the label reads Trat Legend Oud
-    {id: 'blue-diamond-oud', name: 'Blue Diamond Oud', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', image: 'images/products/body-mist/blue-diamond-oud-dark.jpg', imageLight: 'images/products/body-mist/blue-diamond-oud.jpg', confirmed: true},
-    {id: 'cinderella', name: 'Cinderella', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', image: 'images/products/body-mist/cinderella.jpg', confirmed: true},
-    {id: 'leather', name: 'Leather', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', image: 'images/products/body-mist/leather.jpg', confirmed: true},
-    {id: 'naughty-peach-oud', name: 'Naughty Peach Oud', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', image: 'images/products/body-mist/naughty-peach-oud.jpg', confirmed: true}, // file was "Naughty Peach"; the label adds Oud
-    {id: 'tobacco', name: 'Tobacco', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', image: 'images/products/body-mist/tobacco.jpg', confirmed: true},
+    {id: 'cambodia-kadeem', name: 'Cambodi Kadeem', shelf: 'body-mist', category: 'body-mist', line: 'Body Secrets by Aminar', kind: 'Body mist', price: 600, image: 'images/products/body-mist/cambodia-kadeem-dark.jpg', imageLight: 'images/products/body-mist/cambodia-kadeem.jpg', confirmed: true},
+    {id: 'oud-patchouli', name: 'Oud Patchouli', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', bestseller: true, price: 600, image: 'images/products/body-mist/oud-patchouli-dark.jpg', imageLight: 'images/products/body-mist/oud-patchouli.jpg', confirmed: true},
+    {id: 'hindi-siufi', name: 'Hindi Siufi', shelf: 'body-mist', category: 'body-mist', line: 'Body Secrets by Aminar', kind: 'Body mist', price: 600, image: 'images/products/body-mist/hindi-siufi-dark.jpg', imageLight: 'images/products/body-mist/hindi-siufi.jpg', confirmed: true},
+    {id: 'bint-al-khaleej', name: 'Bint Al Khaleej', shelf: 'body-mist', category: 'body-mist', line: 'Body Secrets by Aminar', kind: 'Body mist', size: '120 ml', price: 600, image: 'images/products/body-mist/bint-al-khaleej-dark.jpg', imageLight: 'images/products/body-mist/bint-al-khaleej.jpg', confirmed: true}, // 120 ml is printed on the label
+    {id: 'trat-legend-oud', name: 'Trat Legend Oud', shelf: 'body-mist', category: 'body-mist', line: 'Body Secrets by Aminar', kind: 'Body mist', price: 600, image: 'images/products/body-mist/trat-legend-oud-dark.jpg', imageLight: 'images/products/body-mist/trat-legend-oud.jpg', confirmed: true}, // file was "Trat Oud"; the label reads Trat Legend Oud
+    {id: 'blue-diamond-oud', name: 'Blue Diamond Oud', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', price: 600, image: 'images/products/body-mist/blue-diamond-oud-dark.jpg', imageLight: 'images/products/body-mist/blue-diamond-oud.jpg', confirmed: true},
+    {id: 'cinderella', name: 'Cinderella', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', price: 600, image: 'images/products/body-mist/cinderella.jpg', confirmed: true},
+    {id: 'leather', name: 'Leather', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', price: 600, image: 'images/products/body-mist/leather.jpg', confirmed: true},
+    {id: 'naughty-peach-oud', name: 'Naughty Peach Oud', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', price: 600, image: 'images/products/body-mist/naughty-peach-oud.jpg', confirmed: true}, // file was "Naughty Peach"; the label adds Oud
+    {id: 'tobacco', name: 'Tobacco', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', price: 600, image: 'images/products/body-mist/tobacco.jpg', confirmed: true},
 
-    {id: 'malaki-hair', name: 'Malaki Hair', shelf: 'hair', kind: 'Hair mist · Dehn Al Oud Malaki', image: 'images/products/hair-sprays/malaki-hair.jpg', confirmed: true},
-    {id: 'oud-hair', name: 'Oud Hair', shelf: 'hair', kind: 'Hair mist · Dahn Al Oud', image: 'images/products/hair-sprays/oud-hair.jpg', confirmed: true},
-    {id: 'the-royal', name: 'The Royal', shelf: 'hair', kind: 'Hair mist', image: 'images/products/hair-sprays/the-royal.jpg', confirmed: true},
+    {id: 'malaki-hair', name: 'Malaki Hair', shelf: 'hair', kind: 'Hair mist · Dehn Al Oud Malaki', price: 600, image: 'images/products/hair-sprays/malaki-hair.jpg', confirmed: true},
+    {id: 'oud-hair', name: 'Oud Hair', shelf: 'hair', kind: 'Hair mist · Dahn Al Oud', price: 600, image: 'images/products/hair-sprays/oud-hair.jpg', confirmed: true},
+    {id: 'the-royal', name: 'The Royal', shelf: 'hair', kind: 'Hair mist', price: 600, image: 'images/products/hair-sprays/the-royal.jpg', confirmed: true},
     {id: 'bakhoor-for-hair-1', name: 'Bakhoor for Hair', shelf: 'hair', kind: 'Hair bakhoor · red', image: 'images/products/Bakhoor/Bakhoor/bakhoor-for-hair-1.jpg', confirmed: true},
     {id: 'bakhoor-for-hair-2', name: 'Bakhoor for Hair', shelf: 'hair', kind: 'Hair bakhoor · yellow', image: 'images/products/Bakhoor/Bakhoor/bakhoor-for-hair-2.jpg', confirmed: true},
 
-    {id: 'sunshine', name: 'My Sunshine', shelf: 'fabric', category: 'sprays', kind: 'Spray for clothes', bestseller: true, image: 'images/products/Spray for clothes/sunshine.jpg', confirmed: true},
-    {id: 'abaya', name: 'Abaya', shelf: 'fabric', category: 'sprays', kind: 'Spray for abayas', image: 'images/products/Spray for clothes/abaya.jpg', confirmed: true},
-    {id: 'my-cinderella', name: 'My Cinderella', shelf: 'fabric', category: 'sprays', kind: 'Spray for abayas', image: 'images/products/Spray for clothes/my-cinderella.jpg', confirmed: true},
-    {id: 'cupid-tobacco', name: 'Cupid Tobacco', shelf: 'fabric', category: 'sprays', kind: 'Spray for clothes', image: 'images/products/Spray for clothes/cupid-tobacco.jpg', confirmed: true},
-    {id: 'gentleman', name: 'Gentleman', shelf: 'fabric', category: 'sprays', kind: 'Spray for abayas', image: 'images/products/Spray for clothes/gentleman.jpg', confirmed: true}, // file was "Gentelman"
-    {id: 'magic-leather', name: 'Magic Leather', shelf: 'fabric', category: 'sprays', kind: 'Spray for clothes', image: 'images/products/Spray for clothes/magic-leather.jpg', confirmed: true},
-    {id: 'the-prime', name: 'The Prime', shelf: 'fabric', category: 'sprays', kind: 'Spray for clothes', image: 'images/products/Spray for clothes/the-prime.jpg', confirmed: true},
+    {id: 'sunshine', name: 'My Sunshine', shelf: 'fabric', category: 'sprays', kind: 'Spray for clothes', bestseller: true, price: 850, image: 'images/products/Spray for clothes/sunshine.jpg', confirmed: true},
+    {id: 'abaya', name: 'Abaya', shelf: 'fabric', category: 'sprays', kind: 'Spray for abayas', price: 850, image: 'images/products/Spray for clothes/abaya.jpg', confirmed: true},
+    {id: 'my-cinderella', name: 'My Cinderella', shelf: 'fabric', category: 'sprays', kind: 'Spray for abayas', price: 850, image: 'images/products/Spray for clothes/my-cinderella.jpg', confirmed: true},
+    {id: 'cupid-tobacco', name: 'Cupid Tobacco', shelf: 'fabric', category: 'sprays', kind: 'Spray for clothes', price: 850, image: 'images/products/Spray for clothes/cupid-tobacco.jpg', confirmed: true},
+    {id: 'gentleman', name: 'Gentleman', shelf: 'fabric', category: 'sprays', kind: 'Spray for abayas', price: 850, image: 'images/products/Spray for clothes/gentleman.jpg', confirmed: true}, // file was "Gentelman"
+    {id: 'magic-leather', name: 'Magic Leather', shelf: 'fabric', category: 'sprays', kind: 'Spray for clothes', price: 850, image: 'images/products/Spray for clothes/magic-leather.jpg', confirmed: true},
+    {id: 'the-prime', name: 'The Prime', shelf: 'fabric', category: 'sprays', kind: 'Spray for clothes', price: 850, image: 'images/products/Spray for clothes/the-prime.jpg', confirmed: true},
 
     {id: 'bed-sheet-1', name: 'Bed Sheet No. 1', shelf: 'home', kind: 'Linen spray', image: 'images/products/Room-spray/bed-sheet-1.jpg', confirmed: true},
     {id: 'bed-sheet-2', name: 'Bed Sheet No. 2', shelf: 'home', kind: 'Linen spray', image: 'images/products/Room-spray/bed-sheet-2.jpg', confirmed: true},
     {id: 'bed-sheet-3', name: 'Bed Sheet No. 3', shelf: 'home', kind: 'Linen spray', image: 'images/products/Room-spray/bed-sheet-3.jpg', confirmed: true},
     {id: 'bed-sheet-4', name: 'Bed Sheet No. 4', shelf: 'home', kind: 'Linen spray', image: 'images/products/Room-spray/bed-sheet-4.jpg', confirmed: true},
 
-    {id: 'cambodi-oud-shampoo', name: 'Cambodi Oud Shampoo', shelf: 'bath', kind: 'Shampoo', image: 'images/products/Skincares/cambodi-oud-shampoo.jpg', confirmed: true},
-    {id: 'cambodi-oud-shower', name: 'Cambodi Oud Shower', shelf: 'bath', kind: 'Shower gel', image: 'images/products/Skincares/cambodi-oud-shower.jpg', confirmed: true},
+    {id: 'cambodi-oud-shampoo', name: 'Cambodi Oud Shampoo', shelf: 'bath', kind: 'Shampoo', price: 1500, image: 'images/products/Skincares/cambodi-oud-shampoo.jpg', confirmed: true},
+    {id: 'cambodi-oud-shower', name: 'Cambodi Oud Shower', shelf: 'bath', kind: 'Shower gel', price: 1500, image: 'images/products/Skincares/cambodi-oud-shower.jpg', confirmed: true},
     {id: 'ouds-oil-cream', name: "Oud's Oil Cream", shelf: 'bath', kind: 'Cream', image: 'images/products/Skincares/ouds-oil-cream.jpg', confirmed: false}, // TO CHECK: the jar label reads معمول ممتاز (premium mamoul)
   ],
 };
