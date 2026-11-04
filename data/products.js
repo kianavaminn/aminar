@@ -85,10 +85,10 @@ window.AMINAR = {
     {id: 'vietnam-jar', name: 'Vietnam Jar', shelf: 'oud-wood', kind: 'Oud wood', tola: 950, image: 'images/products/Oud/Oud/vietnam-jar.jpg', confirmed: true},
 
     {id: 'dekra', name: 'Dekra', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', sizes: [['3 ml', 1000], ['6 ml', 2000], ['12 ml', 4000]], image: 'images/products/Oud oil/dekra.jpg', confirmed: true},
-    {id: 'fawah', name: 'Fawah', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', image: 'images/products/Oud oil/fawah.jpg', confirmed: true},
+    {id: 'fawah', name: 'Fawah', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', price: 3500, image: 'images/products/Oud oil/fawah.jpg', confirmed: true},
     {id: 'malaki', name: 'Malaki', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', sizes: [['3 ml', 1000], ['6 ml', 2000], ['12 ml', 4000]], image: 'images/products/Oud oil/malaki.jpg', confirmed: true},
-    {id: 'nimma', name: 'Nimma', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', image: 'images/products/Oud oil/nimma.jpg', confirmed: true},
-    {id: 'trat-strong', name: 'Trat Strong', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', image: 'images/products/Oud oil/trat-strong.jpg', confirmed: true}, // file was "Trat Stong"; the label reads Trat Strong
+    {id: 'nimma', name: 'Nimma', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', price: 3500, image: 'images/products/Oud oil/nimma.jpg', confirmed: true},
+    {id: 'trat-strong', name: 'Trat Strong', shelf: 'oud-oil', category: 'oud-oil', kind: 'Oud oil', price: 4500, image: 'images/products/Oud oil/trat-strong.jpg', confirmed: true}, // file was "Trat Stong"; the label reads Trat Strong
 
     {id: 'dream-bakhoor', name: 'Dream Bakhoor', shelf: 'bakhoor', category: 'bakhoor', kind: 'Bakhoor', image: 'images/products/Bakhoor/Bakhoor/dream-bakhoor.jpg', confirmed: true},
     {id: 'mamoul', name: 'Mamoul', shelf: 'bakhoor', category: 'bakhoor', kind: 'Mamoul', image: 'images/products/Bakhoor/Mamoul/mamoul.jpg', confirmed: false},
