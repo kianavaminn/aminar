@@ -57,15 +57,15 @@ window.AMINAR = {
   products: [
     // id, name, shelf, category (home page only), line (sub-brand), kind (shown under the name), size, bestseller, image, confirmed
     // Spelling as printed on the labels. Photos: dark background in `image`; light ones in `imageLight` until a dark one exists.
-    {id: 'addict-noir', name: 'Addict Noir', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Parfum', image: 'images/products/Perfumes/Breathtaking/addict-noir.jpg', confirmed: true}, // file was "Addicted noir"; the label reads ADDICT NOIR
-    {id: 'golden-sins', name: 'Golden Sins', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume', bestseller: true, image: 'images/products/Perfumes/Breathtaking/golden-sins.jpg', confirmed: false},
-    {id: 'make-me-yours', name: 'Make Me Yours', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Parfum', image: 'images/products/Perfumes/Breathtaking/make-me-yours.jpg', confirmed: true},
-    {id: 'nude', name: 'Nude', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Parfum', image: 'images/products/Perfumes/Breathtaking/nude.jpg', confirmed: true},
-    {id: 'the-king', name: 'The King', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume', image: 'images/products/Perfumes/Breathtaking/the-king.jpg', confirmed: true},
-    {id: 'the-queen', name: 'The Queen', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume', image: 'images/products/Perfumes/Breathtaking/the-queen.jpg', confirmed: false}, // TO CHECK: the script on the label may read "The Groom"
-    {id: 'the-prince', name: 'The Prince', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume', image: 'images/products/Perfumes/Breathtaking/the-prince.jpg', confirmed: true},
-    {id: 'the-princess', name: 'The Princess', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume', image: 'images/products/Perfumes/Breathtaking/the-princess.jpg', confirmed: true},
-    {id: 'oud-romantic', name: 'Oud Romantic', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume', image: '', confirmed: false}, // from older notes, no photo yet
+    {id: 'addict-noir', name: 'Addict Noir', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Parfum', price: 550, image: 'images/products/Perfumes/Breathtaking/addict-noir.jpg', confirmed: true}, // file was "Addicted noir"; the label reads ADDICT NOIR
+    {id: 'golden-sins', name: 'Golden Sins', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume', bestseller: true, price: 550, image: 'images/products/Perfumes/Breathtaking/golden-sins.jpg', confirmed: false},
+    {id: 'make-me-yours', name: 'Make Me Yours', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Parfum', price: 550, image: 'images/products/Perfumes/Breathtaking/make-me-yours.jpg', confirmed: true},
+    {id: 'nude', name: 'Nude', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Parfum', price: 550, image: 'images/products/Perfumes/Breathtaking/nude.jpg', confirmed: true},
+    {id: 'the-king', name: 'The King', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume', price: 550, image: 'images/products/Perfumes/Breathtaking/the-king.jpg', confirmed: true},
+    {id: 'the-queen', name: 'The Queen', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume', price: 550, image: 'images/products/Perfumes/Breathtaking/the-queen.jpg', confirmed: false}, // TO CHECK: the script on the label may read "The Groom"
+    {id: 'the-prince', name: 'The Prince', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume', price: 550, image: 'images/products/Perfumes/Breathtaking/the-prince.jpg', confirmed: true},
+    {id: 'the-princess', name: 'The Princess', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume', price: 550, image: 'images/products/Perfumes/Breathtaking/the-princess.jpg', confirmed: true},
+    {id: 'oud-romantic', name: 'Oud Romantic', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume', price: 550, image: '', confirmed: false}, // from older notes, no photo yet
 
     {id: 'oud-trat-tablets', name: 'Oud Trat Tablets', shelf: 'oud', category: 'oud', kind: 'Oud tablets · 24 g box', size: '24 g box', bestseller: true, price: 900, image: 'images/products/Oud/Tablets/trat-tablets.jpg', confirmed: true},
     {id: 'altah', name: 'Altah', shelf: 'oud', category: 'oud', kind: 'Oud tablets', size: '24 g box', price: 800, image: 'images/products/Oud/Tablets/altah.jpg', confirmed: true},
@@ -119,10 +119,10 @@ window.AMINAR = {
     {id: 'magic-leather', name: 'Magic Leather', shelf: 'fabric', category: 'sprays', kind: 'Spray for clothes', price: 850, image: 'images/products/Spray for clothes/magic-leather.jpg', confirmed: true},
     {id: 'the-prime', name: 'The Prime', shelf: 'fabric', category: 'sprays', kind: 'Spray for clothes', price: 850, image: 'images/products/Spray for clothes/the-prime.jpg', confirmed: true},
 
-    {id: 'bed-sheet-1', name: 'Bed Sheet No. 1', shelf: 'home', kind: 'Linen spray', image: 'images/products/Room-spray/bed-sheet-1.jpg', confirmed: true},
-    {id: 'bed-sheet-2', name: 'Bed Sheet No. 2', shelf: 'home', kind: 'Linen spray', image: 'images/products/Room-spray/bed-sheet-2.jpg', confirmed: true},
-    {id: 'bed-sheet-3', name: 'Bed Sheet No. 3', shelf: 'home', kind: 'Linen spray', image: 'images/products/Room-spray/bed-sheet-3.jpg', confirmed: true},
-    {id: 'bed-sheet-4', name: 'Bed Sheet No. 4', shelf: 'home', kind: 'Linen spray', image: 'images/products/Room-spray/bed-sheet-4.jpg', confirmed: true},
+    {id: 'bed-sheet-1', name: 'Bed Sheet No. 1', shelf: 'home', kind: 'Linen spray', price: 850, image: 'images/products/Room-spray/bed-sheet-1.jpg', confirmed: true},
+    {id: 'bed-sheet-2', name: 'Bed Sheet No. 2', shelf: 'home', kind: 'Linen spray', price: 850, image: 'images/products/Room-spray/bed-sheet-2.jpg', confirmed: true},
+    {id: 'bed-sheet-3', name: 'Bed Sheet No. 3', shelf: 'home', kind: 'Linen spray', price: 850, image: 'images/products/Room-spray/bed-sheet-3.jpg', confirmed: true},
+    {id: 'bed-sheet-4', name: 'Bed Sheet No. 4', shelf: 'home', kind: 'Linen spray', price: 850, image: 'images/products/Room-spray/bed-sheet-4.jpg', confirmed: true},
 
     {id: 'cambodi-oud-shampoo', name: 'Cambodi Oud Shampoo', shelf: 'bath', kind: 'Shampoo', price: 1500, image: 'images/products/Skincares/cambodi-oud-shampoo.jpg', confirmed: true},
     {id: 'cambodi-oud-shower', name: 'Cambodi Oud Shower', shelf: 'bath', kind: 'Shower gel', price: 1500, image: 'images/products/Skincares/cambodi-oud-shower.jpg', confirmed: true},
