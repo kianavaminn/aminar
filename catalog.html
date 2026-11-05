@@ -297,7 +297,7 @@ body.famOpen .chips{opacity:1;transform:none;pointer-events:auto}
 body.famOpen .famShade{opacity:1;pointer-events:auto}
 @media (min-width:900px){.chips{left:auto;right:auto;width:640px;grid-template-columns:1fr 1fr;column-gap:8px}.search{flex:none;width:340px;margin-left:auto}}
 </style>
-<script src="data/products.js?v=mw3pmigu"></script>
+<script src="data/products.js?v=mw3q46ne"></script>
 </head>
 <body>
 <script>document.documentElement.classList.add('js')</script>
@@ -478,6 +478,8 @@ body.famOpen .famShade{opacity:1;pointer-events:auto}
   function drawDet() {
     const p = cur, s = shelfOf(p);
     const soon = '<dd class="soon">Coming soon</dd>';
+    // rows with nothing to say are left out for products marked noSoon
+    const row = (dt, dd) => (dd === soon && p.noSoon ? '' : `<div><dt>${dt}</dt>${dd}</div>`);
     const kin = P.filter((x) => x.shelf === p.shelf && x.id !== p.id).slice(0, 4);
     $('detIn').innerHTML = `<button class="x" type="button" data-close aria-label="Close">×</button>
       <div class="pic">${pics(p).length > 1 ? `<div class="gal" id="gal">${pics(p).map((u, k) => `<img src="${img(u)}" alt="${esc(p.name)}, photo ${k + 1}">`).join('')}</div><span class="gdots" id="gdots">${pics(p).map((_, k) => `<i class="${k === gi ? 'on' : ''}"></i>`).join('')}</span><button type="button" class="garr l" data-g="-1" aria-label="Previous photo">‹</button><button type="button" class="garr r" data-g="1" aria-label="Next photo">›</button>` : pic(p) ? `<img src="${img(pic(p))}" alt="${esc(p.name)}">` : `<span class="ph"><img src="logo/aminar-logo-gold.svg" alt=""><b>${esc(p.name)}</b><small>Photograph coming soon</small></span>`}</div>
@@ -486,9 +488,9 @@ body.famOpen .famShade{opacity:1;pointer-events:auto}
         ${many(p) ? `<div><p class="mi" style="color:var(--soft);margin-bottom:10px">Choose a size</p><div class="sizes">${p.sizes.map((z) => `<button type="button" data-sz="${esc(z[0])}" aria-pressed="${z[0] === sz}">${esc(z[0])}${SHOW ? `<b>${baht(z[1])}</b>` : ''}${z[2] ? `<em>${SHOW ? 'Discount ' + baht(z[2]) : 'Discount'}</em>` : ''}</button>`).join('')}${p.bulk ? `<a class="bulk" href="${wa('Hello Aminar, I would like ' + p.bulk + ' of ' + label(p) + '. Please send me the price.')}" target="_blank" rel="noopener">${WAI} ${esc(p.bulk)} · ask on WhatsApp</a>` : ''}</div>${p.tola ? `<p class="deal"><b>Discount</b><span>${SHOW ? 'Big size: take 5 tola (60 g) and save ' + baht(100) + ' on every tola, ' + baht(500) + ' off in total.' : 'Big size: take 5 tola (60 g) and get a discount on every tola.'}</span></p>` : ''}</div>` : ''}
         <dl class="spec">
           <div><dt>Category</dt><dd>${esc(s.name)}</dd></div>
-          <div><dt>Size</dt>${many(p) ? `<dd>${esc(p.sizes.map((z) => z[0]).join(' · '))}</dd>` : p.size ? `<dd>${esc(p.size)}</dd>` : soon}</div>
-          <div><dt>Lasts</dt>${(p.lasts || s.lasts) ? `<dd>${esc(p.lasts || s.lasts)}</dd>` : soon}</div>
-          <div><dt>Scent notes</dt>${p.notes ? `<dd>${esc(p.notes)}</dd>` : soon}</div>
+          ${row('Size', many(p) ? `<dd>${esc(p.sizes.map((z) => z[0]).join(' · '))}</dd>` : p.size ? `<dd>${esc(p.size)}</dd>` : soon)}
+          ${row('Lasts', (p.lasts || s.lasts) ? `<dd>${esc(p.lasts || s.lasts)}</dd>` : soon)}
+          ${row('Scent notes', p.notes ? `<dd>${esc(p.notes)}</dd>` : soon)}
         </dl>
         <div class="buy"><div class="qty"><button type="button" data-q="-1" aria-label="One less">−</button><span>${qty}</span><button type="button" data-q="1" aria-label="One more">+</button></div><button class="put" type="button" data-put>Add ${qty > 1 ? qty + ' ' : ''}to cart</button></div>
         <a class="ask" href="${wa('Hello Aminar, I have a question about ' + label(p))}" target="_blank" rel="noopener">${WAI} Ask about ${esc(p.name)}</a>

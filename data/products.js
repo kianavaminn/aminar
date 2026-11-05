@@ -126,13 +126,14 @@ window.AMINAR = {
     {id: 'bed-sheet-3', name: 'Bed Sheet No. 3', shelf: 'home', kind: 'Linen spray', price: 850, image: 'images/products/Room-spray/bed-sheet-3.jpg', confirmed: true},
     {id: 'bed-sheet-4', name: 'Bed Sheet No. 4', shelf: 'home', kind: 'Linen spray', price: 850, image: 'images/products/Room-spray/bed-sheet-4.jpg', confirmed: true},
 
+    // `noSoon`: leave out the details we don't have yet instead of writing "Coming soon".
     // Intimate care (เกีย, 5 Nov). Spray labels read بخاخ الطهارة; เกีย named them Al Tahara Spray 1–4. Not on the home page.
     {id: 'taharah-spray-1', name: 'Al Tahara Spray 1', shelf: 'intimate', kind: 'Intimate spray · for him and her', price: 700, image: 'images/products/Intimate/taharah-spray-1.jpg', confirmed: false},
     {id: 'my-secret', name: 'Al Tahara Spray 2', shelf: 'intimate', line: 'My Secret · 4th formula', kind: 'Intimate spray · for him and her', price: 700, image: 'images/products/Intimate/my-secret.jpg', confirmed: true},
     {id: 'taharah-spray-2', name: 'Al Tahara Spray 3', shelf: 'intimate', kind: 'Intimate spray · for him and her', price: 700, image: 'images/products/Intimate/taharah-spray-2.jpg', confirmed: false},
     {id: 'taharah-spray-3', name: 'Al Tahara Spray 4', shelf: 'intimate', kind: 'Intimate spray · for him and her', price: 700, image: 'images/products/Intimate/taharah-spray-3.jpg', confirmed: false},
-    {id: 'intimate-wash', name: 'Intimate Wash', shelf: 'intimate', kind: 'Intimate wash · for him and her', price: 1200, image: 'images/products/Intimate/intimate-wash.jpg', confirmed: false},
-    {id: 'musk-al-taharah', name: 'Musk Al Taharah', shelf: 'intimate', kind: 'Intimate serum · for women · with oud', price: 4000, image: 'images/products/Intimate/musk-al-taharah.jpg', confirmed: false}, // label: مسك الطهارة
+    {id: 'intimate-wash', name: 'Intimate Wash', shelf: 'intimate', kind: 'Intimate wash · for him and her', price: 1200, noSoon: true, image: 'images/products/Intimate/intimate-wash.jpg', confirmed: false},
+    {id: 'musk-al-taharah', name: 'Musk Al Taharah', shelf: 'intimate', kind: 'Intimate serum · for women · with oud', price: 4000, noSoon: true, image: 'images/products/Intimate/musk-al-taharah.jpg', confirmed: false}, // label: مسك الطهارة
 
     {id: 'cambodi-oud-shampoo', name: 'Cambodi Oud Shampoo', shelf: 'bath', kind: 'Shampoo', price: 1500, image: 'images/products/Skincares/cambodi-oud-shampoo.jpg', confirmed: true},
     {id: 'cambodi-oud-shower', name: 'Cambodi Oud Shower', shelf: 'bath', kind: 'Shower gel', price: 1500, image: 'images/products/Skincares/cambodi-oud-shower.jpg', confirmed: true},
