@@ -59,7 +59,7 @@ window.AMINAR = {
   shelves: [
     // `perks` = promises เกีย has approved (5 Nov); shown as gold marks on the family and in each product's details.
     {id: 'perfumes', name: 'Perfumes', line: 'Breathtaking by Aminar, our perfume house', lasts: '10–12 hours on skin'},
-    {id: 'oud', name: 'Oud Tablets', line: 'Oud Trat and our tablets, boxed in gold'},
+    {id: 'oud', name: 'Oud Tablets', line: 'Oud Trat and our tablets, boxed in gold', groups: {pure: 'Pure oud tablets', oil: 'Blended with oud oil'}},
     {id: 'oud-wood', name: 'Oud Wood', line: 'Pieces of agarwood, sealed in their pouch'},
     {id: 'oud-oil', name: 'Oud Oils', line: 'Oud in its purest liquid form'},
     {id: 'bakhoor', name: 'Bakhoor & Mamoul', line: 'To burn at home, for the house and for guests'},
@@ -95,8 +95,9 @@ window.AMINAR = {
     {id: 'laos', name: 'Laos', shelf: 'oud', category: 'oud', kind: 'Oud tablets', size: '24 g box', price: 800, image: 'images/products/Oud/Tablets/laos.jpg', confirmed: true},
     {id: 'malaysia', name: 'Malaysia', shelf: 'oud', category: 'oud', kind: 'Oud tablets', size: '24 g box', price: 800, image: 'images/products/Oud/Tablets/malaysia.jpg', confirmed: true},
     {id: 'pure-oud-tablets', name: 'Pure Oud Tablets', shelf: 'oud', category: 'oud', kind: 'Oud tablets', size: '24 g box · also by the kilogram', image: '', confirmed: true},
-    {id: 'oud-oil-tablets', name: 'Oud Oil Tablets', shelf: 'oud', category: 'oud', kind: 'Oud tablets with oud oil', size: '7 g box', image: '', confirmed: true},
-    {id: 'glory', name: 'Glory', shelf: 'oud', category: 'oud', kind: 'The house scent', image: '', confirmed: true},
+    // Tablets blended with oud oil: same family, shown under their own divider (`group`).
+    {id: 'glory-of-oud', name: 'Glory of Oud', shelf: 'oud', category: 'oud', group: 'oil', kind: 'Oud tablets with oud oil', size: '12 g box', price: 700, bestseller: true, image: 'images/products/Oud/Tablets/glory-of-oud.jpg', confirmed: true}, // the shop's Glory
+    {id: 'paradise', name: 'Paradise', shelf: 'oud', category: 'oud', group: 'oil', kind: 'Oud tablets with oud oil', size: '12 g box', price: 700, image: 'images/products/Oud/Tablets/paradise.jpg', confirmed: true},
 
     // Oud oils: เกีย gives the 12 ml price; 6 ml = half, 3 ml = a quarter (same as Dekra and Malaki).
     // Oud wood is sold by the tola (12 g): give `tola` = the price of 1 tola and the 5-tola pack is worked out below.

@@ -102,6 +102,10 @@ main{padding:0 var(--m) 120px}
 .shelf .tags{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .tag{display:inline-flex;align-items:center;gap:8px;min-height:30px;padding:0 12px;border-radius:999px;background:var(--paper);box-shadow:inset 0 0 0 1px var(--rule);font:500 11px var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)}
 .tag.gold{background:var(--ink);color:var(--foil);box-shadow:none}
+.sub{grid-column:1/-1;display:flex;align-items:center;gap:14px;margin:30px 0 2px;font:500 12px var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--gold-ink)}
+.sub[data-first]{margin-top:0}
+.sub::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--gold-ink),transparent)}
+.sub i{order:2;font:italic 400 18px var(--it);letter-spacing:0;text-transform:none;color:var(--soft)}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:30px 12px}
 @media (min-width:700px){.grid{grid-template-columns:repeat(3,1fr)}}
 @media (min-width:1100px){.grid{grid-template-columns:repeat(4,1fr);gap:46px 24px}.shelf{padding-top:110px}.shelf .n{font-size:110px}.shelf h2{font-size:52px}.shelf .ln{font-size:26px}.shelf .hd{grid-template-columns:auto 1fr auto;gap:4px 30px}.shelf .tags{grid-column:3;grid-row:1/3;align-self:end;margin:0}}
@@ -304,7 +308,7 @@ body.famOpen .chips{opacity:1;transform:none;pointer-events:auto}
 body.famOpen .famShade{opacity:1;pointer-events:auto}
 @media (min-width:900px){.chips{left:auto;right:auto;width:640px;grid-template-columns:1fr 1fr;column-gap:8px}.search{flex:none;width:340px;margin-left:auto}}
 </style>
-<script src="data/products.js?v=mw3rz0jy"></script>
+<script src="data/products.js?v=mw3s6qdk"></script>
 </head>
 <body>
 <script>document.documentElement.classList.add('js')</script>
@@ -447,6 +451,16 @@ body.famOpen .famShade{opacity:1;pointer-events:auto}
   };
   const head = (s, i, n) => `<div class="hd"><span class="n" aria-hidden="true">${two(i + 1)}</span><h2>${esc(s.name)}</h2><p class="ln">${esc(s.line)}</p>
     <div class="tags"><span class="tag">${n} ${n === 1 ? 'piece' : 'pieces'}</span>${s.lasts ? `<span class="tag gold">${esc(s.lasts)}</span>` : ''}${(s.perks || []).filter((x) => !/48 hours/.test(x)).map((x) => `<span class="tag">${esc(x)}</span>`).join('')}</div></div>`;
+  // a family can be split by `groups` (e.g. pure tablets / blended with oud oil); a product without `group` is in the first one
+  const shelfCards = (s) => {
+    const list = P.filter((p) => p.shelf === s.id);
+    if (!s.groups) return list.map(card).join('');
+    const keys = Object.keys(s.groups);
+    return keys.map((g, k) => {
+      const part = list.filter((p) => (p.group || keys[0]) === g);
+      return part.length ? `<div class="sub"${k ? '' : ' data-first'}><span>${esc(s.groups[g])}</span><i>${part.length}</i></div>${part.map(card).join('')}` : '';
+    }).join('');
+  };
   let io;
   function draw() {
     const box = $('shelves');
@@ -456,7 +470,7 @@ body.famOpen .famShade{opacity:1;pointer-events:auto}
         ? `<section class="shelf"><div class="hd"><span class="n" aria-hidden="true">${two(hits.length)}</span><h2>Found</h2><p class="ln">for “${esc(q)}”</p></div><div class="grid">${hits.map(card).join('')}</div></section>`
         : `<p class="empty">Nothing by that name yet.<br><a href="${wa('Hello Aminar, I am looking for: ' + q)}" target="_blank" rel="noopener">Ask us on WhatsApp →</a></p>`;
     } else {
-      box.innerHTML = shelves.map((s, i) => (only && only !== s.id) ? '' : `<section class="shelf" id="s-${s.id}" aria-labelledby="h-${s.id}">${head(s, i, P.filter((p) => p.shelf === s.id).length).replace('<h2>', `<h2 id="h-${s.id}">`)}<div class="grid">${P.filter((p) => p.shelf === s.id).map(card).join('')}</div></section>`).join('');
+      box.innerHTML = shelves.map((s, i) => (only && only !== s.id) ? '' : `<section class="shelf" id="s-${s.id}" aria-labelledby="h-${s.id}">${head(s, i, P.filter((p) => p.shelf === s.id).length).replace('<h2>', `<h2 id="h-${s.id}">`)}<div class="grid">${shelfCards(s)}</div></section>`).join('');
     }
     if (io) io.disconnect();
     io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {rootMargin: '0px 0px -6% 0px'});
