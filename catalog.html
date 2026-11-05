@@ -304,7 +304,7 @@ body.famOpen .chips{opacity:1;transform:none;pointer-events:auto}
 body.famOpen .famShade{opacity:1;pointer-events:auto}
 @media (min-width:900px){.chips{left:auto;right:auto;width:640px;grid-template-columns:1fr 1fr;column-gap:8px}.search{flex:none;width:340px;margin-left:auto}}
 </style>
-<script src="data/products.js?v=mw3rjhr0"></script>
+<script src="data/products.js?v=mw3roguw"></script>
 </head>
 <body>
 <script>document.documentElement.classList.add('js')</script>
@@ -405,7 +405,13 @@ body.famOpen .famShade{opacity:1;pointer-events:auto}
   const many = (p) => (p.sizes || []).length > 1;
   const DEALS = D.deals || {};
   const dealOn = (p) => { const g = p && DEALS[p.deal]; if (!g) return false; const n = Object.entries(cart).filter(([k]) => (keyOf(k).p || {}).deal === p.deal).reduce((a, [, c]) => a + c, 0); return n >= g.min; };
-  const unitOf = (k) => { const {p, unit} = keyOf(k); return dealOn(p) ? DEALS[p.deal].each : unit; };
+  const eachFor = (g, p, size) => (typeof g.each === 'number' ? g.each : g.each[size || p.size] || g.each['*']);
+  const unitOf = (k) => { const {p, size, unit} = keyOf(k); return dealOn(p) ? eachFor(DEALS[p.deal], p, size) : unit; };
+  // free bottles: one for every N bottles in an offer that gives them (any mix, the listed sizes only)
+  const freeBottles = () => Object.entries(DEALS).filter(([, g]) => g.free).reduce((a, [name, g]) => {
+    const n = Object.entries(cart).filter(([k]) => { const {p, size} = keyOf(k); return p && p.deal === name && !g.free.notSizes.includes(size || p.size); }).reduce((x, [, c]) => x + c, 0);
+    return a + Math.floor(n / g.free.every);
+  }, 0);
   const saved = () => Object.entries(cart).reduce((a, [k, n]) => a + ((keyOf(k).unit || 0) - (unitOf(k) || 0)) * n, 0);
   const total = () => Object.entries(cart).reduce((a, [k, n]) => a + (unitOf(k) || 0) * n, 0);
   const priced = () => Object.keys(cart).every((k) => keyOf(k).unit);
@@ -527,7 +533,8 @@ body.famOpen .famShade{opacity:1;pointer-events:auto}
     const v = (id) => ($(id) || {}).value || '';
     const rows = Object.entries(cart).map(([k, n], i) => { const {p, size} = keyOf(k), unit = unitOf(k); return `${i + 1}. ${label(p)}${size ? ' (' + size + ')' : ''} × ${n}${SHOW && unit ? ' = ' + baht(unit * n) : ''}`; });
     const sum = SHOW && priced() ? [...(saved() ? ['Offer: you save ' + baht(saved())] : []), 'Total: ' + baht(total()) + ' (before delivery)', '', 'Please send me the delivery cost.'] : ['Please send me the prices and the delivery cost.'];
-    return ['Hello Aminar, I would like to order:', '', ...rows, '', ...sum, '', `Name: ${v('cname') || '-'}`, `Country: ${v('ccountry') || '-'}`, `Delivery: ${v('chow')}`].join('\n');
+    const free = freeBottles() ? [`Free bottle${freeBottles() > 1 ? 's' : ''}: ${freeBottles()} (scent: ${v('cfree') || 'I will choose'})`, ''] : [];
+    return ['Hello Aminar, I would like to order:', '', ...rows, '', ...free, ...sum, '', `Name: ${v('cname') || '-'}`, `Country: ${v('ccountry') || '-'}`, `Delivery: ${v('chow')}`].join('\n');
   };
   function drawCart() {
     const ids = Object.keys(cart);
@@ -536,15 +543,15 @@ body.famOpen .famShade{opacity:1;pointer-events:auto}
       <div><p class="mi" style="color:var(--gold-ink)">${count()} item${count() === 1 ? '' : 's'}</p><h2>Your cart</h2></div>
       ${ids.length ? `<div class="lines">${ids.map((id) => { const {p, size, unit} = line(id); return `<div class="lnr">${pic(p) ? `<img src="${img(pic(p))}" alt="">` : '<span class="mph"></span>'}<div><b>${esc(p.name)}</b><small>${esc(size || p.size || p.kind.split(' · ')[0])}${SHOW && unit ? ' · <bdi>' + baht(unit) + '</bdi>' : ''}</small></div>
         <div class="q"><button type="button" data-dk="${id}" aria-label="One less">−</button><span>${cart[id]}</span><button type="button" data-ik="${id}" aria-label="One more">+</button></div></div>`; }).join('')}</div>
-      ${SHOW && priced() && saved() ? `<p class="save"><span>Offer applied</span><span>− ${baht(saved())}</span></p>` : ''}${SHOW && priced() ? `<p class="total"><span>Total before delivery</span><b>${baht(total())}</b></p>` : ''}
-      <div class="fields"><label>Your name<input id="cname" autocomplete="name"></label><label>Country<input id="ccountry" autocomplete="country-name"></label>
+      ${freeBottles() ? `<p class="save"><span>Free bottle${freeBottles() > 1 ? 's' : ''}</span><span>+ ${freeBottles()}</span></p>` : ''}${SHOW && priced() && saved() ? `<p class="save"><span>Offer applied</span><span>− ${baht(saved())}</span></p>` : ''}${SHOW && priced() ? `<p class="total"><span>Total before delivery</span><b>${baht(total())}</b></p>` : ''}
+      <div class="fields"><label>Your name<input id="cname" autocomplete="name"></label><label>Country<input id="ccountry" autocomplete="country-name"></label>${freeBottles() ? `<label>Scent of your free bottle${freeBottles() > 1 ? 's' : ''}<input id="cfree" placeholder="e.g. Oud Patchouli"></label>` : ''}
         <label>Delivery<select id="chow"><option>Ship to my address</option><option>I will collect at the shop in Nana</option></select></label></div>
       <p class="note">This message opens in WhatsApp, ready to send:</p><pre class="preview" id="pv"></pre>
       <a class="go" id="go" target="_blank" rel="noopener">${WAI} Checkout on WhatsApp</a>
       <p class="note">We reply with ${SHOW && priced() ? 'the delivery cost' : 'prices, delivery'} and how to pay.</p>`
       : `<p class="note">Your cart is empty. Tap “Add to cart” on any scent.</p>`}</div>`;
     const upd = () => { const b = bill(); if ($('pv')) $('pv').textContent = b; if ($('go')) $('go').href = wa(b); };
-    ['cname', 'ccountry', 'chow'].forEach((id) => $(id) && ($(id).oninput = $(id).onchange = upd)); upd();
+    ['cname', 'ccountry', 'chow', 'cfree'].forEach((id) => $(id) && ($(id).oninput = $(id).onchange = upd)); upd();
   }
   $('cartIn').onclick = (e) => {
     if (e.target.closest('[data-close]')) return closeAll();
