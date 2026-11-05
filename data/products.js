@@ -41,17 +41,17 @@ window.AMINAR = {
   // Deals: a product with `deal: 'trio'` joins this offer. min = how many (any mix) before `each` applies.
   deals: {
     // `each` is one price, or a price per size ('*' = any other size). `countNotSizes`: sizes that get the deal price but don't count towards `min`. `free` = 1 free bottle for every N bottles of the listed sizes.
-    mist: {min: 3, countNotSizes: ['60 ml'], each: {'60 ml': 250, '*': 500}, free: {every: 12, notSizes: ['60 ml']},
+    mist: {noun: 'large body mists or hair mists', min: 3, countNotSizes: ['60 ml'], each: {'60 ml': 250, '*': 500}, free: {every: 12, notSizes: ['60 ml']},
       badge: 'Any 3 · ฿500 each', badgeNoPrice: 'Any 3 · special price',
       text: 'Take 3 or more large body mists or hair mists, any mix, and pay ฿500 a bottle; small 60 ml body mists in the same order are then ฿250. For every 12 large bottles, one more is free, in the scent you choose.',
       textNoPrice: 'Take 3 or more large body mists or hair mists, any mix, for a special price on every bottle, small ones included. For every 12 large bottles, one more is free, in the scent you choose.'},
-    fabric: {min: 6, each: 750, badge: 'Any 6 · ฿750 each', badgeNoPrice: 'Any 6 · special price',
+    fabric: {noun: 'sprays for clothes', min: 6, each: 750, badge: 'Any 6 · ฿750 each', badgeNoPrice: 'Any 6 · special price',
       text: 'Take 6 or more sprays for clothes, any mix, and pay ฿750 a bottle instead of ฿850.',
       textNoPrice: 'Take 6 or more sprays for clothes, any mix, for a special price on every bottle.'},
-    perfume: {min: 3, each: 500, badge: 'Any 3 · ฿500 each', badgeNoPrice: 'Any 3 · special price',
+    perfume: {noun: '30 ml perfumes', min: 3, each: 500, badge: 'Any 3 · ฿500 each', badgeNoPrice: 'Any 3 · special price',
       text: 'Choose 3 or more of our 30 ml perfumes, any mix, and pay ฿500 a bottle instead of ฿550.',
       textNoPrice: 'Choose 3 or more of our 30 ml perfumes, any mix, for a special price on every bottle.'},
-    trio: {min: 2, each: 1500, badge: 'Mix any 2 · ฿1,500 each', badgeNoPrice: 'Mix any 2 · special price', textNoPrice: 'Choose any 2 or more from Oud Ahlam, Legend Oud and Al Wadud, mix as you like, and every bottle gets a special price.', text: 'Choose any 2 or more from Oud Ahlam, Legend Oud and Al Wadud, mix as you like, and pay ฿1,500 for each bottle instead of ฿1,800.'},
+    trio: {noun: 'Oud Ahlam, Legend Oud or Al Wadud', min: 2, each: 1500, badge: 'Mix any 2 · ฿1,500 each', badgeNoPrice: 'Mix any 2 · special price', textNoPrice: 'Choose any 2 or more from Oud Ahlam, Legend Oud and Al Wadud, mix as you like, and every bottle gets a special price.', text: 'Choose any 2 or more from Oud Ahlam, Legend Oud and Al Wadud, mix as you like, and pay ฿1,500 for each bottle instead of ฿1,800.'},
   },
 
   // The catalog's shelves (families). Each product sits on one shelf; `category` above is only for the home page's six collections.

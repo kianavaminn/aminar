@@ -139,6 +139,10 @@ main{padding:0 var(--m) 120px}
 .card h3{font:500 16px/1.15 Cinzel,serif;text-transform:uppercase}
 .card .price{font:500 15px/1 var(--sans);letter-spacing:.06em;color:var(--ink);margin:2px 0 12px}
 .card .price small{font:italic 400 15px var(--it);letter-spacing:0;color:var(--soft);margin-right:4px}
+.card .offer{font:500 10px/1.4 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--gold-ink);margin:-8px 0 12px}
+.nudge{display:grid;gap:8px}
+.nudge p{display:flex;gap:10px;align-items:baseline;padding:10px 12px;background:var(--paper);box-shadow:inset 2px 0 0 var(--foil);font-size:14px;line-height:1.4;color:var(--ink-2)}
+.nudge b{flex:none;font:500 10px var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--gold-ink)}
 .card .kind{font:italic 400 17px/1.2 var(--it);color:var(--soft)}
 .card .add{margin-top:12px;display:flex;align-items:center;justify-content:space-between;min-height:44px;padding:0 14px;background:var(--ink);color:var(--paper);font:500 12px var(--sans);letter-spacing:.16em;text-transform:uppercase;transition:background-color .3s}
 .card .add:hover{background:var(--ink-2)}
@@ -320,7 +324,7 @@ body.famOpen .chips{opacity:1;transform:none;pointer-events:auto}
 body.famOpen .famShade{opacity:1;pointer-events:auto}
 @media (min-width:900px){.chips{left:auto;right:auto;width:640px;grid-template-columns:1fr 1fr;column-gap:8px}.search{flex:none;width:340px;margin-left:auto}}
 </style>
-<script src="data/products.js?v=mw3sqgak"></script>
+<script src="data/products.js?v=mw3stgrs"></script>
 </head>
 <body>
 <script>document.documentElement.classList.add('js')</script>
@@ -429,6 +433,13 @@ body.famOpen .famShade{opacity:1;pointer-events:auto}
     return a + Math.floor(n / g.free.every);
   }, 0);
   const saved = () => Object.entries(cart).reduce((a, [k, n]) => a + ((keyOf(k).unit || 0) - (unitOf(k) || 0)) * n, 0);
+  const nudges = () => Object.entries(DEALS).map(([name, g]) => {
+    const n = Object.entries(cart).filter(([k]) => { const {p, size} = keyOf(k); return p && p.deal === name && !(g.countNotSizes || []).includes(size || p.size); }).reduce((a, [, c]) => a + c, 0);
+    const any = Object.keys(cart).some((k) => (keyOf(k).p || {}).deal === name);
+    if (!any || n >= g.min) return '';
+    const more = g.min - n;
+    return `<p><b>Offer</b><span>Add ${more} more from ${g.noun} and ${SHOW ? 'pay ' + g.badge.split(' · ')[1].replace('each', 'a bottle') : 'get a special price'}.</span></p>`;
+  }).join('');
   const total = () => Object.entries(cart).reduce((a, [k, n]) => a + (unitOf(k) || 0) * n, 0);
   const priced = () => Object.keys(cart).every((k) => keyOf(k).unit);
   const save = () => { try { localStorage.setItem('aminar-cart-v2', JSON.stringify(cart)); } catch (e) {} };
@@ -457,7 +468,7 @@ body.famOpen .famShade{opacity:1;pointer-events:auto}
       : `<span class="ph"><img src="logo/aminar-logo-gold.svg" alt=""><b>${esc(p.name)}</b><small>Photograph coming soon</small></span>`;
     return `<article class="card" id="p-${p.id}" style="--i:${i % 4}">
       <button class="pic" type="button" data-open="${p.id}" aria-label="${esc(label(p))}: details">${photo}${p.bestseller ? '<span class="badge">Bestseller</span>' : ''}<span class="view">View details</span></button>
-      <div class="b"><p class="line">${esc(p.line || s.name)}</p><h3>${esc(p.name)}</h3><p class="kind">${esc(p.kind)}</p>${priceTag(p) ? `<p class="price">${priceTag(p)}</p>` : ''}
+      <div class="b"><p class="line">${esc(p.line || s.name)}</p><h3>${esc(p.name)}</h3><p class="kind">${esc(p.kind)}</p>${p.deal && DEALS[p.deal] ? `<p class="offer">${esc(SHOW ? DEALS[p.deal].badge : DEALS[p.deal].badgeNoPrice)}</p>` : p.tola ? '<p class="offer">Big size discount</p>' : ''}${priceTag(p) ? `<p class="price">${priceTag(p)}</p>` : ''}
       ${n ? `<div class="step"><button type="button" data-dec="${p.id}" aria-label="One less">−</button><span>${n} in cart</span><button type="button" data-inc="${p.id}" aria-label="One more">+</button></div>`
           : `<button class="add" type="button" data-add="${p.id}">${many(p) ? 'Choose a size' : 'Add to cart'} ${PLUS}</button>`}</div></article>`;
   };
@@ -569,7 +580,7 @@ body.famOpen .famShade{opacity:1;pointer-events:auto}
       <div><p class="mi" style="color:var(--gold-ink)">${count()} item${count() === 1 ? '' : 's'}</p><h2>Your cart</h2></div>
       ${ids.length ? `<div class="lines">${ids.map((id) => { const {p, size, unit} = line(id); return `<div class="lnr">${pic(p) ? `<img src="${img(pic(p))}" alt="">` : '<span class="mph"></span>'}<div><b>${esc(p.name)}</b><small>${esc(size || p.size || p.kind.split(' · ')[0])}${SHOW && unit ? ' · <bdi>' + baht(unit) + '</bdi>' : ''}</small></div>
         <div class="q"><button type="button" data-dk="${id}" aria-label="One less">−</button><span>${cart[id]}</span><button type="button" data-ik="${id}" aria-label="One more">+</button></div></div>`; }).join('')}</div>
-      ${freeBottles() ? `<p class="save"><span>Free bottle${freeBottles() > 1 ? 's' : ''}</span><span>+ ${freeBottles()}</span></p>` : ''}${SHOW && priced() && saved() ? `<p class="save"><span>Offer applied</span><span>− ${baht(saved())}</span></p>` : ''}${SHOW && priced() ? `<p class="total"><span>Total before delivery</span><b>${baht(total())}</b></p>` : ''}
+      ${nudges() ? `<div class="nudge">${nudges()}</div>` : ''}${freeBottles() ? `<p class="save"><span>Free bottle${freeBottles() > 1 ? 's' : ''}</span><span>+ ${freeBottles()}</span></p>` : ''}${SHOW && priced() && saved() ? `<p class="save"><span>Offer applied</span><span>− ${baht(saved())}</span></p>` : ''}${SHOW && priced() ? `<p class="total"><span>Total before delivery</span><b>${baht(total())}</b></p>` : ''}
       <div class="fields"><label>Your name<input id="cname" autocomplete="name"></label><label>Country<input id="ccountry" autocomplete="country-name"></label>${freeBottles() ? `<label>Scent of your free bottle${freeBottles() > 1 ? 's' : ''}<input id="cfree" placeholder="e.g. Oud Patchouli"></label>` : ''}
         <label>Delivery<select id="chow"><option>Ship to my address</option><option>I will collect at the shop in Nana</option></select></label></div>
       <p class="note">This message opens in WhatsApp, ready to send:</p><pre class="preview" id="pv"></pre>
