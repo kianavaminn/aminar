@@ -187,6 +187,7 @@ main{padding:0 var(--m) 120px}
 .det .line{color:var(--gold-ink)}
 .det h2{font:500 34px/1 Cinzel,serif;text-transform:uppercase;margin-top:8px}
 .det .kind{font:italic 400 22px var(--it);color:var(--soft);margin-top:6px}
+.det .mood{font:italic 400 21px/1.45 var(--it);color:var(--ink-2);margin-top:16px;padding-left:16px;border-left:2px solid var(--foil)}
 .spec{display:grid;border-top:1px solid var(--rule)}
 .spec div{display:grid;grid-template-columns:130px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--rule)}
 .spec dt{font:500 11px/1.8 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
@@ -297,7 +298,7 @@ body.famOpen .chips{opacity:1;transform:none;pointer-events:auto}
 body.famOpen .famShade{opacity:1;pointer-events:auto}
 @media (min-width:900px){.chips{left:auto;right:auto;width:640px;grid-template-columns:1fr 1fr;column-gap:8px}.search{flex:none;width:340px;margin-left:auto}}
 </style>
-<script src="data/products.js?v=mw3q46ne"></script>
+<script src="data/products.js?v=mw3q76tq"></script>
 </head>
 <body>
 <script>document.documentElement.classList.add('js')</script>
@@ -434,7 +435,7 @@ body.famOpen .famShade{opacity:1;pointer-events:auto}
   function draw() {
     const box = $('shelves');
     if (q) {
-      const hits = P.filter((p) => [p.name, p.kind, p.line, shelfOf(p).name].join(' ').toLowerCase().includes(q));
+      const hits = P.filter((p) => [p.name, p.kind, p.line, p.notes, shelfOf(p).name].join(' ').toLowerCase().includes(q));
       box.innerHTML = hits.length
         ? `<section class="shelf"><div class="hd"><span class="n" aria-hidden="true">${two(hits.length)}</span><h2>Found</h2><p class="ln">for “${esc(q)}”</p></div><div class="grid">${hits.map(card).join('')}</div></section>`
         : `<p class="empty">Nothing by that name yet.<br><a href="${wa('Hello Aminar, I am looking for: ' + q)}" target="_blank" rel="noopener">Ask us on WhatsApp →</a></p>`;
@@ -484,7 +485,7 @@ body.famOpen .famShade{opacity:1;pointer-events:auto}
     $('detIn').innerHTML = `<button class="x" type="button" data-close aria-label="Close">×</button>
       <div class="pic">${pics(p).length > 1 ? `<div class="gal" id="gal">${pics(p).map((u, k) => `<img src="${img(u)}" alt="${esc(p.name)}, photo ${k + 1}">`).join('')}</div><span class="gdots" id="gdots">${pics(p).map((_, k) => `<i class="${k === gi ? 'on' : ''}"></i>`).join('')}</span><button type="button" class="garr l" data-g="-1" aria-label="Previous photo">‹</button><button type="button" class="garr r" data-g="1" aria-label="Next photo">›</button>` : pic(p) ? `<img src="${img(pic(p))}" alt="${esc(p.name)}">` : `<span class="ph"><img src="logo/aminar-logo-gold.svg" alt=""><b>${esc(p.name)}</b><small>Photograph coming soon</small></span>`}</div>
       <div class="body">
-        <div><p class="mi line">${esc(p.line || s.name)}</p><h2>${esc(p.name)}</h2><p class="kind">${esc(p.kind)}</p>${SHOW && sizesOf(p).length ? `<p class="price">${baht(many(p) ? p.sizes.find((z) => z[0] === sz)[1] : sizesOf(p)[0][1])}</p>` : ''}</div>
+        <div><p class="mi line">${esc(p.line || s.name)}</p><h2>${esc(p.name)}</h2><p class="kind">${esc(p.kind)}</p>${p.mood ? `<p class="mood">${esc(p.mood)}</p>` : ''}${SHOW && sizesOf(p).length ? `<p class="price">${baht(many(p) ? p.sizes.find((z) => z[0] === sz)[1] : sizesOf(p)[0][1])}</p>` : ''}</div>
         ${many(p) ? `<div><p class="mi" style="color:var(--soft);margin-bottom:10px">Choose a size</p><div class="sizes">${p.sizes.map((z) => `<button type="button" data-sz="${esc(z[0])}" aria-pressed="${z[0] === sz}">${esc(z[0])}${SHOW ? `<b>${baht(z[1])}</b>` : ''}${z[2] ? `<em>${SHOW ? 'Discount ' + baht(z[2]) : 'Discount'}</em>` : ''}</button>`).join('')}${p.bulk ? `<a class="bulk" href="${wa('Hello Aminar, I would like ' + p.bulk + ' of ' + label(p) + '. Please send me the price.')}" target="_blank" rel="noopener">${WAI} ${esc(p.bulk)} · ask on WhatsApp</a>` : ''}</div>${p.tola ? `<p class="deal"><b>Discount</b><span>${SHOW ? 'Big size: take 5 tola (60 g) and save ' + baht(100) + ' on every tola, ' + baht(500) + ' off in total.' : 'Big size: take 5 tola (60 g) and get a discount on every tola.'}</span></p>` : ''}</div>` : ''}
         <dl class="spec">
           <div><dt>Category</dt><dd>${esc(s.name)}</dd></div>
