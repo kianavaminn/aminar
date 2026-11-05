@@ -52,7 +52,7 @@ window.AMINAR = {
     {id: 'fabric', name: 'Fabric & Abaya Sprays', line: 'For abayas, hijabs and clothes', lasts: 'Up to 48 hours on fabric', perks: ['Lasts up to 48 hours', 'For clothes, abayas and hijabs']},
     {id: 'home', name: 'Home & Linen', line: 'For bed sheets, pillows and rooms'},
     {id: 'bath', name: 'Bath & Body', line: 'Oud for the shower, the hair and the skin'},
-    {id: 'intimate', name: 'Intimate Care', line: 'Al Tahara, gentle fragrance and care for him and her'},
+    {id: 'intimate', name: 'Intimate Care', line: 'Al Tahara, gentle fragrance and care for him and her', perks: ['Alcohol-free']},
   ],
 
   products: [
@@ -130,10 +130,10 @@ window.AMINAR = {
 
     // `noSoon`: leave out the details we don't have yet instead of writing "Coming soon".
     // Intimate care (เกีย, 5 Nov). Spray labels read بخاخ الطهارة; เกีย named them Al Tahara Spray 1–4. Not on the home page.
-    {id: 'taharah-spray-1', name: 'Al Tahara Spray 1', shelf: 'intimate', kind: 'Intimate spray · for him and her', price: 700, perks: ["Medically tested","Alcohol-free","No harsh chemicals"], image: 'images/products/Intimate/taharah-spray-1.jpg', confirmed: false},
-    {id: 'my-secret', name: 'Al Tahara Spray 2', shelf: 'intimate', line: 'My Secret · 4th formula', kind: 'Intimate spray · for him and her', price: 700, perks: ["Medically tested","Alcohol-free","No harsh chemicals"], image: 'images/products/Intimate/my-secret.jpg', confirmed: true},
-    {id: 'taharah-spray-2', name: 'Al Tahara Spray 3', shelf: 'intimate', kind: 'Intimate spray · for him and her', price: 700, perks: ["Medically tested","Alcohol-free","No harsh chemicals"], image: 'images/products/Intimate/taharah-spray-2.jpg', confirmed: false},
-    {id: 'taharah-spray-3', name: 'Al Tahara Spray 4', shelf: 'intimate', kind: 'Intimate spray · for him and her', price: 700, perks: ["Medically tested","Alcohol-free","No harsh chemicals"], image: 'images/products/Intimate/taharah-spray-3.jpg', confirmed: false},
+    {id: 'taharah-spray-1', name: 'Al Tahara Spray 1', shelf: 'intimate', kind: 'Intimate spray · for him and her', price: 700, perks: ["Medically tested","No harsh chemicals"], image: 'images/products/Intimate/taharah-spray-1.jpg', confirmed: false},
+    {id: 'my-secret', name: 'Al Tahara Spray 2', shelf: 'intimate', line: 'My Secret · 4th formula', kind: 'Intimate spray · for him and her', price: 700, perks: ["Medically tested","No harsh chemicals"], image: 'images/products/Intimate/my-secret.jpg', confirmed: true},
+    {id: 'taharah-spray-2', name: 'Al Tahara Spray 3', shelf: 'intimate', kind: 'Intimate spray · for him and her', price: 700, perks: ["Medically tested","No harsh chemicals"], image: 'images/products/Intimate/taharah-spray-2.jpg', confirmed: false},
+    {id: 'taharah-spray-3', name: 'Al Tahara Spray 4', shelf: 'intimate', kind: 'Intimate spray · for him and her', price: 700, perks: ["Medically tested","No harsh chemicals"], image: 'images/products/Intimate/taharah-spray-3.jpg', confirmed: false},
     {id: 'intimate-wash', name: 'Intimate Wash', shelf: 'intimate', kind: 'Intimate wash · for him and her', price: 1200, noSoon: true, image: 'images/products/Intimate/intimate-wash.jpg', confirmed: false},
     {id: 'musk-al-taharah', name: 'Musk Al Taharah', shelf: 'intimate', kind: 'Intimate serum · for women · with oud', price: 4000, noSoon: true, image: 'images/products/Intimate/musk-al-taharah.jpg', confirmed: false}, // label: مسك الطهارة
 
