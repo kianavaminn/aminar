@@ -38,6 +38,11 @@ window.AMINAR = {
     {id: 'sprays', title: 'The Precious', name: 'Sprays for clothes & special area', note: 'Scent for abayas and clothes, and intimate care sprays.'},
   ],
 
+  // Deals: a product with `deal: 'trio'` joins this offer. min = how many (any mix) before `each` applies.
+  deals: {
+    trio: {min: 2, each: 1500, badge: 'Mix any 2 · ฿1,500 each', badgeNoPrice: 'Mix any 2 · special price', textNoPrice: 'Choose any 2 or more from Oud Ahlam, Legend Oud and Al Wadud, mix as you like, and every bottle gets a special price.', text: 'Choose any 2 or more from Oud Ahlam, Legend Oud and Al Wadud, mix as you like, and pay ฿1,500 for each bottle instead of ฿1,800.'},
+  },
+
   // The catalog's shelves (families). Each product sits on one shelf; `category` above is only for the home page's six collections.
   // A shelf with no products stays hidden until something is added to it. `lasts` = confirmed by เกีย; leave it out when not known.
   shelves: [
@@ -67,9 +72,9 @@ window.AMINAR = {
     {id: 'the-queen', name: 'The Queen', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume', size: '30 ml', price: 550, image: 'images/products/Perfumes/Breathtaking/the-queen.jpg', confirmed: false}, // TO CHECK: the script on the label may read "The Groom"
     {id: 'the-prince', name: 'The Prince', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume', size: '30 ml', price: 550, image: 'images/products/Perfumes/Breathtaking/the-prince.jpg', confirmed: true},
     {id: 'the-princess', name: 'The Princess', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume', size: '30 ml', price: 550, image: 'images/products/Perfumes/Breathtaking/the-princess.jpg', confirmed: true},
-    {id: 'legend-oud', name: 'Legend Oud', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume · أسطورة العود', size: '50 ml', price: 1500, image: 'images/products/Perfumes/Breathtaking/legend-oud.jpg', confirmed: true}, // white bottle with crown cap; label أسطورة العود = Legend of Oud (confirmed by เกีย)
-    {id: 'al-wadud', name: 'Al Wadud', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume · عطر الودود', size: '50 ml', price: 1500, image: 'images/products/Perfumes/Breathtaking/al-wadud.jpg', confirmed: true}, // black bottle with gold cap; label عطر الودود = Al Wadud (confirmed by เกีย)
-    {id: 'oud-ahlam', name: 'Oud Ahlam', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume · عود أحلام', size: '75 ml', image: 'images/products/Perfumes/Breathtaking/oud-ahlam.jpg', confirmed: true}, // price still to come from เกีย
+    {id: 'legend-oud', name: 'Legend Oud', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume · أسطورة العود', size: '50 ml', price: 1800, deal: 'trio', image: 'images/products/Perfumes/Breathtaking/legend-oud.jpg', confirmed: true}, // white bottle with crown cap; label أسطورة العود = Legend of Oud (confirmed by เกีย)
+    {id: 'al-wadud', name: 'Al Wadud', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume · عطر الودود', size: '50 ml', price: 1800, deal: 'trio', image: 'images/products/Perfumes/Breathtaking/al-wadud.jpg', confirmed: true}, // black bottle with gold cap; label عطر الودود = Al Wadud (confirmed by เกีย)
+    {id: 'oud-ahlam', name: 'Oud Ahlam', shelf: 'perfumes', category: 'perfumes', line: 'Breathtaking by Aminar', kind: 'Perfume · عود أحلام', size: '75 ml', price: 1800, deal: 'trio', image: 'images/products/Perfumes/Breathtaking/oud-ahlam.jpg', confirmed: true},
     {id: 'qurb', name: 'Qurb', shelf: 'perfumes', category: 'perfumes', line: 'Aminar · Sweetness meets tomorrow', kind: 'Perfume · قُرب', size: '30 ml', price: 550, image: 'images/products/Perfumes/Aminar/qurb.jpg', confirmed: true}, // label: قُرب, Aminar line (not Breathtaking)
     {id: 'oud-romantic', name: 'Oud Romantic', shelf: 'perfumes', category: 'perfumes', line: 'Aminar · Sweetness meets tomorrow', kind: 'Perfume', size: '30 ml', price: 550, image: 'images/products/Perfumes/Aminar/oud-romantic.jpg', confirmed: true},
 
