@@ -51,7 +51,7 @@ window.AMINAR = {
     {id: 'fabric', name: 'Fabric & Abaya Sprays', line: 'For abayas, scarves and clothes', lasts: '2 days on fabric'},
     {id: 'home', name: 'Home & Linen', line: 'For bed sheets, pillows and rooms'},
     {id: 'bath', name: 'Bath & Body', line: 'Oud for the shower, the hair and the skin'},
-    {id: 'intimate', name: 'Intimate Care', line: 'Delicate sprays for personal care'},
+    {id: 'intimate', name: 'Intimate Care', line: 'Taharah, gentle fragrance and care for him and her'},
   ],
 
   products: [
@@ -108,6 +108,8 @@ window.AMINAR = {
     {id: 'malaki-hair', name: 'Malaki Hair', shelf: 'hair', kind: 'Hair mist · Dehn Al Oud Malaki', size: '150 ml', price: 600, image: 'images/products/hair-sprays/malaki-hair.jpg', confirmed: true},
     {id: 'oud-hair', name: 'Oud Hair', shelf: 'hair', kind: 'Hair mist · Dahn Al Oud', size: '150 ml', price: 600, image: 'images/products/hair-sprays/oud-hair.jpg', confirmed: true},
     {id: 'the-royal', name: 'The Royal', shelf: 'hair', kind: 'Hair mist', size: '150 ml', price: 600, image: 'images/products/hair-sprays/the-royal.jpg', confirmed: true},
+    {id: 'pick-the-me', name: 'Pick the Me', shelf: 'hair', line: 'Aminar Hair Mist', kind: 'Hair mist', size: '100 ml', price: 600, image: 'images/products/hair-sprays/pick-the-me.jpg', confirmed: false}, // TO CHECK: the name wraps round the bottle, only "Pick the Me…" shows
+    {id: 'ruby-musk', name: 'Ruby Musk', shelf: 'hair', line: 'Aminar Hair Mist', kind: 'Hair mist', size: '100 ml', price: 600, image: 'images/products/hair-sprays/ruby-musk.jpg', confirmed: true}, // 100 ml printed on the label
     {id: 'bakhoor-for-hair-1', name: 'Bakhoor for Hair', shelf: 'hair', kind: 'Hair bakhoor · red', image: 'images/products/Bakhoor/Bakhoor/bakhoor-for-hair-1.jpg', confirmed: true},
     {id: 'bakhoor-for-hair-2', name: 'Bakhoor for Hair', shelf: 'hair', kind: 'Hair bakhoor · yellow', image: 'images/products/Bakhoor/Bakhoor/bakhoor-for-hair-2.jpg', confirmed: true},
 
@@ -123,6 +125,14 @@ window.AMINAR = {
     {id: 'bed-sheet-2', name: 'Bed Sheet No. 2', shelf: 'home', kind: 'Linen spray', price: 850, image: 'images/products/Room-spray/bed-sheet-2.jpg', confirmed: true},
     {id: 'bed-sheet-3', name: 'Bed Sheet No. 3', shelf: 'home', kind: 'Linen spray', price: 850, image: 'images/products/Room-spray/bed-sheet-3.jpg', confirmed: true},
     {id: 'bed-sheet-4', name: 'Bed Sheet No. 4', shelf: 'home', kind: 'Linen spray', price: 850, image: 'images/products/Room-spray/bed-sheet-4.jpg', confirmed: true},
+
+    // Intimate care (เกีย, 5 Nov). Spray labels read بخاخ الطهارة (Taharah spray); names below TO CHECK with เกีย. Not on the home page.
+    {id: 'taharah-spray-1', name: 'Taharah Spray No. 1', shelf: 'intimate', kind: 'Intimate spray · for him and her', price: 700, image: 'images/products/Intimate/taharah-spray-1.jpg', confirmed: false},
+    {id: 'my-secret', name: 'My Secret', shelf: 'intimate', line: 'Taharah · 4th formula', kind: 'Intimate spray · for him and her', price: 700, image: 'images/products/Intimate/my-secret.jpg', confirmed: true},
+    {id: 'taharah-spray-2', name: 'Taharah Spray No. 2', shelf: 'intimate', kind: 'Intimate spray · for him and her', price: 700, image: 'images/products/Intimate/taharah-spray-2.jpg', confirmed: false},
+    {id: 'taharah-spray-3', name: 'Taharah Spray No. 3', shelf: 'intimate', kind: 'Intimate spray · for him and her', price: 700, image: 'images/products/Intimate/taharah-spray-3.jpg', confirmed: false},
+    {id: 'intimate-wash', name: 'Intimate Wash', shelf: 'intimate', kind: 'Intimate wash · for him and her', price: 1200, image: 'images/products/Intimate/intimate-wash.jpg', confirmed: false},
+    {id: 'musk-al-taharah', name: 'Musk Al Taharah', shelf: 'intimate', kind: 'Intimate serum · for women · with oud', price: 4000, image: 'images/products/Intimate/musk-al-taharah.jpg', confirmed: false}, // label: مسك الطهارة
 
     {id: 'cambodi-oud-shampoo', name: 'Cambodi Oud Shampoo', shelf: 'bath', kind: 'Shampoo', price: 1500, image: 'images/products/Skincares/cambodi-oud-shampoo.jpg', confirmed: true},
     {id: 'cambodi-oud-shower', name: 'Cambodi Oud Shower', shelf: 'bath', kind: 'Shower gel', price: 1500, image: 'images/products/Skincares/cambodi-oud-shower.jpg', confirmed: true},
