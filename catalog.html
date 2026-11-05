@@ -304,7 +304,7 @@ body.famOpen .chips{opacity:1;transform:none;pointer-events:auto}
 body.famOpen .famShade{opacity:1;pointer-events:auto}
 @media (min-width:900px){.chips{left:auto;right:auto;width:640px;grid-template-columns:1fr 1fr;column-gap:8px}.search{flex:none;width:340px;margin-left:auto}}
 </style>
-<script src="data/products.js?v=mw3rr1ay"></script>
+<script src="data/products.js?v=mw3rz0jy"></script>
 </head>
 <body>
 <script>document.documentElement.classList.add('js')</script>
@@ -404,7 +404,7 @@ body.famOpen .famShade{opacity:1;pointer-events:auto}
   const inCart = (id) => Object.entries(cart).filter(([k]) => k.split('|')[0] === id).reduce((a, [, n]) => a + n, 0);
   const many = (p) => (p.sizes || []).length > 1;
   const DEALS = D.deals || {};
-  const dealOn = (p) => { const g = p && DEALS[p.deal]; if (!g) return false; const n = Object.entries(cart).filter(([k]) => (keyOf(k).p || {}).deal === p.deal).reduce((a, [, c]) => a + c, 0); return n >= g.min; };
+  const dealOn = (p) => { const g = p && DEALS[p.deal]; if (!g) return false; const n = Object.entries(cart).filter(([k]) => { const {p: q, size} = keyOf(k); return q && q.deal === p.deal && !(g.countNotSizes || []).includes(size || q.size); }).reduce((a, [, c]) => a + c, 0); return n >= g.min; };
   const eachFor = (g, p, size) => (typeof g.each === 'number' ? g.each : g.each[size || p.size] || g.each['*']);
   const unitOf = (k) => { const {p, size, unit} = keyOf(k); return dealOn(p) ? eachFor(DEALS[p.deal], p, size) : unit; };
   // free bottles: one for every N bottles in an offer that gives them (any mix, the listed sizes only)

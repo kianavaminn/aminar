@@ -20,7 +20,7 @@ window.AMINAR = {
     area: 'Sukhumvit Soi 3, Nana, Bangkok',
     hours: {open: 10, close: 1, days: 'Every day', text: '10:00 AM – 1:00 AM'}, // closes after midnight
     mapQuery: 'Aminar shop, Sukhumvit Soi 3, Bangkok', // for the embedded map
-    mapsUrl: 'https://share.google/QEJ95vBiQARtG1c99', // the shop's own Google Maps link, from เกีย
+    mapsUrl: 'https://maps.app.goo.gl/zcgzcjT8Zdh5Du4U6', // opens the Google Maps app on phones (from เกีย, 5 Nov)
     directions: {
       bts: ['Arrive at BTS Nana station.', 'Search for “Aminar Shop” on Google Maps and follow the walking route.', 'It is less than a 10-minute walk.', 'At Sukhumvit Soi 3 you will see the Aminar sign.'],
       taxi: ['Ask your driver for Sukhumvit Soi 3.', 'Once you enter the soi, continue straight.', 'Aminar Shop is less than 100 metres in.'],
@@ -40,11 +40,11 @@ window.AMINAR = {
 
   // Deals: a product with `deal: 'trio'` joins this offer. min = how many (any mix) before `each` applies.
   deals: {
-    // `each` is one price, or a price per size ('*' = any other size). `free` = 1 free bottle for every N bottles of the listed sizes.
-    mist: {min: 3, each: {'60 ml': 250, '*': 500}, free: {every: 12, notSizes: ['60 ml']},
+    // `each` is one price, or a price per size ('*' = any other size). `countNotSizes`: sizes that get the deal price but don't count towards `min`. `free` = 1 free bottle for every N bottles of the listed sizes.
+    mist: {min: 3, countNotSizes: ['60 ml'], each: {'60 ml': 250, '*': 500}, free: {every: 12, notSizes: ['60 ml']},
       badge: 'Any 3 · ฿500 each', badgeNoPrice: 'Any 3 · special price',
-      text: 'Mix any 3 or more body mists and hair mists and pay ฿500 a bottle (small 60 ml: ฿250). For every 12 large bottles, one more is free, in the scent you choose.',
-      textNoPrice: 'Mix any 3 or more body mists and hair mists for a special price on every bottle. For every 12 large bottles, one more is free, in the scent you choose.'},
+      text: 'Take 3 or more large body mists or hair mists, any mix, and pay ฿500 a bottle; small 60 ml body mists in the same order are then ฿250. For every 12 large bottles, one more is free, in the scent you choose.',
+      textNoPrice: 'Take 3 or more large body mists or hair mists, any mix, for a special price on every bottle, small ones included. For every 12 large bottles, one more is free, in the scent you choose.'},
     fabric: {min: 6, each: 750, badge: 'Any 6 · ฿750 each', badgeNoPrice: 'Any 6 · special price',
       text: 'Take 6 or more sprays for clothes, any mix, and pay ฿750 a bottle instead of ฿850.',
       textNoPrice: 'Take 6 or more sprays for clothes, any mix, for a special price on every bottle.'},
