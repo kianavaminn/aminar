@@ -5,6 +5,18 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>The Collection — Aminar, Bangkok</title>
+<link rel="icon" type="image/png" sizes="32x32" href="images/brand/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="images/brand/favicon-192.png">
+<link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png">
+<meta name="theme-color" content="#0d0b09">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aminar">
+<meta property="og:title" content="The Collection — Aminar, Bangkok">
+<meta property="og:description" content="Every Aminar scent in one place: perfumes, oud, bakhoor, mists and sprays from our house in Nana, Bangkok. Order on WhatsApp.">
+<meta property="og:url" content="https://kianavaminn.github.io/aminar/catalog.html">
+<meta property="og:image" content="https://kianavaminn.github.io/aminar/images/brand/share.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="description" content="Every Aminar scent in one place: perfumes, oud, bakhoor, mists and sprays from our house in Nana, Bangkok. Order on WhatsApp.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -308,7 +320,7 @@ body.famOpen .chips{opacity:1;transform:none;pointer-events:auto}
 body.famOpen .famShade{opacity:1;pointer-events:auto}
 @media (min-width:900px){.chips{left:auto;right:auto;width:640px;grid-template-columns:1fr 1fr;column-gap:8px}.search{flex:none;width:340px;margin-left:auto}}
 </style>
-<script src="data/products.js?v=mw3s6qdk"></script>
+<script src="data/products.js?v=mw3sqgak"></script>
 </head>
 <body>
 <script>document.documentElement.classList.add('js')</script>
@@ -444,7 +456,7 @@ body.famOpen .famShade{opacity:1;pointer-events:auto}
       ? `<img src="${img(pic(p))}" alt="${esc(p.name)}" loading="lazy">${pics(p).length > 1 ? `<img class="alt" src="${img(pics(p)[1])}" alt="" loading="lazy"><span class="cnt">${pics(p).length} photos</span>` : ''}`
       : `<span class="ph"><img src="logo/aminar-logo-gold.svg" alt=""><b>${esc(p.name)}</b><small>Photograph coming soon</small></span>`;
     return `<article class="card" id="p-${p.id}" style="--i:${i % 4}">
-      <button class="pic" type="button" data-open="${p.id}" aria-label="${esc(label(p))}: details">${photo}${p.bestseller ? '<span class="badge">Bestseller</span>' : ''}${p.tola ? `<span class="badge off"${p.bestseller ? ' style="top:40px"' : ''}>Big size discount</span>` : ''}${p.deal && DEALS[p.deal] ? `<span class="badge deal"${p.bestseller ? ' style="top:40px"' : ''}>${esc(SHOW ? DEALS[p.deal].badge : DEALS[p.deal].badgeNoPrice)}</span>` : ''}<span class="view">View details</span></button>
+      <button class="pic" type="button" data-open="${p.id}" aria-label="${esc(label(p))}: details">${photo}${p.bestseller ? '<span class="badge">Bestseller</span>' : ''}<span class="view">View details</span></button>
       <div class="b"><p class="line">${esc(p.line || s.name)}</p><h3>${esc(p.name)}</h3><p class="kind">${esc(p.kind)}</p>${priceTag(p) ? `<p class="price">${priceTag(p)}</p>` : ''}
       ${n ? `<div class="step"><button type="button" data-dec="${p.id}" aria-label="One less">−</button><span>${n} in cart</span><button type="button" data-inc="${p.id}" aria-label="One more">+</button></div>`
           : `<button class="add" type="button" data-add="${p.id}">${many(p) ? 'Choose a size' : 'Add to cart'} ${PLUS}</button>`}</div></article>`;
