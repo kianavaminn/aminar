@@ -41,14 +41,15 @@ window.AMINAR = {
   // The catalog's shelves (families). Each product sits on one shelf; `category` above is only for the home page's six collections.
   // A shelf with no products stays hidden until something is added to it. `lasts` = confirmed by เกีย; leave it out when not known.
   shelves: [
+    // `perks` = promises เกีย has approved (5 Nov); shown as gold marks on the family and in each product's details.
     {id: 'perfumes', name: 'Perfumes', line: 'Breathtaking by Aminar, our perfume house', lasts: '10–12 hours on skin'},
     {id: 'oud', name: 'Oud Tablets', line: 'Oud Trat and our tablets, boxed in gold'},
     {id: 'oud-wood', name: 'Oud Wood', line: 'Pieces of agarwood, sealed in their pouch'},
     {id: 'oud-oil', name: 'Oud Oils', line: 'Oud in its purest liquid form'},
     {id: 'bakhoor', name: 'Bakhoor & Mamoul', line: 'To burn at home, for the house and for guests'},
-    {id: 'body-mist', name: 'Body Mists', line: 'Light scent for the skin'},
+    {id: 'body-mist', name: 'Body Mists', line: 'Light scent for the skin', perks: ['Oil-based', 'Gentle on skin', 'Nourishes the skin']},
     {id: 'hair', name: 'Hair Fragrance', line: 'Mists and bakhoor made for the hair'},
-    {id: 'fabric', name: 'Fabric & Abaya Sprays', line: 'For abayas, scarves and clothes', lasts: '2 days on fabric'},
+    {id: 'fabric', name: 'Fabric & Abaya Sprays', line: 'For abayas, hijabs and clothes', lasts: 'Up to 48 hours on fabric', perks: ['Lasts up to 48 hours', 'For clothes, abayas and hijabs']},
     {id: 'home', name: 'Home & Linen', line: 'For bed sheets, pillows and rooms'},
     {id: 'bath', name: 'Bath & Body', line: 'Oud for the shower, the hair and the skin'},
     {id: 'intimate', name: 'Intimate Care', line: 'Al Tahara, gentle fragrance and care for him and her'},
@@ -106,20 +107,20 @@ window.AMINAR = {
     {id: 'naughty-peach-oud', name: 'Naughty Peach Oud', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', sizes: [['150 ml', 600], ['60 ml', 300]], notes: "Peach · Osmanthus · Sandalwood", mood: "Juicy peach and lychee open bright and playful, then turn warm with osmanthus and a breath of incense. It settles on creamy sandalwood and vanilla: sweet, a little daring and hard to forget.", image: 'images/products/body-mist/naughty-peach-oud.jpg', confirmed: true}, // file was "Naughty Peach"; the label adds Oud
     {id: 'tobacco', name: 'Tobacco', shelf: 'body-mist', category: 'body-mist', kind: 'Body mist', sizes: [['150 ml', 600], ['60 ml', 300]], notes: "Tobacco · Honey · Amber", mood: "Warm tobacco leaf and a pinch of nutmeg, softened with honey and vanilla. Rich and smoky-sweet, it dries down to amber and patchouli, like a long evening that nobody wants to end.", image: 'images/products/body-mist/tobacco.jpg', confirmed: true},
 
-    {id: 'malaki-hair', name: 'Malaki Hair', shelf: 'hair', kind: 'Hair mist · Dehn Al Oud Malaki', size: '100 ml', price: 600, image: 'images/products/hair-sprays/malaki-hair.jpg', confirmed: true},
-    {id: 'oud-hair', name: 'Oud Hair', shelf: 'hair', kind: 'Hair mist · Dahn Al Oud', size: '100 ml', price: 600, image: 'images/products/hair-sprays/oud-hair.jpg', confirmed: true},
-    {id: 'the-royal', name: 'The Royal', shelf: 'hair', kind: 'Hair mist', size: '100 ml', price: 600, image: 'images/products/hair-sprays/the-royal.jpg', confirmed: true},
-    {id: 'pick-the-me', name: 'Pick the Moon', shelf: 'hair', line: 'Aminar Hair Mist', kind: 'Hair mist', size: '100 ml', price: 600, image: 'images/products/hair-sprays/pick-the-me.jpg', confirmed: true}, // name from เกีย; the label wraps round the bottle
-    {id: 'ruby-musk', name: 'Ruby Musk', shelf: 'hair', line: 'Aminar Hair Mist', kind: 'Hair mist', size: '100 ml', price: 600, image: 'images/products/hair-sprays/ruby-musk.jpg', confirmed: true}, // 100 ml printed on the label
+    {id: 'malaki-hair', name: 'Malaki Hair', shelf: 'hair', kind: 'Hair mist · Dehn Al Oud Malaki', size: '100 ml', price: 600, perks: ["Alcohol-free","No harsh chemicals","Aloe vera oil & vitamins"], image: 'images/products/hair-sprays/malaki-hair.jpg', confirmed: true},
+    {id: 'oud-hair', name: 'Oud Hair', shelf: 'hair', kind: 'Hair mist · Dahn Al Oud', size: '100 ml', price: 600, perks: ["Alcohol-free","No harsh chemicals","Aloe vera oil & vitamins"], image: 'images/products/hair-sprays/oud-hair.jpg', confirmed: true},
+    {id: 'the-royal', name: 'The Royal', shelf: 'hair', kind: 'Hair mist', size: '100 ml', price: 600, perks: ["Alcohol-free","No harsh chemicals","Aloe vera oil & vitamins"], image: 'images/products/hair-sprays/the-royal.jpg', confirmed: true},
+    {id: 'pick-the-me', name: 'Pick the Moon', shelf: 'hair', line: 'Aminar Hair Mist', kind: 'Hair mist', size: '100 ml', price: 600, perks: ["Alcohol-free","No harsh chemicals","Aloe vera oil & vitamins"], image: 'images/products/hair-sprays/pick-the-me.jpg', confirmed: true}, // name from เกีย; the label wraps round the bottle
+    {id: 'ruby-musk', name: 'Ruby Musk', shelf: 'hair', line: 'Aminar Hair Mist', kind: 'Hair mist', size: '100 ml', price: 600, perks: ["Alcohol-free","No harsh chemicals","Aloe vera oil & vitamins"], image: 'images/products/hair-sprays/ruby-musk.jpg', confirmed: true}, // 100 ml printed on the label
     {id: 'bakhoor-for-hair-1', name: 'Bakhoor for Hair', shelf: 'hair', kind: 'Hair bakhoor · red', image: 'images/products/Bakhoor/Bakhoor/bakhoor-for-hair-1.jpg', confirmed: true},
     {id: 'bakhoor-for-hair-2', name: 'Bakhoor for Hair', shelf: 'hair', kind: 'Hair bakhoor · yellow', image: 'images/products/Bakhoor/Bakhoor/bakhoor-for-hair-2.jpg', confirmed: true},
 
     {id: 'sunshine', name: 'My Sunshine', shelf: 'fabric', category: 'sprays', kind: 'Spray for clothes', bestseller: true, size: '100 ml', price: 850, image: 'images/products/Spray for clothes/sunshine.jpg', confirmed: true},
     {id: 'abaya', name: 'Abaya', shelf: 'fabric', category: 'sprays', kind: 'Spray for abayas', size: '100 ml', price: 850, image: 'images/products/Spray for clothes/abaya.jpg', confirmed: true},
-    {id: 'my-cinderella', name: 'My Cinderella', shelf: 'fabric', category: 'sprays', kind: 'Spray for abayas', size: '100 ml', price: 850, image: 'images/products/Spray for clothes/my-cinderella.jpg', confirmed: true},
-    {id: 'cupid-tobacco', name: 'Cupid Tobacco', shelf: 'fabric', category: 'sprays', kind: 'Spray for clothes', size: '100 ml', price: 850, image: 'images/products/Spray for clothes/cupid-tobacco.jpg', confirmed: true},
+    {id: 'my-cinderella', name: 'My Cinderella', shelf: 'fabric', category: 'sprays', kind: 'Spray for abayas', size: '100 ml', price: 850, notes: "Indian oud · Rose · Raspberry", mood: "A fairytale with depth. Ripe raspberry and rose wrap around Indian oud, soft orris and amber add a powdery glow, and sandalwood and musk carry it late into the night. Romantic, never shy.", image: 'images/products/Spray for clothes/my-cinderella.jpg', confirmed: true},
+    {id: 'cupid-tobacco', name: 'Cupid Tobacco', shelf: 'fabric', category: 'sprays', kind: 'Spray for clothes', size: '100 ml', price: 850, notes: "Tobacco · Honey · Amber", mood: "Warm tobacco leaf and a pinch of nutmeg, softened with honey and vanilla. Rich and smoky-sweet, it dries down to amber and patchouli, like a long evening that nobody wants to end.", image: 'images/products/Spray for clothes/cupid-tobacco.jpg', confirmed: true},
     {id: 'gentleman', name: 'Gentleman', shelf: 'fabric', category: 'sprays', kind: 'Spray for abayas', size: '100 ml', price: 850, image: 'images/products/Spray for clothes/gentleman.jpg', confirmed: true}, // file was "Gentelman"
-    {id: 'magic-leather', name: 'Magic Leather', shelf: 'fabric', category: 'sprays', kind: 'Spray for clothes', size: '100 ml', price: 850, image: 'images/products/Spray for clothes/magic-leather.jpg', confirmed: true},
+    {id: 'magic-leather', name: 'Magic Leather', shelf: 'fabric', category: 'sprays', kind: 'Spray for clothes', size: '100 ml', price: 850, notes: "Leather · Tuberose · Sandalwood", mood: "Supple leather lifted by juicy pear and peach, then a bouquet of tuberose and jasmine. Smooth sandalwood and musk keep it close to the skin: polished, sensual and sure of itself.", image: 'images/products/Spray for clothes/magic-leather.jpg', confirmed: true},
     {id: 'the-prime', name: 'The Prime', shelf: 'fabric', category: 'sprays', kind: 'Spray for clothes', size: '100 ml', price: 850, image: 'images/products/Spray for clothes/the-prime.jpg', confirmed: true},
 
     {id: 'bed-sheet-1', name: 'Bed Sheet No. 1', shelf: 'home', kind: 'Linen spray', price: 850, image: 'images/products/Room-spray/bed-sheet-1.jpg', confirmed: true},
@@ -129,10 +130,10 @@ window.AMINAR = {
 
     // `noSoon`: leave out the details we don't have yet instead of writing "Coming soon".
     // Intimate care (เกีย, 5 Nov). Spray labels read بخاخ الطهارة; เกีย named them Al Tahara Spray 1–4. Not on the home page.
-    {id: 'taharah-spray-1', name: 'Al Tahara Spray 1', shelf: 'intimate', kind: 'Intimate spray · for him and her', price: 700, image: 'images/products/Intimate/taharah-spray-1.jpg', confirmed: false},
-    {id: 'my-secret', name: 'Al Tahara Spray 2', shelf: 'intimate', line: 'My Secret · 4th formula', kind: 'Intimate spray · for him and her', price: 700, image: 'images/products/Intimate/my-secret.jpg', confirmed: true},
-    {id: 'taharah-spray-2', name: 'Al Tahara Spray 3', shelf: 'intimate', kind: 'Intimate spray · for him and her', price: 700, image: 'images/products/Intimate/taharah-spray-2.jpg', confirmed: false},
-    {id: 'taharah-spray-3', name: 'Al Tahara Spray 4', shelf: 'intimate', kind: 'Intimate spray · for him and her', price: 700, image: 'images/products/Intimate/taharah-spray-3.jpg', confirmed: false},
+    {id: 'taharah-spray-1', name: 'Al Tahara Spray 1', shelf: 'intimate', kind: 'Intimate spray · for him and her', price: 700, perks: ["Medically tested","Alcohol-free","No harsh chemicals"], image: 'images/products/Intimate/taharah-spray-1.jpg', confirmed: false},
+    {id: 'my-secret', name: 'Al Tahara Spray 2', shelf: 'intimate', line: 'My Secret · 4th formula', kind: 'Intimate spray · for him and her', price: 700, perks: ["Medically tested","Alcohol-free","No harsh chemicals"], image: 'images/products/Intimate/my-secret.jpg', confirmed: true},
+    {id: 'taharah-spray-2', name: 'Al Tahara Spray 3', shelf: 'intimate', kind: 'Intimate spray · for him and her', price: 700, perks: ["Medically tested","Alcohol-free","No harsh chemicals"], image: 'images/products/Intimate/taharah-spray-2.jpg', confirmed: false},
+    {id: 'taharah-spray-3', name: 'Al Tahara Spray 4', shelf: 'intimate', kind: 'Intimate spray · for him and her', price: 700, perks: ["Medically tested","Alcohol-free","No harsh chemicals"], image: 'images/products/Intimate/taharah-spray-3.jpg', confirmed: false},
     {id: 'intimate-wash', name: 'Intimate Wash', shelf: 'intimate', kind: 'Intimate wash · for him and her', price: 1200, noSoon: true, image: 'images/products/Intimate/intimate-wash.jpg', confirmed: false},
     {id: 'musk-al-taharah', name: 'Musk Al Taharah', shelf: 'intimate', kind: 'Intimate serum · for women · with oud', price: 4000, noSoon: true, image: 'images/products/Intimate/musk-al-taharah.jpg', confirmed: false}, // label: مسك الطهارة
 

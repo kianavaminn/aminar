@@ -360,7 +360,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
 </head>
 <body>
 <script>document.documentElement.classList.add('js')</script>
-<script src="data/products.js?v=mw3q76tq"></script>
+<script src="data/products.js?v=mw3qi1iy"></script>
 
 <header class="nav" id="nav">
   <button class="icon menu" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="overlay"><span class="burger"></span></button>
@@ -442,7 +442,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
     </div>
     <ul class="facts">
       <li data-rise><b>30+</b><span>Years of blending</span></li>
-      <li data-rise style="--d:1"><b>2 days</b><span>Sprays for clothes stay on fabric</span></li>
+      <li data-rise style="--d:1"><b>48 h</b><span>Sprays for clothes stay on fabric</span></li>
       <li data-rise style="--d:2"><b>10–12 h</b><span>Our perfumes on skin</span></li>
     </ul>
   </div>
@@ -497,7 +497,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // Bestsellers: the box opens when it scrolls into view; a name closes it, swaps what is inside, opens it again.
-  const why = {'oud-trat-tablets': 'Our bestselling oud.', sunshine: 'Stays on fabric for two days.', 'golden-sins': 'Our bestselling perfume. 10 to 12 hours on skin.', 'oud-patchouli': 'Our bestselling body mist.'};
+  const why = {'oud-trat-tablets': 'Our bestselling oud.', sunshine: 'Stays on fabric for up to 48 hours.', 'golden-sins': 'Our bestselling perfume. 10 to 12 hours on skin.', 'oud-patchouli': 'Our bestselling body mist.'};
   const lidName = {'oud-trat-tablets': 'Oud Trat', sunshine: 'Sunshine'};
   const bOrder = ['oud-trat-tablets', 'sunshine', 'golden-sins', 'oud-patchouli'];
   const B = D.products.filter((p) => p.bestseller && p.image && bOrder.includes(p.id)).sort((a, b) => bOrder.indexOf(a.id) - bOrder.indexOf(b.id));
