@@ -372,7 +372,9 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
 </head>
 <body>
 <script>document.documentElement.classList.add('js')</script>
-<script src="data/products.js?v=mw3stgrs"></script>
+<script src="data/products.js?v=mwjzyg62"></script>
+<script src="data/lang-th.js?v=mwjzyg62"></script>
+<script src="data/i18n.js?v=mwjzyg62"></script>
 
 <header class="nav" id="nav">
   <button class="icon menu" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="overlay"><span class="burger"></span></button>
@@ -707,7 +709,10 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-hei
   const split = (el) => [...el.childNodes].forEach((n) => {
     if (n.nodeType === 3) {
       const f = document.createDocumentFragment();
-      [...n.textContent].forEach((c) => { const i = document.createElement('i'); i.className = 'ch'; i.style.fontStyle = 'normal'; i.textContent = c; i.setAttribute('aria-hidden', 'true'); f.append(i); });
+      // Thai visitors: translate first, then split into whole letters (a vowel or tone mark stays with its consonant)
+      const txt = window.I18N ? I18N.t(n.textContent) : n.textContent;
+      const letters = window.Intl && Intl.Segmenter ? [...new Intl.Segmenter('th', {granularity: 'grapheme'}).segment(txt)].map((g) => g.segment) : [...txt];
+      letters.forEach((c) => { const i = document.createElement('i'); i.className = 'ch'; i.style.fontStyle = 'normal'; i.textContent = c; i.setAttribute('aria-hidden', 'true'); f.append(i); });
       n.replaceWith(f);
     } else split(n);
   });

@@ -324,7 +324,9 @@ body.famOpen .chips{opacity:1;transform:none;pointer-events:auto}
 body.famOpen .famShade{opacity:1;pointer-events:auto}
 @media (min-width:900px){.chips{left:auto;right:auto;width:640px;grid-template-columns:1fr 1fr;column-gap:8px}.search{flex:none;width:340px;margin-left:auto}}
 </style>
-<script src="data/products.js?v=mw3stgrs"></script>
+<script src="data/products.js?v=mwjzyg62"></script>
+<script src="data/lang-th.js?v=mwjzyg62"></script>
+<script src="data/i18n.js?v=mwjzyg62"></script>
 </head>
 <body>
 <script>document.documentElement.classList.add('js')</script>
@@ -571,7 +573,7 @@ body.famOpen .famShade{opacity:1;pointer-events:auto}
     const rows = Object.entries(cart).map(([k, n], i) => { const {p, size} = keyOf(k), unit = unitOf(k); return `${i + 1}. ${label(p)}${size ? ' (' + size + ')' : ''} × ${n}${SHOW && unit ? ' = ' + baht(unit * n) : ''}`; });
     const sum = SHOW && priced() ? [...(saved() ? ['Offer: you save ' + baht(saved())] : []), 'Total: ' + baht(total()) + ' (before delivery)', '', 'Please send me the delivery cost.'] : ['Please send me the prices and the delivery cost.'];
     const free = freeBottles() ? [`Free bottle${freeBottles() > 1 ? 's' : ''}: ${freeBottles()} (scent: ${v('cfree') || 'I will choose'})`, ''] : [];
-    return ['Hello Aminar, I would like to order:', '', ...rows, '', ...free, ...sum, '', `Name: ${v('cname') || '-'}`, `Country: ${v('ccountry') || '-'}`, `Delivery: ${v('chow')}`].join('\n');
+    return ['Hello Aminar, I would like to order:', '', ...rows, '', ...free, ...sum, '', `Name: ${v('cname') || '-'}`, `Country: ${v('ccountry') || '-'}`, `Delivery: ${v('chow')}`].map((l) => (window.I18N ? I18N.t(l) : l)).join('\n');
   };
   function drawCart() {
     const ids = Object.keys(cart);
