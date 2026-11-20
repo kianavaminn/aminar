@@ -15,7 +15,7 @@ window.AMINAR = {
     phones: ['+66 81 137 1737', '+66 89 504 2876'],
     instagram: 'aminarthailand',
     snapchat: 'aminarthailand', // TO CONFIRM (not on the old contact page)
-    showPrices: false, // prices stay hidden until the accountant answers about excise tax (add ?prices=1 to the address to preview them)
+    showPrices: true, // turned on by เกีย 20 Nov 2026 (false hides every price; ?prices=1 previews them)
     currency: '฿',
     area: 'Sukhumvit Soi 3, Nana, Bangkok',
     hours: {open: 10, close: 1, days: 'Every day', text: '10:00 AM – 1:00 AM'}, // closes after midnight
