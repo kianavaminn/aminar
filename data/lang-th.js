@@ -399,6 +399,11 @@ window.AMINAR_TH = {
     "Juicy cherry, pear and mandarin, then a fresh bouquet of white flowers. It melts into sweet vanilla musk: light, pretty and easy to love.": "เชอร์รีฉ่ำ ลูกแพร์ และส้มแมนดาริน ตามด้วยช่อดอกไม้ขาวสดชื่น แล้วละลายเป็นวานิลลามัสก์หวานๆ เบาสบาย น่ารัก และชอบได้ง่าย",
     "Cambodian oud oil and soft orris, then Taif rose warmed with saffron. Oakmoss, Siam benzoin and sandalwood leave the hair rich and softly glowing.": "น้ำมันอู๊ดกัมพูชากับไอริสนุ่มๆ ตามด้วยกุหลาบไตอิฟอุ่นด้วยหญ้าฝรั่น โอ๊กมอส กำยานสยาม และไม้จันทน์ทำให้ผมหอมลึกและเปล่งประกาย",
     "Lychee and pomegranate sparkle first, then a soft rose with a touch of mango. Cashmere musk wraps the hair in something sweet and cosy.": "ลิ้นจี่และทับทิมสดใสเป็นอย่างแรก ตามด้วยกุหลาบนุ่มกับมะม่วงเล็กน้อย แคชเมียร์มัสก์โอบผมไว้ด้วยความหวานอบอุ่น",
+    // notes and moods added 20 Nov (2)
+    "Coffee": "กาแฟ",
+    "Cinnamon": "อบเชย",
+    "Benzoin": "กำยาน",
+    "Dark roasted coffee and green cardamom open bold and warm, then cinnamon and a juicy hint of dewberry. Benzoin and soft woods leave a smooth, addictive trail.": "กาแฟคั่วเข้มและกระวานเปิดตัวอย่างเข้มข้นอบอุ่น ตามด้วยอบเชยและดิวเบอร์รีฉ่ำๆ กำยานและไม้นุ่มทิ้งกลิ่นละมุนที่ชวนให้หลงใหล",
     // offers
     'special price': 'ราคาพิเศษ',
     'Any 3': 'ซื้อ 3 ชิ้นขึ้นไป',
